@@ -13,7 +13,13 @@
 body{
     font-family: 'Roboto', sans-serif;
 }
-
+.bodypresentation {
+    background-image:url('media/backgrounds/testtente.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .ban{
     padding: 1rem;
 }
@@ -22,13 +28,10 @@ body{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 10%;
-    padding-left: 20%;
-    padding-right: 20%;
 }
 
 .navbar a{
-    width: 50%;
+    width: 100%;
 }
 
 .navbar a div {
@@ -56,7 +59,6 @@ body{
     padding-bottom: 2.5px;
     content: url('media/icons/compass/compass.gif');
 }
-
 
 .pres-button .icon{
     width: 50px;
@@ -134,15 +136,130 @@ body{
 }
 
 .selector a:hover .selector-desc {
-    transform: translateY(12%); 
     opacity: 100%;
-    transition: all 1s ease;
+    transition: opacity 1s ease;
     
 }
 
 .selector a:not(:hover) .selector-desc {
     opacity: 0;
-    transition: all 1s ease;
-    transform: translateY(0); 
-    
+    transition: opacity 1s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.slogan {
+    font-style: italic;
+    color: #ccc;
+}
+
+
+.tounsi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.tounsi h2 {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.tounsi p {
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+
+.search-form {
+    display: flex;
+    justify-content: center;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    width: 300px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    background-color: green;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: green;
+}
+
+.cnouswsh {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.cnouswsh h2 {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.jspmonreuf {
+    width: 100%;
+    border-collapse: collapse;
+    background: green;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.jspmonreuf th, .jspmonreuf td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.jspmonreuf th {
+    background: green;
+    color: white;
+    font-weight: bold;
+}
+
+.jspmonreuf tr:nth-child(even) {
+    background: #e8f5e9;
 }
