@@ -1,8 +1,6 @@
 :root{
-    --primary-color: #2c3e;
-    --secondary-color: blue;
-    --background-color: #00681a;
-    --text-color: #E3E372;
+    --light-color: #296647;
+    --dark-color: #143324;
 }
 
 *{
@@ -13,36 +11,160 @@
 body{
     font-family: 'Roboto', sans-serif;
 }
-.bodypresentation {
-    background-image:url('media/backgrounds/testtente.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+
+/* Main banner */
+
 .ban{
+
+    display: flex;
+    justify-content: space-between;
+}
+
+header{
+    background: linear-gradient(to bottom, #296647, #143324);
+    text-align: center;
+    color: white;
+    height: 120px;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-text{
+    text-align: left;
+    padding-left: 10px;
+}
+
+.title-text h3{
+    font-style: italic;
+    color: #ccc;
+}
+
+.title img {
+    width: 100px;
+    height: 100px;
+    padding-top: 0;
+}
+
+.profil-links{
+    position: relative;
+    bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 1rem;
 }
+.profil-links div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .15s linear 0s;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.profil-links .login .icon{
+    width: 17px;
+    height: 17px;
+    padding-left: 4px;
+    padding-right: 4px;
+    content: url('media/icons/account/account.png'); 
+    
+}
+.profil-links .profil .icon{
+    width: 17px;
+    height: 17px;
+    padding-left: 4px;
+    padding-right: 4px;
+    content: url('media/icons/account/account.png'); 
+    
+}
+.profil-links .admin .icon{
+    width: 26px;
+    height: 26px;
+    content: url('media/icons/gear/gear.png'); 
+    
+}
+.profil-links .logout .icon{
+    width: 25px;
+    height: 25px;
+    padding-left: 1px;
+    content: url('media/icons/logout/logout.png'); 
+    
+}
+
+.profil-links a {
+    text-decoration: none;
+    color: white;
+    transition: all .15s linear 0s;
+}
+
+.profil-links a:hover {
+    color: #f5fd9b;
+}
+
+.profil-links .login:hover .icon{
+    content: url('media/icons/account/account.gif'); 
+    
+}
+.profil-links .profil:hover .icon{
+    content: url('media/icons/account/account.gif'); 
+    
+}
+.profil-links .admin:hover .icon{
+    content: url('media/icons/gear/gear.gif'); 
+    
+}
+.profil-links .logout:hover .icon{
+    content: url('media/icons/logout/logout.gif'); 
+    
+}
+
+/* Navigation bar (présentation and rechercher) */
 
 .navbar{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    position: relative;
+    gap: 15%;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 .navbar a{
-    width: 100%;
+    position: relative;
+    width: 50%;
+    bottom: 10px;
+    background-color: #2d8a5b;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    box-shadow: -5px 6px 0 #0f251a;
+    transition: all .15s linear 0s;
+}
+
+.navbar a:hover{
+    background-color: #136d40;
+    color: #f5fd9b;
+    box-shadow: -5px 5px 0 #0f251a;
+    bottom: 9px;
+}
+.navbar a:active{
+    background-color: #206140;
+    color: #ecfa25;
+    box-shadow: -5px 4px 0 #0f251a;
+    bottom: 8px;
+    
 }
 
 .navbar a div {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
-    background-color: #00681a;
-    text-decoration: none;
-    transition: 0.3s;
-    
+    transition: all .15s linear 0s;
 }
 
 .search-button .icon{
@@ -53,10 +175,6 @@ body{
     content: url('media/icons/compass/compass.png'); 
 }
 .search-button:hover .icon{
-    width: 45px;
-    height: 45px;
-    padding-top: 2.5px;
-    padding-bottom: 2.5px;
     content: url('media/icons/compass/compass.gif');
 }
 
@@ -66,27 +184,59 @@ body{
     content: url('media/icons/info/info.png'); 
 }
 .pres-button:hover .icon{
-    width: 50px;
-    height: 50px;
     content: url('media/icons/info/info.gif');
 }
 
-.selector {
-    display: flex;
-    height: 100%;
+.home-button .icon{
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    content: url('media/icons/home/home.png'); 
+}
+.home-button:hover .icon{
+    content: url('media/icons/home/home.gif');
 }
 
+/* footer */
+
+footer{
+    display: flex;
+    justify-content: center;
+    height: 13px;
+    background: linear-gradient(to bottom, #296647, #143324);
+}
+
+footer div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
+    border-radius: 10px;
+    width: 40%;
+}
+
+/* Main index.html selector */
+
+.selector {
+    display: flex;
+    height: calc(100% - 133px);
+    overflow: hidden;
+}
 
 .selector a {
     flex: 1;
-    display: flex;
     width: 20%;
+    text-decoration: none;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
     color: white;
     transition: flex 1s ease;
     text-align: center;
+    padding-right: 0;
 }
 .selector a img {
     width: 100%;
@@ -97,13 +247,26 @@ body{
     flex: 2;
 }
 
-.selector-title {
-    position: absolute;
+.selector-text {
+    position: relative;
+    bottom: 70%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease;
+    padding-left: 20%;
+    padding-right: 20%;
+    
+}
+
+.selector-text h1 {
+    position: relative;
     color: white;
-    width: 20%;
-    padding-left: 10;
-    padding-right: 10;
-    font-size: 24px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 35px;
     font-weight: bold;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
     background: rgba(0, 0, 0, 0.5);
@@ -111,67 +274,44 @@ body{
     
 }
 
-.selector a:hover .selector-title {
-    transform: translateY(-200px);
-    transition: transform 1s ease;
-    
-}
-
-.selector a:not(:hover) .selector-title {
-    transform: translateY(0); 
-    transition: transform 1s ease;
-}
-
-.selector-desc {
-    position: absolute;
-    width: 20%;
+.selector-text p {
+    position: relative;
     color: white;
-    padding-left: 10;
-    padding-right: 10;
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 24px;
-    font-weight: bold;
     background: rgba(0, 0, 0, 0.5);
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
     border-radius: 10px
 }
 
-.selector a:hover .selector-desc {
+.selector a:hover .selector-text {
+    gap: 50px;
+    bottom: 70%;
+    transition: all 1s ease;
+    
+}
+
+.selector a:not(:hover) .selector-text {
+    gap: 0px;
+    bottom: 60%;
+    transition: all 1s ease
+}
+
+.selector a:hover .selector-text p {
     opacity: 100%;
-    transition: opacity 1s ease;
+    transform: translateY(0);
+    transition: all 1s ease;
     
 }
-
-.selector a:not(:hover) .selector-desc {
+.selector a:not(:hover) .selector-text p {
     opacity: 0;
-    transition: opacity 1s ease;
+    transform: translateY(-50%);
+    transition: all 1s ease;
 }
 
 
-
-
-
-
-
-
-
-
-
-header {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2.5em;
-}
-
-.slogan {
-    font-style: italic;
-    color: #ccc;
-}
-
+/* presentation.html */
 
 .tounsi {
     display: flex;

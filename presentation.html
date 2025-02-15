@@ -1,46 +1,100 @@
-<!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beyond Survival - Présentation</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body class="bodypresentation">
-    <header>
-        <h1>Beyond Survival</h1>
-        <p class="slogan">Survive if you can !</p>
-    </header>
-    <main>
-        <section class="tounsi">
-            <div class="overlay">
-                <h2>Bienvenue chez Beyond Survival</h2>
-                <p>Découvrez nos stages, immersions et escape games pour tester vos limites.</p>
-                <form class="search-form" action="recherche.html" method="get">
-                    <input type="text" name="q" placeholder="Rechercher une aventure..." required>
-                    <button type="submit">Rechercher</button>
-                </form>
+    <head>
+        <meta name = "name" content ="Beyond Survival" />
+        <meta name = "description" content = "A travel agency for Survival"/>
+        <meta name = "keywords" content = "Travel, Survival"/>
+        <meta name = "tags" content = "Travel, Survival"/>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <header>
+            <!-- The main banner with the logo -->
+            <div class="ban">
+                <div class="title">
+                    <img src="media/logo.png" alt="Logo de Beyond Survival">
+                    <div class="title-text">
+                        <h1>Beyond Survival</h1>
+                        <h3>Survive if you can !</h3>
+                    </div>
+                </div>
+                <div class="profil-links">
+                    <div class="login">
+                        <img class="icon">
+                        <a href="login.html">Connexion</a>
+                    </div>
+                    <div class="profil">
+                        <img class="icon">
+                        <a href="profil.html">Profil</a>
+                    </div>
+                    <div class="admin">
+                        <img class="icon">
+                        <a href="admin.html">Admin</a>
+                    </div>
+                    <div class="logout">
+                        <img class="icon">
+                        <a href="#">Déconnexion</a>
+                    </div>
+                    
+                    
+                </div>
             </div>
-        </section>
-        <section class="cnouswsh">
-            <h2>A propos de nous</h2>
-            <table class="jspmonreuf">
-                    <tr>
-                        <th>Qui sommes-nous ?</th>
-                        <td>Beyond Survival est une agence spécialisé dans les stages et immersions de survie ainsi que des escapes games.</td>
-                    </tr>
-                    <tr>
-                        <th>Nos missions</th>
-                        <td>Offrir des expériences uniques en pleine nature et préparer nos clients de la meilleur des manières.</td>
-                    </tr>
-                    <tr>
-                        <th>Nos destinations</th>
-                        <td>Forêts, jungles, déserts et plus encore. Nous vous emmenons partout pour dépasser vos limites (mentalité PLUS ULTRA)</td>
-                    </tr>
-                    <th>Nos valeurs et engagements</th>
-                    <td>Aventure, PLUS ULTRA (dépassement de soi), respect de la nature.</td>
-            </table>
-        </section>
-    </main>
-</body>
+            
+            <!-- Navigation bar -->
+            <nav class="navbar">
+                <a href="index.html">
+                    <div class="home-button">
+                        <img class="icon">
+                        <h1>Accueil</h1>
+                    </div>  
+                </a>
+                <a href="search.html">
+                    <div class="search-button">
+                        <img class="icon">
+                        <h1>Rechercher</h1>
+                    </div>
+                </a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="tounsi">
+                <div class="overlay">
+                    <h2>Bienvenue chez Beyond Survival</h2>
+                    <p>Découvrez nos stages, immersions et escape games pour tester vos limites.</p>
+                    <form class="search-form" action="recherche.html" method="get">
+                        <input type="text" name="q" placeholder="Rechercher une aventure..." required>
+                        <button type="submit">Rechercher</button>
+                    </form>
+                </div>
+            </section>
+            <section class="cnouswsh">
+                <h2>A propos de nous</h2>
+                <table class="jspmonreuf">
+                        <tr>
+                            <th>Qui sommes-nous ?</th>
+                            <td>Beyond Survival est une agence spécialisé dans les stages et immersions de survie ainsi que des escapes games.</td>
+                        </tr>
+                        <tr>
+                            <th>Nos missions</th>
+                            <td>Offrir des expériences uniques en pleine nature et préparer nos clients de la meilleur des manières.</td>
+                        </tr>
+                        <tr>
+                            <th>Nos destinations</th>
+                            <td>Forêts, jungles, déserts et plus encore. Nous vous emmenons partout pour dépasser vos limites (mentalité PLUS ULTRA)</td>
+                        </tr>
+                        <th>Nos valeurs et engagements</th>
+                        <td>Aventure, PLUS ULTRA (dépassement de soi), respect de la nature.</td>
+                </table>
+            </section>
+        </main>
+        
+        
+        <footer>
+            <div>
+                <p> &copy; Ahmed A. Rémi S. Abdelwaheb A.</p>
+            </div>
+        </footer>
+    </body>
 </html>
