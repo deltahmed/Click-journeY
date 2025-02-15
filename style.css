@@ -313,27 +313,35 @@ footer div{
 
 /* presentation.html */
 
-.tounsi {
+.pres-body {
+    background-image: url('media/backgrounds/forest2.jpg');
+    background-size: cover;
+}
+
+.search-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    padding-top: 50px;
 }
 
-.overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+.search-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: perspective(1000px);
+    transition: transform 0.1s ease-out;
     padding: 20px;
     text-align: center;
     border-radius: 10px;
 }
 
-.tounsi h2 {
+.search-section h2 {
     color: white;
     font-size: 2em;
     margin-bottom: 10px;
 }
 
-.tounsi p {
+.search-section p {
     color: white;
     font-size: 1.2em;
     margin-bottom: 20px;
@@ -367,39 +375,29 @@ footer div{
     background-color: green;
 }
 
-.cnouswsh {
-    width: 80%;
-    margin: 50px auto;
+
+.pres-section {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    
+}
+.pres-card * {
+    padding: 10px;
+}
+.pres-card {
+    width: 50%;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
     text-align: center;
 }
 
-.cnouswsh h2 {
-    color: white;
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.jspmonreuf {
-    width: 100%;
-    border-collapse: collapse;
-    background: green;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.jspmonreuf th, .jspmonreuf td {
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-}
-
-.jspmonreuf th {
-    background: green;
-    color: white;
-    font-weight: bold;
-}
-
-.jspmonreuf tr:nth-child(even) {
-    background: #e8f5e9;
-}
+/* presentation.html */
