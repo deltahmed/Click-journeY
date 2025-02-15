@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
-    <body>
+    <body class="admin-body">
         <header>
             <!-- The main banner with the logo -->
             <div class="ban">
@@ -43,20 +43,259 @@
             
             <!-- Navigation bar -->
             <nav class="navbar">
-                <a href="presentation.html">
-                    <div class="pres-button">
+                <a href="index.html">
+                    <div class="home-button">
                         <img class="icon">
-                        <h1>Présentation</h1>
+                        <h1>Accueil</h1>
                     </div>  
-                </a>
-                <a href="search.html">
-                    <div class="search-button">
-                        <img class="icon">
-                        <h1>Rechercher</h1>
-                    </div>
                 </a>
             </nav>
         </header>
+
+        <div class="admin-overlay">
+            <div class="admin-content">
+                <h1> Liste des utilisateurs </h1>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Informations</th>
+                            <th>Actions</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>ID</th>
+                                        <td>1</th>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail</th>
+                                        <td>contact.ahmed.delta@gmail.com</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</th>
+                                        <td>Admin</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Nom</th>
+                                        <td>Ahmed</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Prénom</th>
+                                        <td>Ahmed</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Sexe</th>
+                                        <td>M</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Date de naissance</th>
+                                        <td>01/01/2000</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Numéro de téléphone</th>
+                                        <td>0707070707</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Adresse</th>
+                                        <td>9 av parc</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Code postal</th>
+                                        <td>95800</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Ville</th>
+                                        <td>Cergy</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Commentaire</th>
+                                        <td></th>
+                                    </tr>
+                                </table>
+                                
+                            </td>
+                            <td class="td-button">
+                                <div>
+                                    
+                                    <button>
+                                        Modifier
+                                    </button>
+                                    <button>
+                                        Ajouter une reduction
+                                    </button>
+                                    <button>
+                                        Reset Mdp
+                                    </button>
+                                    <button>
+                                        Bannir
+                                    </button>
+                                    <button>
+                                        Supprimer
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>ID</th>
+                                        <td>2</th>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail</th>
+                                        <td>email@email.com</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</th>
+                                        <td>User</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Nom</th>
+                                        <td>Abdelwaheb</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Prénom</th>
+                                        <td>Abdelwaheb</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Sexe</th>
+                                        <td>M</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Date de naissance</th>
+                                        <td>01/01/2000</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Numéro de téléphone</th>
+                                        <td>0707070707</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Adresse</th>
+                                        <td>9 av parc</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Code postal</th>
+                                        <td>95800</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Ville</th>
+                                        <td>Cergy</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Commentaire</th>
+                                        <td></th>
+                                    </tr>
+                                </table>
+                                
+                            </td>
+                            <td class="td-button">
+                                <div>
+                                    
+                                    <button>
+                                        Modifier
+                                    </button>
+                                    <button>
+                                        Ajouter une reduction
+                                    </button>
+                                    <button>
+                                        Reset Mdp
+                                    </button>
+                                    <button>
+                                        Bannir
+                                    </button>
+                                    <button>
+                                        Supprimer
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>ID</th>
+                                        <td>3</th>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail</th>
+                                        <td>email@email.com</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</th>
+                                        <td>Banni</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Nom</th>
+                                        <td>Rémi</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Prénom</th>
+                                        <td>Rémi</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Sexe</th>
+                                        <td>M</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Date de naissance</th>
+                                        <td>01/01/2000</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Numéro de téléphone</th>
+                                        <td>0707070707</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Adresse</th>
+                                        <td>9 av parc</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Code postal</th>
+                                        <td>95800</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Ville</th>
+                                        <td>Cergy</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Commentaire</th>
+                                        <td></th>
+                                    </tr>
+                                </table>
+                                
+                            </td>
+                            <td class="td-button">
+                                <div>
+                                    
+                                    <button>
+                                        Modifier
+                                    </button>
+                                    <button>
+                                        Ajouter une reduction
+                                    </button>
+                                    <button>
+                                        Reset Mdp
+                                    </button>
+                                    <button>
+                                        Bannir
+                                    </button>
+                                    <button>
+                                        Supprimer
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
         
         
         <footer>

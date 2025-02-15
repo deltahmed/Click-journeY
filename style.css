@@ -400,4 +400,92 @@ footer div{
     text-align: center;
 }
 
-/* presentation.html */
+/* search.html */
+
+
+
+
+/* admin.html */
+
+.admin-body{
+    background-image: url(media/backgrounds/gears.jpg);
+    background-repeat: repeat;
+    background-size: 450px 450px;
+}
+
+.admin-overlay {
+    background: rgba(0, 10, 2, 0.9);
+    min-height: calc(100% - 133px);
+    height: auto;
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+.admin-content{
+    background: #e2e2e2;
+    padding: 20px;
+    border-radius: 20px;
+    
+
+}
+
+.admin-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    
+}
+.admin-table thead tr {
+    background-color: #2d8a5b;
+    color: #ffffff;
+    text-align: left;
+}
+.admin-table th, .admin-table td {
+    padding: 12px 15px;
+}
+.admin-table tbody tr {
+    border-bottom: 5px solid #2d8a5b;
+}
+
+.admin-table tbody tr:nth-of-type(even) {
+    background: rgba(0,0,0,0.1)
+}
+
+.admin-table tbody tr:last-of-type {
+    border-bottom: 10px solid #2d8a5b;
+}
+
+.td-button div {
+    display: flex;
+    flex-direction: column;
+}
+
+.td-button{
+    align-items: center;
+}
+
+.admin-table button {
+    background-color: #2d8a5b;
+    border: none;
+    color: white;
+    padding: 10; 
+    text-align: center; 
+    text-decoration: none;
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer;
+    border-radius: 12px; 
+    transition: all 0.3s;
+}
+
+.admin-table button:hover {
+    background-color: #136d40;
+    color: #f5fd9b;
+    transform: scale(1.1);
+}
