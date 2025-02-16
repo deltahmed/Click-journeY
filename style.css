@@ -634,3 +634,89 @@ footer div{
     color: white;
     
 }
+
+/* search.html */
+
+.search-content{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-image: url(media/backgrounds/forest4.jpg);
+    background-size: cover;
+    min-height: calc(100% - 183px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.travel-form {
+    width: 90%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color: white;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    align-items: center;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+input, select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.submit-btn {
+    background-color: #2d8a5b;
+    border: none;
+    color: white;
+    padding: 10; 
+    text-align: center; 
+    text-decoration: none;
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer;
+    border-radius: 12px; 
+    transition: all 0.3s;
+}
+.submit-btn:hover {
+    background-color: #136d40;
+    color: #f5fd9b;
+    transform: scale(1.1);
+}
+.results-container {
+    width: 70%;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    transition: all 0.3s;
+    
+}
+
+.results-container:hover {
+    transform: scale(1.05);
+}
+
+.result {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: all 0.3s;
+
+}
+
+.result div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}

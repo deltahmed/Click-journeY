@@ -1,0 +1,106 @@
+<form action="recherche-voyage.php" method="get" class="travel-form">
+    <div class="form-inline">
+        <label for="travelers">Voyageurs :</label>
+        <input type="number" id="travelers" name="travelers" min="1" max="10">
+    
+        <label for="rooms">Chambres :</label>
+        <input type="number" id="rooms" name="rooms" min="1" max="5">
+    
+        <label for="level">Niveau :</label>
+        <select id="level" name="level">
+            <option value="beginner">Débutant</option>
+            <option value="intermediate">Intermédiaire</option>
+            <option value="advanced">Confirmé</option>
+        </select>
+    
+        <label for="activity">Activité :</label>
+        <select id="activity" name="activity">
+            <option value="wilderness-survival">Survie en pleine nature</option>
+            <option value="survival-training">Stage de survie</option>
+            <option value="survival-escape-game">Escape-game de survie</option>
+        </select>
+    </div>
+    
+    <div class="form-inline">
+        <label for="destination">Destination :</label>
+        <select id="destination" name="destination">
+            <option value="france">France</option>
+            <option value="canada">Canada</option>
+            <option value="australia">Australie</option>
+        </select>
+    
+        <label for="climate">Climat :</label>
+        <select id="climate" name="climate">
+            <option value="arid-desert">Déserts arides</option>
+            <option value="lush-jungle">Jungles luxuriantes</option>
+            <option value="dense-forest">Forêts denses</option>
+            <option value="polar-regions">Régions polaires</option>
+            <option value="rugged-mountains">Montagnes escarpées</option>
+        </select>
+    
+        <label for="departure-date">Départ :</label>
+        <input type="date" id="departure-date" name="departure_date">
+    
+        <label for="return-date">Retour :</label>
+        <input type="date" id="return-date" name="return_date">
+    </div>
+
+    <div class="form-inline">
+        <label for="sort">Trier :</label>
+        <select id="sort" name="sort">
+            <option value="recommended">Recommandés</option>
+            <option value="price-asc">Prix (croissant)</option>
+            <option value="price-desc">Prix (décroissant)</option>
+            <option value="traveler-rating">Note des voyageurs</option>
+        </select>
+    
+        <button type="submit" class="submit-btn">Rechercher</button>
+    </div>
+</form>
+
+<div id="results" class="results-container"></div>
+
+<style>
+    .travel-form {
+        max-width: 100%;
+        margin: auto;
+        padding: 10px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-inline {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+    }
+    label {
+        font-weight: bold;
+    }
+    input, select {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .submit-btn {
+        padding: 8px 15px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    .submit-btn:hover {
+        background: #0056b3;
+    }
+    .results-container {
+        margin-top: 20px;
+        padding: 15px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>

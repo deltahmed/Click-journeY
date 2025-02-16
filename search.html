@@ -60,6 +60,123 @@
             </nav>
         </header>
         
+        <div class="search-content">
+            
+            <!-- For the final web site search.html will be search.php -->
+            <form action="search.html" method="get" class="travel-form">
+                <h2>Recherche :</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="travelers">Voyageurs :</label>
+                        <input type="number" id="travelers" name="travelers" min="1" max="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="rooms">Chambres :</label>
+                        <input type="number" id="rooms" name="rooms" min="1" max="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="level">Niveau :</label>
+                        <select id="level" name="level">
+                            <option value="beginner">Débutant</option>
+                            <option value="intermediate">Intermédiaire</option>
+                            <option value="advanced">Confirmé</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="activity">Activité :</label>
+                        <select id="activity" name="activity">
+                            <option value="wilderness-survival">Survie en pleine nature</option>
+                            <option value="survival-training">Stage de survie</option>
+                            <option value="survival-escape-game">Escape-game de survie</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination :</label>
+                        <select id="destination" name="destination">
+                            <option value="france">France</option>
+                            <option value="canada">Canada</option>
+                            <option value="australia">Australie</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="climate">Climat :</label>
+                        <select id="climate" name="climate">
+                            <option value="arid-desert">Déserts arides</option>
+                            <option value="lush-jungle">Jungles luxuriantes</option>
+                            <option value="dense-forest">Forêts denses</option>
+                            <option value="polar-regions">Régions polaires</option>
+                            <option value="rugged-mountains">Montagnes escarpées</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="departure-date">Départ :</label>
+                        <input type="date" id="departure-date" name="departure_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="return-date">Retour :</label>
+                        <input type="date" id="return-date" name="return_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="sort">Trier :</label>
+                        <select id="sort" name="sort">
+                            <option value="recommended">Recommandés</option>
+                            <option value="price-asc">Prix (croissant)</option>
+                            <option value="price-desc">Prix (décroissant)</option>
+                            <option value="traveler-rating">Note des voyageurs</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="submit-btn">Rechercher</button>
+                    </div>
+                </div>
+            </form>    
+            <div id="results" class="results-container">
+                <a class="result" href="#">
+                    <h1>🌍 Survie sur une ile du Canada</h1>
+                    <div>
+                        <p>📅 12/04/2025 - 19/04/2025</p>
+                        <p>👥 Voyageurs : 4-6</p>
+                        <p>🏕️ Activité : Survie en pleine nature</p>
+                        <p>🌡️ Climat : Forêts denses</p>
+                        <p>💰 Prix : 1 200€ / personne</p>
+                        <p>⭐ Note des voyageurs : 4.8/5</p>
+                    </div>
+                    
+                    
+                </a>
+            </div> 
+            <div id="results" class="results-container">
+                <a class="result" href="#">
+                    <h1>🌍 Survie sur une ile du Canada</h1>
+                    <div>
+                        <p>📅 12/04/2025 - 19/04/2025</p>
+                        <p>👥 Voyageurs : 4-6</p>
+                        <p>🏕️ Activité : Survie en pleine nature</p>
+                        <p>🌡️ Climat : Forêts denses</p>
+                        <p>💰 Prix : 1 200€ / personne</p>
+                        <p>⭐ Note des voyageurs : 4.8/5</p>
+                    </div>
+                    
+                    
+                </a>
+            </div> 
+            <div id="results" class="results-container">
+                <a class="result" href="#">
+                    <h1>🌍 Survie sur une ile du Canada</h1>
+                    <div>
+                        <p>📅 12/04/2025 - 19/04/2025</p>
+                        <p>👥 Voyageurs : 4-6</p>
+                        <p>🏕️ Activité : Survie en pleine nature</p>
+                        <p>🌡️ Climat : Forêts denses</p>
+                        <p>💰 Prix : 1 200€ / personne</p>
+                        <p>⭐ Note des voyageurs : 4.8/5</p>
+                    </div>
+                    
+                </a>
+            </div> 
+        </div>
+
+        
         
         <footer>
             <div>
