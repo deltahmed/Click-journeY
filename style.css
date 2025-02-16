@@ -1,6 +1,9 @@
 :root{
     --light-color: #296647;
     --dark-color: #143324;
+    --click-color: #2d8a5b;
+    --click-hover: #136d40;
+    --text-hover: #f5fd9b;
 }
 
 *{
@@ -27,7 +30,7 @@ body{
 }
 
 header{
-    background: linear-gradient(to bottom, #296647, #143324);
+    background: linear-gradient(to bottom, var(--light-color), var(--dark-color));
     text-align: center;
     color: white;
     height: 120px;
@@ -108,7 +111,7 @@ header{
 }
 
 .profil-links a:hover {
-    color: #f5fd9b;
+    color: var(--text-hover);
 }
 
 .profil-links .login:hover .icon{
@@ -144,7 +147,7 @@ header{
     position: relative;
     width: 50%;
     bottom: 10px;
-    background-color: #2d8a5b;
+    background-color: var(--click-color);
     border-radius: 50px;
     text-decoration: none;
     color: white;
@@ -153,8 +156,8 @@ header{
 }
 
 .navbar a:hover{
-    background-color: #136d40;
-    color: #f5fd9b;
+    background-color: var(--click-hover);
+    color: var(--text-hover);
     box-shadow: -5px 5px 0 #0f251a;
     bottom: 9px;
 }
@@ -209,7 +212,7 @@ footer{
     display: flex;
     justify-content: center;
     height: 13px;
-    background: linear-gradient(to bottom, #296647, #143324);
+    background: linear-gradient(to bottom, var(--light-color), var(--dark-color));
 }
 
 footer div{
@@ -371,14 +374,15 @@ footer div{
     padding: 10px 20px;
     font-size: 1em;
     border: none;
-    background-color: green;
+    background-color: var(--click-color);
     color: white;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
 }
 
 .search-form button:hover {
-    background-color: green;
+    background-color: var(--click-hover);
+    color: var(--text-hover);
 }
 
 
@@ -396,7 +400,7 @@ footer div{
     padding: 50px;
     background: rgba(0, 0, 0, 0.7);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
+    border-radius: 25px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -448,7 +452,7 @@ footer div{
     
 }
 .admin-table thead tr {
-    background-color: #2d8a5b;
+    background-color: var(--click-color);
     color: #ffffff;
     text-align: left;
 }
@@ -456,7 +460,7 @@ footer div{
     padding: 12px 15px;
 }
 .admin-table tbody tr {
-    border-bottom: 5px solid #2d8a5b;
+    border-bottom: 5px solid var(--click-color);
 }
 
 .admin-table tbody tr:nth-of-type(even) {
@@ -464,7 +468,7 @@ footer div{
 }
 
 .admin-table tbody tr:last-of-type {
-    border-bottom: 10px solid #2d8a5b;
+    border-bottom: 10px solid var(--click-color);
 }
 
 .td-button div {
@@ -477,7 +481,7 @@ footer div{
 }
 
 .admin-table button {
-    background-color: #2d8a5b;
+    background-color: var(--click-color);
     border: none;
     color: white;
     padding: 10; 
@@ -491,8 +495,8 @@ footer div{
 }
 
 .admin-table button:hover {
-    background-color: #136d40;
-    color: #f5fd9b;
+    background-color: var(--click-hover);
+    color: var(--text-hover);
     transform: scale(1.1);
 }
 
@@ -589,7 +593,7 @@ footer div{
     
 }
 .profil-page-table thead tr {
-    background-color: #2d8a5b;
+    background-color: var(--click-color);
     color: #ffffff;
     text-align: left;
 }
@@ -597,7 +601,7 @@ footer div{
     padding: 12px 15px;
 }
 .profil-page-table tbody tr {
-    border-bottom: 1px solid #2d8a5b;
+    border-bottom: 1px solid var(--click-color);
 }
 
 .profil-page-table tbody tr:nth-of-type(even) {
@@ -605,11 +609,11 @@ footer div{
 }
 
 .profil-page-table tbody tr:last-of-type {
-    border-bottom: 2px solid #2d8a5b;
+    border-bottom: 2px solid var(--click-color);
 }
 
 .profil-page-table button {
-    background-color: #2d8a5b;
+    background-color: var(--click-color);
     border: none;
     color: white;
     padding: 10; 
@@ -623,8 +627,8 @@ footer div{
 }
 
 .profil-page-table button:hover {
-    background-color: #136d40;
-    color: #f5fd9b;
+    background-color: var(--click-hover);
+    color: var(--text-hover);
     transform: scale(1.1);
 }
 .profil-page-table button{
@@ -651,10 +655,10 @@ footer div{
 
 .travel-form {
     width: 90%;
-    padding: 10px;
+    padding: 25px;
     background: rgba(0, 0, 0, 0.8);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    border-radius: 25px;
     color: white;
 }
 .form-grid {
@@ -677,7 +681,7 @@ input, select {
     border-radius: 5px;
 }
 .submit-btn {
-    background-color: #2d8a5b;
+    background-color: var(--click-color);
     border: none;
     color: white;
     padding: 10; 
@@ -690,8 +694,8 @@ input, select {
     transition: all 0.3s;
 }
 .submit-btn:hover {
-    background-color: #136d40;
-    color: #f5fd9b;
+    background-color: var(--click-hover);
+    color: var(--text-hover);
     transform: scale(1.1);
 }
 .results-container {
@@ -739,8 +743,8 @@ input, select {
 .registration-content h1, .login-content h1{
     background: rgba(0, 0, 0, 0.8);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 20px;
+    padding: 20px;
     color: white;
 }
 
@@ -757,10 +761,11 @@ input, select {
 
 .registration-form {
     width: 30%;
-    padding: 10px;
+    border-radius: 30px;
+    padding: 40px;
     background: rgba(0, 0, 0, 0.8);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+
     color: white;
 }
 
@@ -770,7 +775,7 @@ input, select {
     margin-top: 5px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 .registration-form input[type="radio"] {
@@ -792,6 +797,7 @@ input, select {
     gap: 10px;
 }
 
+
 .stay-conected{
     display: flex;
     justify-content: space-evenly;
@@ -801,10 +807,11 @@ input, select {
     text-decoration:underline;
     color: white;
     transition: all .15s linear 0s;
+    padding: 20px;
 }
 
 .small-link:hover {
-    color: #f5fd9b;
+    color: var(--text-hover);
 }
 
 .profil-reset-b div{
@@ -815,7 +822,7 @@ input, select {
 }
 
 .profil-reset-b button {
-    background-color: #2d8a5b;
+    background-color: var(--click-color);
     border: none;
     color: white;
     padding: 10; 
@@ -833,7 +840,7 @@ input, select {
 }
 
 .profil-reset-b button:hover {
-    background-color: #136d40;
-    color: #f5fd9b;
+    background-color: var(--click-hover);
+    color: var(--text-hover);
     transform: scale(1.1);
 }  
