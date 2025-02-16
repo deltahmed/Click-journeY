@@ -232,7 +232,7 @@ footer div{
 
 .selector {
     display: flex;
-    height: calc(100% - 133px);
+    height: 86vh;
     overflow: hidden;
 }
 
@@ -425,7 +425,7 @@ footer div{
 
 .admin-overlay {
     background: rgba(0, 10, 2, 0.9);
-    min-height: calc(100% - 133px);
+    min-height: 75vh;
     height: auto;
     
     display: flex;
@@ -567,7 +567,7 @@ footer div{
 .profil-page-overlay {
     background-image: url(media/backgrounds/forest3.jpg);
     background-size: cover;
-    min-height: calc(100% - 133px);
+    min-height: 75vh;
     height: auto;
     display: flex;
     align-items: center;
@@ -646,7 +646,7 @@ footer div{
     padding-bottom: 50px;
     background-image: url(media/backgrounds/forest4.jpg);
     background-size: cover;
-    min-height: calc(100% - 183px);
+    min-height: 75vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -732,7 +732,7 @@ input, select {
     padding-bottom: 50px;
     background-image: url(media/backgrounds/island.jpg);
     background-size: cover;
-    min-height: calc(100% - 233px);
+    min-height: 75vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -789,7 +789,7 @@ input, select {
     padding-bottom: 50px;
     background-image: url(media/backgrounds/island2.jpg);
     background-size: cover;
-    min-height: calc(100% - 233px);
+    min-height: 75vh;
     display: flex;
     flex-direction: column;
     align-items: center;
