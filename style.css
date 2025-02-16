@@ -14,10 +14,16 @@ body{
 
 /* Main banner */
 
+.ban a {
+    text-decoration: none;
+    color: white;
+}
+
 .ban{
 
     display: flex;
     justify-content: space-between;
+    
 }
 
 header{
@@ -547,4 +553,84 @@ footer div{
 }
 .del-b:hover .icon{
     content: url('media/icons/bin/bin.gif'); 
+}
+
+
+/* profil.html */
+
+
+
+.profil-page-overlay {
+    background-image: url(media/backgrounds/forest3.jpg);
+    background-size: cover;
+    min-height: calc(100% - 133px);
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+.profil-page-content{
+    background: #e2e2e2;
+    padding: 20px;
+    border-radius: 20px;
+    
+
+}
+
+.profil-page-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    
+}
+.profil-page-table thead tr {
+    background-color: #2d8a5b;
+    color: #ffffff;
+    text-align: left;
+}
+.profil-page-table th, .profil-page-table td {
+    padding: 12px 15px;
+}
+.profil-page-table tbody tr {
+    border-bottom: 1px solid #2d8a5b;
+}
+
+.profil-page-table tbody tr:nth-of-type(even) {
+    background: rgba(0,0,0,0.1)
+}
+
+.profil-page-table tbody tr:last-of-type {
+    border-bottom: 2px solid #2d8a5b;
+}
+
+.profil-page-table button {
+    background-color: #2d8a5b;
+    border: none;
+    color: white;
+    padding: 10; 
+    text-align: center; 
+    text-decoration: none;
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer;
+    border-radius: 12px; 
+    transition: all 0.3s;
+}
+
+.profil-page-table button:hover {
+    background-color: #136d40;
+    color: #f5fd9b;
+    transform: scale(1.1);
+}
+.profil-page-table button{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; 
+    color: white;
+    
 }
