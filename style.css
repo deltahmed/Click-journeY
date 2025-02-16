@@ -489,3 +489,62 @@ footer div{
     color: #f5fd9b;
     transform: scale(1.1);
 }
+
+.td-button button{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; 
+    color: white;
+    
+}
+
+.mod-b .icon{
+    width: 25px;
+    height: 25px;
+    padding-bottom: 2px;
+    padding-right: 1px;
+    content: url('media/icons/edit/edit.png'); 
+}
+.add-b .icon{
+    width: 25px;
+    height: 25px;
+    padding-bottom: 2px;
+    padding-right: 3px;
+    content: url('media/icons/money/money.png'); 
+}
+.reset-b .icon{
+    width: 25px;
+    height: 25px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+    content: url('media/icons/reset/reset.png'); 
+}
+.ban-b .icon{
+    width: 25px;
+    height: 25px;
+    padding-bottom: 2px;
+    content: url('media/icons/ban/ban.png'); 
+}
+.del-b .icon{
+    width: 25px;
+    height: 25px;
+    padding-bottom: 2px;
+    content: url('media/icons/bin/bin.png'); 
+}
+
+
+.mod-b:hover .icon{
+    content: url('media/icons/edit/edit.gif'); 
+}
+.add-b:hover .icon{
+    content: url('media/icons/money/money.gif'); 
+}
+.reset-b:hover .icon{
+    content: url('media/icons/reset/reset.gif'); 
+}
+.ban-b:hover .icon{
+    content: url('media/icons/ban/ban.gif'); 
+}
+.del-b:hover .icon{
+    content: url('media/icons/bin/bin.gif'); 
+}
