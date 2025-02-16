@@ -232,7 +232,7 @@ footer div{
 
 .selector {
     display: flex;
-    height: 86vh;
+    height: 100vh;
     overflow: hidden;
 }
 
