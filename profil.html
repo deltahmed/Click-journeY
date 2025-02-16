@@ -64,117 +64,195 @@
         <div class="profil-page-overlay">
             <div class="profil-page-content">
                 <h1> Votre profil </h1>
-                <table class="profil-page-table">
-                    <thead>
-                        <tr>
-                            <th>Titre</th>
-                            <th>Information</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>E-mail</td>
-                            <td>contact.ahmed.delta@gmail.com</td>
-                            <td>
-                                <button class="mod-b">
-                                    <img class="icon">
-                                    Modifier
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nom</td>
-                            <td>Ahmed</td>
-                            <td>
-                                <button class="mod-b">
-                                    <img class="icon">
-                                    Modifier
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Prénom</td>
-                            <td>Ahmed</td>
-                            <td>
-                                <button class="mod-b">
-                                    <img class="icon">
-                                    Modifier
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sexe</td>
-                            <td>M</td>
-                            <td>
-                                <button class="mod-b">
-                                    <img class="icon">
-                                    Modifier
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Date de naissance</td>
-                            <td>01/01/2000</td>
-                            <td>
-                                <button class="mod-b">
-                                    <img class="icon">
-                                    Modifier
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Numéro de téléphone</td>
-                            <td>0707070707</td>
-                            <td>
-                                <button class="mod-b">
-                                    <img class="icon">
-                                    Modifier
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Adresse</td>
-                            <td>9 av parc</td>
-                            <td>
-                                <button class="mod-b">
-                                    <img class="icon">
-                                    Modifier
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Code postal</td>
-                            <td>95800</td>
-                            <td>
-                                <button class="mod-b">
-                                    <img class="icon">
-                                    Modifier
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Ville</td>
-                            <td>Cergy</td>
-                            <td>
-                                <button class="mod-b">
-                                    <img class="icon">
-                                    Modifier
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Commentaire</td>
-                            <td></td>
-                            <td>
-                                <button class="mod-b">
-                                    <img class="icon">
-                                    Modifier
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <form class="change-profil" action="change-profil.php" method="post"  id="change-profil" name="change-profil">
+                    <table class="profil-page-table">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Information</th>
+                                <th>Remplacement</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                    <td>E-mail</td>
+                                    <td>
+                                        contact.ahmed.delta@gmail.com
+                                    </td>
+                                    <td>    
+                                        <input type="email" id="email" name="email">
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                            <tr>
+                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                    <td>Nom</td>
+                                    <td>
+                                        Ahmed
+                                    </td>
+                                    <td>    
+                                        <input type="text" id="last-name" name="last_name">
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                            <tr>
+                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                    <td>Prénom</td>
+                                    <td>
+                                        Ahmed
+                                    </td>
+                                    <td>    
+                                        <input type="text" id="first-name" name="first_name">
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                            <tr>
+                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                    <td>Sexe</td>
+                                    <td>M</td>
+                                    <td>
+                                        <label class="form-label" for="gender"><input type="radio" name="gender" value="Madame">Madame</label>
+                                        <label class="form-label" for="gender"><input type="radio" name="gender" value="Monsieur">Monsieur</label>
+                                        <label class="form-label" for="gender"><input type="radio" name="gender" value="Autres">Autres</label>
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                            <tr>
+                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                    <td>Date de naissance</td>
+                                    <td>01/01/2000
+                                    </td>
+                                    <td>    
+                                        <input type="date" id="birth-date" name="birth_date">
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                            <tr>
+                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                    <td>Numéro de téléphone</td>
+                                    <td>0707070707
+                                    </td>
+                                    <td>    
+                                        <input type="tel" id="phone" name="phone" placeholder="06,07..." pattern="[0-9]{10}" inputmode="numeric" maxlength="10">
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                            <tr>
+                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                    <td>Adresse</td>
+                                    <td>9 av parc
+                                    </td>
+                                    <td>    
+                                        <input type="text" id="address" name="address">
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                            <tr>
+                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                    <td>Code postal</td>
+                                    <td>95800
+                                    </td>
+                                    <td>    
+                                        <input type="number" id="postal-code" name="postal_code" maxlength="5">
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                            <tr>
+                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                    <td>Ville</td>
+                                    <td>Cergy
+                                    </td>
+                                    <td>    
+                                        <input type="text" id="city" name="city">
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                            <tr>
+                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                    <td>Commentaire</td>
+                                    <td>
+                                       
+                                    </td>
+                                    <td>
+                                        <textarea id="issues" name="issues" cols="30" rows="2"></textarea>
+                                    </td>
+                                    <td>
+                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <div class="profil-reset-b">
+                        <div>
+                            <button class="reset-b">
+                            <img class="icon">
+                            Réinitialiser le mot de passe
+                            </button> 
+                        </div>
+                        
+                    </div>
+                    
             </div>
         </div>
         

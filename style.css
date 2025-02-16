@@ -720,3 +720,120 @@ input, select {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
+
+/* signup.html and login.html*/
+
+.registration-content{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-image: url(media/backgrounds/island.jpg);
+    background-size: cover;
+    min-height: calc(100% - 233px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.registration-content h1, .login-content h1{
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.registration-form .form-label {
+    margin-bottom: 10px;
+}
+
+.registration-form div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.registration-form {
+    width: 30%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color: white;
+}
+
+.registration-form input, .registration-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.registration-form input[type="radio"] {
+    width: auto;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.login-content{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-image: url(media/backgrounds/island2.jpg);
+    background-size: cover;
+    min-height: calc(100% - 233px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.stay-conected{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.small-link {
+    text-decoration:underline;
+    color: white;
+    transition: all .15s linear 0s;
+}
+
+.small-link:hover {
+    color: #f5fd9b;
+}
+
+.profil-reset-b div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.profil-reset-b button {
+    background-color: #2d8a5b;
+    border: none;
+    color: white;
+    padding: 10; 
+    text-align: center; 
+    text-decoration: none;
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer;
+    border-radius: 12px; 
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.profil-reset-b button:hover {
+    background-color: #136d40;
+    color: #f5fd9b;
+    transform: scale(1.1);
+}

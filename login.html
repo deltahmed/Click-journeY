@@ -45,10 +45,10 @@
             
             <!-- Navigation bar -->
             <nav class="navbar">
-                <a href="presentation.html">
-                    <div class="pres-button">
+                <a href="index.html">
+                    <div class="home-button">
                         <img class="icon">
-                        <h1>Présentation</h1>
+                        <h1>Accueil</h1>
                     </div>  
                 </a>
                 <a href="search.html">
@@ -59,10 +59,36 @@
                 </a>
             </nav>
         </header>
-        
-        <div class="">
+        <div class="registration-content">
+            <h1>Connexion</h1>
+            <form class="registration-form" action="registration.php" method="post" target="_blank" id="registration-form" name="account-creation">
+                <label class="form-label" for="email">Email :</label>
+                <input type="email" id="email" name="email">
+            
+                <label class="form-label" for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" maxlength="15">
+                
+                <div>
+                    <label class="stay-conected" for="stay-conected">
+                        <input type="checkbox" id="stay-conected" name="stay-conected"> Rester connecté
+                    </label> 
+                </div>
+                
 
+                
+
+
+                <div>
+                    <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Connexion</button>
+                    
+                </div>
+                <div>
+                    <a class="small-link" href="signup.html">Vous n'avez pas de compte ? Cliquez ici pour s'inscrire</a>
+                </div>
+                
+            </form>
         </div>
+        
         
         <footer>
             <div>
