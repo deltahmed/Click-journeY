@@ -1,9 +1,6 @@
 :root{
     --light-color: #296647;
     --dark-color: #143324;
-    --click-color: #2d8a5b;
-    --click-hover: #136d40;
-    --text-hover: #f5fd9b;
 }
 
 *{
@@ -30,7 +27,7 @@ body{
 }
 
 header{
-    background: linear-gradient(to bottom, var(--light-color), var(--dark-color));
+    background: linear-gradient(to bottom, #296647, #143324);
     text-align: center;
     color: white;
     height: 120px;
@@ -111,7 +108,7 @@ header{
 }
 
 .profil-links a:hover {
-    color: var(--text-hover);
+    color: #f5fd9b;
 }
 
 .profil-links .login:hover .icon{
@@ -147,7 +144,7 @@ header{
     position: relative;
     width: 50%;
     bottom: 10px;
-    background-color: var(--click-color);
+    background-color: #2d8a5b;
     border-radius: 50px;
     text-decoration: none;
     color: white;
@@ -156,8 +153,8 @@ header{
 }
 
 .navbar a:hover{
-    background-color: var(--click-hover);
-    color: var(--text-hover);
+    background-color: #136d40;
+    color: #f5fd9b;
     box-shadow: -5px 5px 0 #0f251a;
     bottom: 9px;
 }
@@ -212,7 +209,7 @@ footer{
     display: flex;
     justify-content: center;
     height: 13px;
-    background: linear-gradient(to bottom, var(--light-color), var(--dark-color));
+    background: linear-gradient(to bottom, #296647, #143324);
 }
 
 footer div{
@@ -374,15 +371,14 @@ footer div{
     padding: 10px 20px;
     font-size: 1em;
     border: none;
-    background-color: var(--click-color);
+    background-color: green;
     color: white;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
 }
 
 .search-form button:hover {
-    background-color: var(--click-hover);
-    color: var(--text-hover);
+    background-color: green;
 }
 
 
@@ -452,7 +448,7 @@ footer div{
     
 }
 .admin-table thead tr {
-    background-color: var(--click-color);
+    background-color: #2d8a5b;
     color: #ffffff;
     text-align: left;
 }
@@ -460,7 +456,7 @@ footer div{
     padding: 12px 15px;
 }
 .admin-table tbody tr {
-    border-bottom: 5px solid var(--click-color);
+    border-bottom: 5px solid #2d8a5b;
 }
 
 .admin-table tbody tr:nth-of-type(even) {
@@ -468,7 +464,7 @@ footer div{
 }
 
 .admin-table tbody tr:last-of-type {
-    border-bottom: 10px solid var(--click-color);
+    border-bottom: 10px solid #2d8a5b;
 }
 
 .td-button div {
@@ -481,7 +477,7 @@ footer div{
 }
 
 .admin-table button {
-    background-color: var(--click-color);
+    background-color: #2d8a5b;
     border: none;
     color: white;
     padding: 10; 
@@ -495,8 +491,8 @@ footer div{
 }
 
 .admin-table button:hover {
-    background-color: var(--click-hover);
-    color: var(--text-hover);
+    background-color: #136d40;
+    color: #f5fd9b;
     transform: scale(1.1);
 }
 
@@ -593,7 +589,7 @@ footer div{
     
 }
 .profil-page-table thead tr {
-    background-color: var(--click-color);
+    background-color: #2d8a5b;
     color: #ffffff;
     text-align: left;
 }
@@ -601,7 +597,7 @@ footer div{
     padding: 12px 15px;
 }
 .profil-page-table tbody tr {
-    border-bottom: 1px solid var(--click-color);
+    border-bottom: 1px solid #2d8a5b;
 }
 
 .profil-page-table tbody tr:nth-of-type(even) {
@@ -609,11 +605,11 @@ footer div{
 }
 
 .profil-page-table tbody tr:last-of-type {
-    border-bottom: 2px solid var(--click-color);
+    border-bottom: 2px solid #2d8a5b;
 }
 
 .profil-page-table button {
-    background-color: var(--click-color);
+    background-color: #2d8a5b;
     border: none;
     color: white;
     padding: 10; 
@@ -627,8 +623,8 @@ footer div{
 }
 
 .profil-page-table button:hover {
-    background-color: var(--click-hover);
-    color: var(--text-hover);
+    background-color: #136d40;
+    color: #f5fd9b;
     transform: scale(1.1);
 }
 .profil-page-table button{
@@ -681,7 +677,7 @@ input, select {
     border-radius: 5px;
 }
 .submit-btn {
-    background-color: var(--click-color);
+    background-color: #2d8a5b;
     border: none;
     color: white;
     padding: 10; 
@@ -694,8 +690,8 @@ input, select {
     transition: all 0.3s;
 }
 .submit-btn:hover {
-    background-color: var(--click-hover);
-    color: var(--text-hover);
+    background-color: #136d40;
+    color: #f5fd9b;
     transform: scale(1.1);
 }
 .results-container {
@@ -808,7 +804,7 @@ input, select {
 }
 
 .small-link:hover {
-    color: var(--text-hover);
+    color: #f5fd9b;
 }
 
 .profil-reset-b div{
@@ -819,7 +815,7 @@ input, select {
 }
 
 .profil-reset-b button {
-    background-color: var(--click-color);
+    background-color: #2d8a5b;
     border: none;
     color: white;
     padding: 10; 
@@ -837,7 +833,7 @@ input, select {
 }
 
 .profil-reset-b button:hover {
-    background-color: var(--click-hover);
-    color: var(--text-hover);
+    background-color: #136d40;
+    color: #f5fd9b;
     transform: scale(1.1);
 }  
