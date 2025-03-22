@@ -228,7 +228,7 @@ footer div{
     width: 40%;
 }
 
-/* Main index.html selector */
+/* Main index.php selector */
 
 .selector {
     display: flex;
@@ -320,7 +320,7 @@ footer div{
 }
 
 
-/* presentation.html */
+/* presentation.php */
 
 .pres-body {
     background-image: url('media/backgrounds/forest2.jpg');
@@ -410,12 +410,12 @@ footer div{
     text-align: center;
 }
 
-/* search.html */
+/* search.php */
 
 
 
 
-/* admin.html */
+/* admin.php */
 
 .admin-body{
     background-image: url(media/backgrounds/gears.jpg);
@@ -560,7 +560,7 @@ footer div{
 }
 
 
-/* profil.html */
+/* profil.php */
 
 
 
@@ -639,7 +639,7 @@ footer div{
     
 }
 
-/* search.html */
+/* search.php */
 
 .search-content{
     padding-top: 50px;
@@ -725,7 +725,7 @@ input, select {
     grid-template-columns: repeat(4, 1fr);
 }
 
-/* signup.html and login.html*/
+/* signup.php and login.php*/
 
 .registration-content{
     padding-top: 50px;
@@ -747,6 +747,15 @@ input, select {
     padding: 20px;
     color: white;
 }
+
+.registration-content p, .login-content p{
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+}
+
 
 .registration-form .form-label {
     margin-bottom: 10px;
@@ -796,7 +805,6 @@ input, select {
     justify-content: center;
     gap: 10px;
 }
-
 
 .stay-conected{
     display: flex;

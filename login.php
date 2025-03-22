@@ -15,48 +15,17 @@
 
     <body>
         <header>
-            <!-- The main banner with the logo -->
-            <div class="ban">
-                <a href="index.html">
-                   <div class="title">
-                        <img src="media/logo.png" alt="Logo de Beyond Survival">
-                        <div class="title-text">
-                            <h1>Beyond Survival</h1>
-                            <h3>Survive if you can !</h3>
-                        </div>
-                    </div> 
-                </a>
-                <div class="profil-links">
-                    <div class="login">
-                        <img class="icon">
-                        <a href="login.html">Connexion</a>
-                    </div>
-                    <div class="profil">
-                        <img class="icon">
-                        <a href="profil.html">Profil</a>
-                    </div>
-                    <div class="admin">
-                        <img class="icon">
-                        <a href="admin.html">Admin</a>
-                    </div>
-                    <div class="logout">
-                        <img class="icon">
-                        <a href="#">Déconnexion</a>
-                    </div>
-                    
-                    
-                </div>
-            </div>
+            <?php include "views/header.php" ?>
             
             <!-- Navigation bar -->
             <nav class="navbar">
-                <a href="index.html">
+                <a href="index.php">
                     <div class="home-button">
                         <img class="icon">
                         <h1>Accueil</h1>
                     </div>  
                 </a>
-                <a href="search.html">
+                <a href="search.php">
                     <div class="search-button">
                         <img class="icon">
                         <h1>Rechercher</h1>
@@ -66,7 +35,7 @@
         </header>
         <div class="login-content">
             <h1>Connexion</h1>
-            <form class="registration-form" action="login.php" method="post" id="login-form" name="login">
+            <form class="registration-form" action="controllers/control_login.php" method="post" id="login-form" name="login">
                 <label class="form-label" for="email">Email :</label>
                 <input type="email" id="email" name="email">
             
@@ -88,17 +57,13 @@
                     
                 </div>
                 <div>
-                    <a class="small-link" href="signup.html">Vous n'avez pas de compte ? Cliquez ici pour s'inscrire</a>
+                    <a class="small-link" href="signup.php">Vous n'avez pas de compte ? Cliquez ici pour s'inscrire</a>
                 </div>
                 
             </form>
         </div>
         
         
-        <footer>
-            <div>
-                <p> &copy; Ahmed A. Rémi S. Abdelwaheb A.</p>
-            </div>
-        </footer>
+        <?php include "views/footer.php" ?>
     </body>
 </html>

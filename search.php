@@ -14,48 +14,17 @@
 
     <body>
         <header>
-            <!-- The main banner with the logo -->
-            <div class="ban">
-                <a href="index.html">
-                   <div class="title">
-                        <img src="media/logo.png" alt="Logo de Beyond Survival">
-                        <div class="title-text">
-                            <h1>Beyond Survival</h1>
-                            <h3>Survive if you can !</h3>
-                        </div>
-                    </div> 
-                </a>
-                <div class="profil-links">
-                    <div class="login">
-                        <img class="icon">
-                        <a href="login.html">Connexion</a>
-                    </div>
-                    <div class="profil">
-                        <img class="icon">
-                        <a href="profil.html">Profil</a>
-                    </div>
-                    <div class="admin">
-                        <img class="icon">
-                        <a href="admin.html">Admin</a>
-                    </div>
-                    <div class="logout">
-                        <img class="icon">
-                        <a href="#">Déconnexion</a>
-                    </div>
-                    
-                    
-                </div>
-            </div>
+            <?php include "views/header.php" ?>
             
             <!-- Navigation bar -->
             <nav class="navbar">
-                <a href="index.html">
+                <a href="index.php">
                     <div class="home-button">
                         <img class="icon">
                         <h1>Accueil</h1>
                     </div>  
                 </a>
-                <a href="presentation.html">
+                <a href="presentation.php">
                     <div class="pres-button">
                         <img class="icon">
                         <h1>Présentation</h1>
@@ -66,8 +35,8 @@
         
         <div class="search-content">
             
-            <!-- For the final web site search.html will be search.php -->
-            <form action="search.html" method="get" class="travel-form">
+            <!-- For the final web site search.php will be search.php -->
+            <form action="search.php" method="get" class="travel-form">
                 <h2>Recherche :</h2>
                 <div class="form-grid">
                     <div class="form-group">
@@ -182,10 +151,6 @@
 
         
         
-        <footer>
-            <div>
-                <p> &copy; Ahmed A. Rémi S. Abdelwaheb A.</p>
-            </div>
-        </footer>
+        <?php include "views/footer.php" ?>
     </body>
 </html>

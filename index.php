@@ -14,48 +14,17 @@
 
     <body>
         <header>
-            <!-- The main banner with the logo -->
-            <div class="ban">
-                <a href="index.html">
-                   <div class="title">
-                        <img src="media/logo.png" alt="Logo de Beyond Survival">
-                        <div class="title-text">
-                            <h1>Beyond Survival</h1>
-                            <h3>Survive if you can !</h3>
-                        </div>
-                    </div> 
-                </a>
-                <div class="profil-links">
-                    <div class="login">
-                        <img class="icon">
-                        <a href="login.html">Connexion</a>
-                    </div>
-                    <div class="profil">
-                        <img class="icon">
-                        <a href="profil.html">Profil</a>
-                    </div>
-                    <div class="admin">
-                        <img class="icon">
-                        <a href="admin.html">Admin</a>
-                    </div>
-                    <div class="logout">
-                        <img class="icon">
-                        <a href="#">Déconnexion</a>
-                    </div>
-                    
-                    
-                </div>
-            </div>
+            <?php include "views/header.php" ?>
             
             <!-- Navigation bar -->
             <nav class="navbar">
-                <a href="presentation.html">
+                <a href="presentation.php">
                     <div class="pres-button">
                         <img class="icon">
                         <h1>Présentation</h1>
                     </div>  
                 </a>
-                <a href="search.html">
+                <a href="search.php">
                     <div class="search-button">
                         <img class="icon">
                         <h1>Rechercher</h1>
@@ -65,24 +34,24 @@
         </header>
         <!-- Section for navigating between the 3 services proposed by the web site -->
         <nav class="selector">
-            <!-- For the final web site search.html will be search.php -->
-            <a href="search.html?activity=wilderness-survival&sort=recommended">
+            <!-- For the final web site search.php will be search.php -->
+            <a href="search.php?activity=wilderness-survival&sort=recommended">
                 <img src="media/backgrounds/forest.jpg" alt="Survie en pleine nature">
                 <div class="selector-text">
                     <h1>Survie en pleine nature</h1>
                     <p>Pour les passionné d'aventure immersion totale en pleine nature sur un terrain inconnu avec des objets de survie et une assistance en cas de danger </p>
                 </div>
             </a>
-            <!-- For the final web site search.html will be search.php -->
-            <a href="search.html?activity=survival-training&sort=recommended">
+            <!-- For the final web site search.php will be search.php -->
+            <a href="search.php?activity=survival-training&sort=recommended">
                 <img src="media/backgrounds/stage.jpg" alt="Survie en pleine nature">
                 <div class="selector-text">
                     <h1>Stages de survie</h1>
                     <p>Apprenez les bases de la survie en pleine nature avec des professionnels de la survie</p>
                 </div>
             </a>
-            <!-- For the final web site search.html will be search.php -->
-            <a href="search.html?activity=survival-escape-game&sort=recommended">
+            <!-- For the final web site search.php will be search.php -->
+            <a href="search.php?activity=survival-escape-game&sort=recommended">
                 <img src="media/backgrounds/island.jpg" alt="Survie en pleine nature">
                 <div class="selector-text">
                     <h1>Escape games de survie</h1>
@@ -91,10 +60,6 @@
             </a>
         </nav>
         
-        <footer>
-            <div>
-                <p> &copy; Ahmed A. Rémi S. Abdelwaheb A.</p>
-            </div>
-        </footer>
+        <?php include "views/footer.php" ?>
     </body>
 </html>

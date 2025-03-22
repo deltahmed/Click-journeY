@@ -16,7 +16,7 @@
         <header>
             <!-- The main banner with the logo -->
             <div class="ban">
-                <a href="index.html">
+                <a href="index.php">
                    <div class="title">
                         <img src="media/logo.png" alt="Logo de Beyond Survival">
                         <div class="title-text">
@@ -29,15 +29,15 @@
                 <div class="profil-links">
                     <div class="login">
                         <img class="icon">
-                        <a href="login.html">Connexion</a>
+                        <a href="login.php">Connexion</a>
                     </div>
                     <div class="profil">
                         <img class="icon">
-                        <a href="profil.html">Profil</a>
+                        <a href="profil.php">Profil</a>
                     </div>
                     <div class="admin">
                         <img class="icon">
-                        <a href="admin.html">Admin</a>
+                        <a href="admin.php">Admin</a>
                     </div>
                     <div class="logout">
                         <img class="icon">
@@ -50,13 +50,13 @@
             
             <!-- Navigation bar -->
             <nav class="navbar">
-                <a href="index.html">
+                <a href="index.php">
                     <div class="home-button">
                         <img class="icon">
                         <h1>Accueil</h1>
                     </div>  
                 </a>
-                <a href="search.html">
+                <a href="search.php">
                     <div class="search-button">
                         <img class="icon">
                         <h1>Rechercher</h1>
@@ -260,10 +260,6 @@
             </div>
         </div>
         
-        <footer>
-            <div>
-                <p> &copy; Ahmed A. Rémi S. Abdelwaheb A.</p>
-            </div>
-        </footer>
+        <?php include "views/footer.php" ?>
     </body>
 </html>

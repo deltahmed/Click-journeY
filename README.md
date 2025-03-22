@@ -49,7 +49,7 @@
    ```sh
    cd Click-Journey
    ```
-3. Open `index.html` in a browser.
+3. Open `index.php` in a browser.
 
 ### You can also see the live demo of the first phase here  [phase1-click-journey.deltahmed.fr](phase1-click-journey.deltahmed.fr)
 
