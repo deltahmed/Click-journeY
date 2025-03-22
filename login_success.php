@@ -20,6 +20,9 @@
             <?php header("Refresh:1; url=index.php"); ?>
         </div>
         
+
+
+
         
         <?php include "views/footer.php" ?>
     </body>
