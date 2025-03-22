@@ -12,6 +12,7 @@ require_once "includes/config.php";
 
 $user_id = $_SESSION['user_id'];
 
+$page = 1;
 if (isset($_GET['page']) && is_numeric($_GET['page'])) {
     $page = (int) $_GET['page'];
 }
