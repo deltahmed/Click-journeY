@@ -852,3 +852,34 @@ input, select {
     color: var(--text-hover);
     transform: scale(1.1);
 }  
+
+
+.pages-nav div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pages-nav button {
+    background-color: var(--click-color);
+    border: none;
+    color: white;
+    padding: 10; 
+    text-align: center; 
+    text-decoration: none;
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer;
+    border-radius: 12px; 
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pages-nav button:hover {
+    background-color: var(--click-hover);
+    color: var(--text-hover);
+    transform: scale(1.1);
+}  

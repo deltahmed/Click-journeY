@@ -6,7 +6,43 @@ if (isset($_SESSION["user_id"]) && $_SESSION['user_role'] !== 'admin' ) {
     header("Location: index.php");
     exit;
 }
+
+
+require_once "includes/config.php";
+
+$user_id = $_SESSION['user_id'];
+
+if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+    $page = (int) $_GET['page'];
+}
+
+$limit = 10;
+
+
+$stmt = $pdo->query("SELECT COUNT(*) FROM users");
+$totalUsers = $stmt->fetchColumn();
+$totalPages = ceil($totalUsers / $limit);
+
+
+if ($page < 1) {
+    $page = 1;
+} elseif ($page > $totalPages) {
+    $page = $totalPages;
+}
+
+
+$offset = ($page - 1) * $limit;
+
+
+$stmt = $pdo->prepare("SELECT * FROM users LIMIT :limit OFFSET :offset");
+$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
+
 <html lang="fr">
     <head>
         <meta name = "name" content ="Beyond Survival" />
@@ -40,6 +76,14 @@ if (isset($_SESSION["user_id"]) && $_SESSION['user_role'] !== 'admin' ) {
         <div class="admin-overlay">
             <div class="admin-content">
                 <h1> Liste des utilisateurs </h1>
+                <form class="pages-nav" action="admin.php" method="get">
+                    <div>
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                            <button class="green_button" type="submit" name="page" value="<?php echo $i; ?>"><?php echo $i; ?></button>
+                        <?php endfor; ?>
+                    </div>
+                        
+                </form>
                 <table class="admin-table">
                     <thead>
                         <tr>
@@ -49,251 +93,128 @@ if (isset($_SESSION["user_id"]) && $_SESSION['user_role'] !== 'admin' ) {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>E-mail</td>
-                                        <td>contact.ahmed.delta@gmail.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Type</td>
-                                        <td>Admin</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nom</td>
-                                        <td>Ahmed</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Prénom</td>
-                                        <td>Ahmed</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sexe</td>
-                                        <td>M</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Date de naissance</td>
-                                        <td>01/01/2000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Numéro de téléphone</td>
-                                        <td>0707070707</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adresse</td>
-                                        <td>9 av parc</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Code postal</td>
-                                        <td>95800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ville</td>
-                                        <td>Cergy</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Commentaire</td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                                
-                            </td>
-                            <td class="td-button">
-                                <div>
+                        <?php foreach ($users as $user): ?>
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td><?php echo $user['id']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>E-mail</td>
+                                            <td>
+                                                <?php echo $user['email']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Type</td>
+                                            <td>
+                                                <?php echo $user['role']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nom</td>
+                                            <td>
+                                                <?php echo $user['last_name']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prénom</td>
+                                            <td>
+                                                <?php echo $user['first_name']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sexe</td>
+                                            <td>
+                                                <?php echo $user['gender']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date de naissance</td>
+                                            <td>
+                                                <?php echo $user['birth_date']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Numéro de téléphone</td>
+                                            <td>
+                                                <?php echo $user['phone_number']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Adresse</td>
+                                            <td>
+                                                <?php echo $user['address']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Code postal</td>
+                                            <td>
+                                                <?php echo $user['postal_code']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ville</td>
+                                            <td>
+                                                <?php echo $user['city']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Commentaire</td>
+                                            <td>
+                                                <?php echo $user['comment']; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date d'Inscription</td>
+                                            <td>
+                                                <?php echo $user['registration_date']; ?>
+                                            </td>
+                                        </tr>
+                                    </table>
                                     
-                                    <button class="mod-b">
-                                        <img class="icon">
-                                        Modifier
-                                    </button>
-                                    <button class="add-b">
-                                        <img class="icon">
-                                        Réductions
-                                    </button>
-                                    <button class="reset-b">
-                                        <img class="icon">
-                                        Reset Mdp
-                                    </button>
-                                    <button class="ban-b">
-                                        <img class="icon">
-                                        Bannir
-                                    </button>
-                                    <button class="del-b">
-                                        <img class="icon">
-                                        Supprimer
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                                <td class="td-button">
+                                    <div>
+                                        
+                                        <button class="mod-b">
+                                            <img class="icon">
+                                            Modifier
+                                        </button>
+                                        <button class="add-b">
+                                            <img class="icon">
+                                            Réductions
+                                        </button>
+                                        <button class="reset-b">
+                                            <img class="icon">
+                                            Reset Mdp
+                                        </button>
+                                        <button class="ban-b">
+                                            <img class="icon">
+                                            Bannir
+                                        </button>
+                                        <button class="del-b">
+                                            <img class="icon">
+                                            Supprimer
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
 
-                        <tr>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>E-mail</td>
-                                        <td>email@email.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Type</td>
-                                        <td>User</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nom</td>
-                                        <td>Abdelwaheb</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Prénom</td>
-                                        <td>Abdelwaheb</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sexe</td>
-                                        <td>M</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Date de naissance</td>
-                                        <td>01/01/2000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Numéro de téléphone</td>
-                                        <td>0707070707</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adresse</td>
-                                        <td>9 av parc</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Code postal</td>
-                                        <td>95800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ville</td>
-                                        <td>Cergy</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Commentaire</td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                                
-                            </td>
-                            <td class="td-button">
-                                <div>
-                                    
-                                    <button class="mod-b">
-                                        <img class="icon">
-                                        Modifier
-                                    </button>
-                                    <button class="add-b">
-                                        <img class="icon">
-                                        Réductions
-                                    </button>
-                                    <button class="reset-b">
-                                        <img class="icon">
-                                        Reset Mdp
-                                    </button>
-                                    <button class="ban-b">
-                                        <img class="icon">
-                                        Bannir
-                                    </button>
-                                    <button class="del-b">
-                                        <img class="icon">
-                                        Supprimer
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>E-mail</td>
-                                        <td>email@email.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Type</td>
-                                        <td>Banni</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nom</td>
-                                        <td>Rémi</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Prénom</td>
-                                        <td>Rémi</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sexe</td>
-                                        <td>M</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Date de naissance</td>
-                                        <td>01/01/2000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Numéro de téléphone</td>
-                                        <td>0707070707</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adresse</td>
-                                        <td>9 av parc</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Code postal</td>
-                                        <td>95800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ville</td>
-                                        <td>Cergy</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Commentaire</td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                                
-                            </td>
-                            <td class="td-button">
-                                <div>
-                                    
-                                    <button class="mod-b">
-                                        <img class="icon">
-                                        Modifier
-                                    </button>
-                                    <button class="add-b">
-                                        <img class="icon">
-                                        Réductions
-                                    </button>
-                                    <button class="reset-b">
-                                        <img class="icon">
-                                        Reset Mdp
-                                    </button>
-                                    <button class="ban-b">
-                                        <img class="icon">
-                                        Bannir
-                                    </button>
-                                    <button class="del-b">
-                                        <img class="icon">
-                                        Supprimer
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
                         
                     </tbody>
                 </table>
+                <form class="pages-nav" action="admin.php" method="get">
+                    <div>
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                            <button class="green_button" type="submit" name="page" value="<?php echo $i; ?>"><?php echo $i; ?></button>
+                        <?php endfor; ?>
+                    </div>
+                        
+                </form>
             </div>
         </div>
         

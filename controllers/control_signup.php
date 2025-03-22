@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $pdo->prepare("INSERT INTO users (email, password, role) VALUES (?, ?, ?)");
         $stmt->execute([$email, $hashed_password, $role]);
 
-        header("Location: ../signup_success.php");
+        header("Location: ../public/signup_success.php");
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }

@@ -6,6 +6,22 @@ if (isset($_SESSION["user_id"]) !== true) {
     header("Location: index.php");
     exit;
 }
+
+require_once "includes/config.php";
+
+$user_id = $_SESSION['user_id'];
+
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+
+$stmt->bindParam(1, $user_id, PDO::PARAM_INT);
+$user = $stmt->fetch();
+$stmt->execute();
+
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$user) {
+    echo "User not found.";
+    exit;
+}
 ?>
 <html lang="fr">
     <head>
@@ -57,11 +73,12 @@ if (isset($_SESSION["user_id"]) !== true) {
                             </tr>
                         </thead>
                         <tbody>
+                            
                             <tr>
                                 <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
                                     <td>E-mail</td>
                                     <td>
-                                        contact.ahmed.delta@gmail.com
+                                        <?php echo $user['email']; ?>
                                     </td>
                                     <td>    
                                         <input type="email" id="email" name="email">
@@ -78,7 +95,7 @@ if (isset($_SESSION["user_id"]) !== true) {
                                 <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
                                     <td>Nom</td>
                                     <td>
-                                        Ahmed
+                                        <?php echo $user['last_name']; ?>
                                     </td>
                                     <td>    
                                         <input type="text" id="last-name" name="last_name">
@@ -95,7 +112,7 @@ if (isset($_SESSION["user_id"]) !== true) {
                                 <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
                                     <td>Prénom</td>
                                     <td>
-                                        Ahmed
+                                        <?php echo $user['first_name']; ?>
                                     </td>
                                     <td>    
                                         <input type="text" id="first-name" name="first_name">
@@ -111,7 +128,9 @@ if (isset($_SESSION["user_id"]) !== true) {
                             <tr>
                                 <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
                                     <td>Sexe</td>
-                                    <td>M</td>
+                                    <td>
+                                        <?php echo $user['gender']; ?>
+                                    </td>
                                     <td>
                                         <label class="form-label" for="gender"><input type="radio" name="gender" value="Madame">Madame</label>
                                         <label class="form-label" for="gender"><input type="radio" name="gender" value="Monsieur">Monsieur</label>
@@ -128,7 +147,8 @@ if (isset($_SESSION["user_id"]) !== true) {
                             <tr>
                                 <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
                                     <td>Date de naissance</td>
-                                    <td>01/01/2000
+                                    <td>
+                                        <?php echo $user['birth_date']; ?>
                                     </td>
                                     <td>    
                                         <input type="date" id="birth-date" name="birth_date">
@@ -144,10 +164,11 @@ if (isset($_SESSION["user_id"]) !== true) {
                             <tr>
                                 <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
                                     <td>Numéro de téléphone</td>
-                                    <td>0707070707
+                                    <td>
+                                        <?php echo $user['phone_number']; ?>
                                     </td>
                                     <td>    
-                                        <input type="tel" id="phone" name="phone" placeholder="06,07..." pattern="[0-9]{10}" inputmode="numeric" maxlength="10">
+                                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" inputmode="numeric" maxlength="10">
                                     </td>
                                     <td>
                                         <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
@@ -160,7 +181,8 @@ if (isset($_SESSION["user_id"]) !== true) {
                             <tr>
                                 <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
                                     <td>Adresse</td>
-                                    <td>9 av parc
+                                    <td>
+                                        <?php echo $user['address']; ?>
                                     </td>
                                     <td>    
                                         <input type="text" id="address" name="address">
@@ -176,7 +198,8 @@ if (isset($_SESSION["user_id"]) !== true) {
                             <tr>
                                 <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
                                     <td>Code postal</td>
-                                    <td>95800
+                                    <td>
+                                        <?php echo $user['postal_code']; ?>
                                     </td>
                                     <td>    
                                         <input type="number" id="postal-code" name="postal_code" maxlength="5">
@@ -192,7 +215,8 @@ if (isset($_SESSION["user_id"]) !== true) {
                             <tr>
                                 <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
                                     <td>Ville</td>
-                                    <td>Cergy
+                                    <td>
+                                        <?php echo $user['city']; ?>
                                     </td>
                                     <td>    
                                         <input type="text" id="city" name="city">
@@ -209,7 +233,7 @@ if (isset($_SESSION["user_id"]) !== true) {
                                 <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
                                     <td>Commentaire</td>
                                     <td>
-                                       
+                                       <?php echo $user['comment']; ?>
                                     </td>
                                     <td>
                                         <textarea id="issues" name="issues" cols="30" rows="2"></textarea>
@@ -221,6 +245,16 @@ if (isset($_SESSION["user_id"]) !== true) {
                                         </button>
                                     </td>
                                 </form>
+                            </tr>
+                            <tr>
+                                <td>Date d'Inscription</td>
+                                <td>
+                                    <?php echo $user['registration_date']; ?>
+                                </td>
+                                <td>    
+                                </td>
+                                <td>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

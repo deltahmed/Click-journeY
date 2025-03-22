@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["user_email"] = $user["email"];
             $_SESSION["user_role"] = $user["role"];
 
-            header("Location: ../login_success.php");  
+            header("Location: ../public/login_success.php");  
         } else {
             echo "Invalid email or password.";
         }
