@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once "../includes/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["user_email"] = $user["email"];
             $_SESSION["user_role"] = $user["role"];
 
-            header("Location: ../login_success.php");  // Redirection après 2 secondes
+            header("Location: ../login_success.php");  
         } else {
             echo "Invalid email or password.";
         }
