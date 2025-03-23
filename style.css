@@ -739,7 +739,7 @@ input, select {
     gap: 10px;
 }
 
-.registration-content h1, .login-content h1{
+.registration-content h1, .login-content h1, .notfound-content h1{
     background: rgba(0, 0, 0, 0.8);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
@@ -747,7 +747,7 @@ input, select {
     color: white;
 }
 
-.registration-content p, .login-content p{
+.registration-content p, .login-content p, .notfound-content p{
     background: rgba(0, 0, 0, 0.8);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
@@ -883,3 +883,85 @@ input, select {
     transform: scale(1.1);
 }  
 
+.notfound-content{
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.notfound-content .small-link {
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+/* trips pages */
+
+.trip-body {
+    background-image: url('media/backgrounds/forest2.jpg');
+    background-size: cover;
+    height: 100vh;
+}
+.trip-content {
+    display: flex;
+    justify-content: center;
+    
+}
+.trip-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+.trip-container {
+    width: 70%;
+    margin-top: 50px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+}
+
+.trip {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.trip-div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.stages {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stage {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    padding-bottom: 30px;
+}
+
+.stage div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+}

@@ -34,9 +34,6 @@ if (!empty($level)) {
 if (!empty($activity)) {
     $sql .= " AND activity = :activity";
 }
-if (!empty($destination)) {
-    $sql .= " AND destination = :destination";
-}
 if (!empty($climate)) {
     $sql .= " AND climate = :climate";
 }
@@ -45,6 +42,22 @@ if (!empty($departure_date)) {
 }
 if (!empty($return_date)) {
     $sql .= " AND return_date <= :return_date";
+}
+
+switch ($sort) {
+    case 'price-asc':
+        $sql .= " ORDER BY price ASC";
+        break;
+    case 'price-desc':
+        $sql .= " ORDER BY price DESC";
+        break;
+    case 'traveler-rating':
+        $sql .= " ORDER BY rating DESC";
+        break;
+    case 'recommended':
+    default:
+        $sql .= " ORDER BY rating DESC, price ASC";
+        break;
 }
 
 try {
@@ -63,9 +76,6 @@ try {
     if (!empty($activity)) {
         $stmt->bindParam(':activity', $activity, PDO::PARAM_STR);
     }
-    if (!empty($destination)) {
-        $stmt->bindParam(':destination', $destination, PDO::PARAM_STR);
-    }
     if (!empty($climate)) {
         $stmt->bindParam(':climate', $climate, PDO::PARAM_STR);
     }
@@ -83,11 +93,9 @@ try {
 }
 
 function SearchWordInText($texte, $search_words) {
-    // Convertir en minuscules
     $texte = strtolower($texte);
     $search_words = array_map('strtolower', explode(" ", $search_words));
 
-    // Découper le texte en mots
     $motsTexte = preg_split('/[\s\-]+/', $texte);
 
     foreach ($search_words as $search_word) {
@@ -167,7 +175,7 @@ function SearchWordInText($texte, $search_words) {
                     <h2>Bienvenue chez Beyond Survival</h2>
                     <p>Découvrez nos stages, immersions et escape games pour tester vos limites.</p>
                     <form class="search-form" action="search.php" method="get">
-                        <input type="text" name="q" placeholder="Rechercher une aventure..." required>
+                        <input type="text" name="q" placeholder="Rechercher une aventure..." value="<?php echo $q; ?>">
                         <button type="submit">Rechercher</button>
                     </form>
                 </div>
@@ -186,65 +194,64 @@ function SearchWordInText($texte, $search_words) {
             </section>
             <!-- For the final web site search.php will be search.php -->
             <form action="search.php" method="get" class="travel-form">
-                <h2>Recherche :</h2>
+                <h2>Recherche Avancée :</h2>
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="travelers">Voyageurs :</label>
-                        <input type="number" id="travelers" name="travelers" min="1" max="10">
+                        <input type="number" id="travelers" name="travelers" min="1" max="10" value=<?php echo $travelers; ?>>
                     </div>
                     <div class="form-group">
                         <label for="rooms">Chambres :</label>
-                        <input type="number" id="rooms" name="rooms" min="1" max="5">
+                        <input type="number" id="rooms" name="rooms" min="1" max="5" value=<?php echo $rooms; ?>>
                     </div>
                     <div class="form-group">
                         <label for="level">Niveau :</label>
                         <select id="level" name="level">
-                            <option value="beginner">Débutant</option>
-                            <option value="intermediate">Intermédiaire</option>
-                            <option value="advanced">Confirmé</option>
+                            <option value=""></option>
+                            <option value="beginner" <?= ($level == "beginner") ? "selected" : "" ?>>Débutant</option>
+                            <option value="intermediate" <?= ($level == "intermediate") ? "selected" : "" ?>>Intermédiaire</option>
+                            <option value="advanced" <?= ($level == "advanced") ? "selected" : "" ?>>Confirmé</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="activity">Activité :</label>
                         <select id="activity" name="activity">
-                            <option value="wilderness-survival">Survie en pleine nature</option>
-                            <option value="survival-training">Stage de survie</option>
-                            <option value="survival-escape-game">Escape-game de survie</option>
+                            <option value=""></option>
+                            <option value="wilderness-survival" <?= ($activity == "wilderness-survival") ? "selected" : "" ?>>Survie en pleine nature</option>
+                            <option value="survival-training" <?= ($activity == "survival-training") ? "selected" : "" ?>>Stage de survie</option>
+                            <option value="survival-escape-game" <?= ($activity == "survival-escape-game") ? "selected" : "" ?>>Escape-game de survie</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="destination">Destination :</label>
-                        <select id="destination" name="destination">
-                            <option value="france">France</option>
-                            <option value="canada">Canada</option>
-                            <option value="australia">Australie</option>
-                        </select>
+                        <input type="text" id="destination" name="destination" value=<?php echo $destination; ?>>
                     </div>
                     <div class="form-group">
                         <label for="climate">Climat :</label>
                         <select id="climate" name="climate">
-                            <option value="arid-desert">Déserts arides</option>
-                            <option value="lush-jungle">Jungles luxuriantes</option>
-                            <option value="dense-forest">Forêts denses</option>
-                            <option value="polar-regions">Régions polaires</option>
-                            <option value="rugged-mountains">Montagnes escarpées</option>
+                            <option value=""></option>
+                            <option value="arid-desert" <?= ($climate == "arid-desert") ? "selected" : "" ?>>Déserts arides</option>
+                            <option value="lush-jungle" <?= ($climate == "lush-jungle") ? "selected" : "" ?>>Jungles luxuriantes</option>
+                            <option value="dense-forest" <?= ($climate == "dense-forest") ? "selected" : "" ?>>Forêts denses</option>
+                            <option value="polar-regions" <?= ($climate == "polar-regions") ? "selected" : "" ?>>Régions polaires</option>
+                            <option value="rugged-mountains" <?= ($climate == "rugged-mountains") ? "selected" : "" ?>>Montagnes escarpées</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="departure-date">Départ :</label>
-                        <input type="date" id="departure-date" name="departure_date">
+                        <input type="date" id="departure-date" name="departure_date" value=<?php echo $departure_date; ?>>
                     </div>
                     <div class="form-group">
                         <label for="return-date">Retour :</label>
-                        <input type="date" id="return-date" name="return_date">
+                        <input type="date" id="return-date" name="return_date" value=<?php echo $return_date; ?>>
                     </div>
                     <div class="form-group">
                         <label for="sort">Trier :</label>
                         <select id="sort" name="sort">
-                            <option value="recommended">Recommandés</option>
-                            <option value="price-asc">Prix (croissant)</option>
-                            <option value="price-desc">Prix (décroissant)</option>
-                            <option value="traveler-rating">Note des voyageurs</option>
+                            <option value="recommended" <?= ($sort == "recommended") ? "selected" : "" ?>>Recommandé</option>
+                            <option value="price-asc" <?= ($sort == "price-asc") ? "selected" : "" ?>>Prix (croissant)</option>
+                            <option value="price-desc" <?= ($sort == "price-desc") ? "selected" : "" ?>>Prix (décroissant)</option>
+                            <option value="traveler-rating" <?= ($sort == "traveler-rating") ? "selected" : "" ?>>Note des voyageurs</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -254,6 +261,9 @@ function SearchWordInText($texte, $search_words) {
             </form>  
             <?php foreach ($trips as $trip) : ?>
                 <?php 
+                if (!empty($destination) && !SearchWordInText($trip['destination'], $destination)) {
+                    continue;
+                }
                 $concat = $trip['title'] . " " . $trip['activity'] . " " . $trip['destination'] . " " . $trip['climate'] . " " . $trip['level'] . " " . $trip['price'] . " " . $trip['rating'] . " " . $trip['departure_date'] . " " . $trip['return_date'] . " " . $trip['travelers'] . " " . $trip['rooms'];
                 if (!empty($q) && !SearchWordInText($concat, $q)) {
                     continue;
@@ -280,14 +290,41 @@ function SearchWordInText($texte, $search_words) {
                     </a>
                 </div> 
             <?php endforeach; ?>
+            
 
-            <?php if ($row_number === 0) : ?>
-                <div class="login-content">
-                    <h1>Aucun résultat trouvé</h1>
-                    <p>Essayez une autre recherche.</p>
+            <?php if ($row_number !== 0) : ?>
+                <div class="notfound-content">
+                    <p>Fin des résultats</p>
+                    <a class="small-link" href="search.php">Cliquer ici pour vider le champs de recherche</a>
                 </div>
             <?php endif; ?>
-                    
+
+            <?php if ($row_number === 0) : ?>
+                <div class="notfound-content">
+                    <h1>Aucun résultat trouvé</h1>
+                    <a class="small-link" href="search.php">Cliquer ici pour vider le champs de recherche</a>
+                    <br> <br> <br> <br>
+                    <h1>Voyages qui pourrais vous intéresser : </h1>
+                </div>
+                <?php foreach ($trips as $trip) : ?>
+                    <div id="results" class="results-container">
+                        <a class="result" href="#">
+                            <h1>🌍 <?php echo $trip['title'];?></h1>
+                            <div>
+                                <p>📅 <?php echo $trip['departure_date'];?> -  <?php echo $trip['return_date'];?></p>
+                                <p>👥 Max voyageurs : <?php echo $trip['travelers'];?></p>
+                                <p>👥 Max chambres : <?php echo $trip['rooms'];?></p>
+                                <p>🏕️ Activité : <?php echo $trip['activity'];?></p>
+                                <p>🌡️ Climat : <?php echo $trip['climate'];?></p>
+                                <p>📫 Destination : <?php echo $trip['destination'];?></p>
+                                <p>📈 Niveau : <?php echo $trip['level'];?></p>
+                                <p>💰 prix : <?php echo $trip['price'];?>€ / personne</p>
+                                <p>⭐ Note : <?php echo $trip['rating'];?>/5</p>
+                            </div>
+                        </a>
+                    </div> 
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
 
         

@@ -25,6 +25,6 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
         
         
-        <?php include "views/../footer.php" ?>
+        <?php include "../views/footer.php" ?>
     </body>
 </html>

@@ -1,11 +1,14 @@
-﻿# 🔲 Click-Journey 🔳
+﻿
 
+<h1 align="center"> 
+🔲 Click-Journey 🔳
+</h1>
 </p>
 <p align="center"> 
   <a href="https://github.com/deltahmed/Click-Journey">
     <img src="https://img.shields.io/github/contributors/deltahmed/Click-Journey.svg?style=for-the-badge" alt="Contributors" /> </a>
   <a href="https://github.com/deltahmed/Click-Journey">
-    <img alt="Issues" src="https://img.shields.io/github/issues/deltahmed/Click-Journey.svg?style=for-the-badge">
+    <img alt="Issues" src="https://img.shields.io/github/issues/deltahmed/Click-Journey?style=for-the-badge">
     </a>
   <a href="https://github.com/deltahmed/Click-Journey">
     <img alt="Forks" src="https://img.shields.io/github/forks/deltahmed/Click-Journey.svg?style=for-the-badge"></a>

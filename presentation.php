@@ -8,7 +8,7 @@
         <meta charset="UTF-8">
 
 
-        <link rel="icon" href="media/icons/info/info.png" type="image/icon type">
+        <link rel="icon" href="media/icons/compass/compass.png" type="image/icon type">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
@@ -38,7 +38,7 @@
                 <h2>Bienvenue chez Beyond Survival</h2>
                 <p>Découvrez nos stages, immersions et escape games pour tester vos limites.</p>
                 <form class="search-form" action="search.php" method="get">
-                    <input type="text" name="q" placeholder="Rechercher une aventure..." required>
+                    <input type="text" name="q" placeholder="Rechercher une aventure...">
                     <button type="submit">Rechercher</button>
                 </form>
             </div>
