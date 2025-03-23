@@ -60,10 +60,8 @@ CREATE TABLE user_trips (
     trip_id INT NOT NULL,
     user_numbers INT NOT NULL,
     amount DECIMAL(10,2) NOT NULL,
+    payement_status ENUM('declined', 'paid') NOT NULL DEFAULT 'declined',
     transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    card_number VARCHAR(20),
-    card_expiry VARCHAR(10),
-    card_cvc VARCHAR(5),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (trip_id) REFERENCES trips(id) ON DELETE CASCADE
 );
@@ -71,7 +69,6 @@ CREATE TABLE user_trips (
 CREATE TABLE options_user_trips (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_trip_id INT NOT NULL,
-    user_numbers INT NOT NULL,
     option_id INT NOT NULL,
     FOREIGN KEY (user_trip_id) REFERENCES user_trips(id) ON DELETE CASCADE,
     FOREIGN KEY (option_id) REFERENCES options(id) ON DELETE CASCADE

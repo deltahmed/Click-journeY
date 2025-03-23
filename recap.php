@@ -1,5 +1,7 @@
 <?php
 require_once "includes/config.php";
+require 'includes/getapikey.php'; 
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -28,6 +30,30 @@ $stmt_stages = $pdo->prepare("SELECT * FROM stages WHERE trip_id = :id ORDER BY 
 $stmt_stages->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt_stages->execute();
 $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+
+
+$transaction_id = uniqid();
+$amount = number_format($trip['price'], 2, '.', '');
+$seller = "MI-4_G"; 
+
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+$base_url = $protocol . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+$return_url = rtrim($base_url, '/') . '/public/return_payment.php';
+
+
+$api_key = getAPIKey($seller);
+if (!$api_key || $api_key === "zzzz") {
+    die("❌ Erreur API Key : Le seller n'est pas valide.");
+}
+
+
+
+
+
 
 
 ?>
@@ -87,7 +113,7 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <h2>Etapes du Voyage</h2>
                     <div class = "stages">
-                        <form action="controllers/control_buy.php" method="post">
+                        <form action="https://www.plateforme-smc.fr/cybank/index.php" method="post">
                             <?php foreach ($stages as $stage) : ?>
                                 <div class="stage">
                                     <div>
@@ -102,25 +128,39 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                         <h3> Options : </h3>
                                         <div>
                                             <div>
+                                                <?php $cost = 0; ?>
                                                 <?php foreach ($_SESSION as $key => $value) : ?>
                                                     <?php if (strpos($key, 'option_') === 0) : ?>
                                                         <?php $option = $value; ?>
                                                         <?php if ($option['stage_id'] == $stage['id']) : ?>
                                                             <div>
                                                                 <p> <?php echo $option['title'];?> : <?php echo $option['price'];?>€</p>
+                                                                <?php $cost += (int)$option['price']; ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
+                                                <?php
+                                                $amount += $cost;
+                                             
+                                                
+                                                ?>
                                             </div>
                                         </div>
                                         
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                            <?php $control = md5($api_key . "#" . $transaction_id . "#" . $amount . "#" . $seller . "#" . $return_url . "#"); ?>
                             <div class = "submit-btn-div" >
-                                <input type="hidden" name="trip_id" id="trip_id" value="<?php echo $trip['id'];?>">
-                                <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Acheter</button>
+                                <input type="hidden" name="transaction" value="<?= $transaction_id; ?>">
+                                <input type="hidden" name="montant" value="<?= $amount; ?>">
+                                <input type="hidden" name="vendeur" value="<?= $seller; ?>">
+                                <input type="hidden" name="retour" value="<?= $return_url; ?>">
+                                <input type="hidden" name="control" value="<?= $control; ?>">
+                                <a class="submit-btn" href="trip.php?trip=<?php echo $trip['id'];?>">Modifier</a>
+                                <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Payer</button>
+                                
                             </div>
                         </form>
                     </div>

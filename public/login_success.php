@@ -26,7 +26,7 @@ if (isset($_SESSION['forward_url'])) {
     <body>
         <div class="login-content">            
             <h1>Connexion réussie. Redirection...</h1>
-            <p><a class="small-link" href="<?php echo $forward_url ?>">Si vous n'êtes pas redirigé automatiquement cliquez ici.</a></p>
+            <p><a class="small-link" href="../<?php echo $forward_url ?>">Si vous n'êtes pas redirigé automatiquement cliquez ici.</a></p>
              <?php header("Refresh:1; url=../$forward_url"); ?>
         </div>
         
