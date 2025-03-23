@@ -97,8 +97,8 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                     <div> 
                                         <h3> Options : </h3>
                                         <?php 
-                                        $stmt_options = $pdo->prepare("SELECT * FROM stages WHERE trip_id = :id ORDER BY order_index ASC");
-                                        $stmt_options->bindParam(':id', $id, PDO::PARAM_INT);
+                                        $stmt_options = $pdo->prepare("SELECT * FROM options WHERE stage_id = :id AND  ORDER BY order_index ASC");
+                                        $stmt_options->bindParam(':id', $stage['id'], PDO::PARAM_INT);
                                         $stmt_options->execute();
                                         $options = $stmt_options->fetchAll(PDO::FETCH_ASSOC);
                                         ?>
@@ -109,6 +109,7 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                                     <option value="<?php echo $option['id'];?>" <?= ($climate == "arid-desert") ? "selected" : "" ?>>Déserts arides</option>
                                                 <?php endforeach; ?>
                                             </select>
+
                                             </div>
                                         </div>
                                         

@@ -308,7 +308,7 @@ function SearchWordInText($texte, $search_words) {
                 </div>
                 <?php foreach ($trips as $trip) : ?>
                     <div id="results" class="results-container">
-                        <a class="result" href="#">
+                        <a class="result" href="trip.php?trip=<?php echo $trip['id'];?>">
                             <h1>🌍 <?php echo $trip['title'];?></h1>
                             <div>
                                 <p>📅 <?php echo $trip['departure_date'];?> -  <?php echo $trip['return_date'];?></p>
