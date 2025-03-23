@@ -264,7 +264,7 @@ function SearchWordInText($texte, $search_words) {
                 if (!empty($destination) && !SearchWordInText($trip['destination'], $destination)) {
                     continue;
                 }
-                $concat = $trip['title'] . " " . $trip['activity'] . " " . $trip['destination'] . " " . $trip['climate'] . " " . $trip['level'] . " " . $trip['price'] . " " . $trip['rating'] . " " . $trip['departure_date'] . " " . $trip['return_date'] . " " . $trip['travelers'] . " " . $trip['rooms'];
+                $concat = $trip['description'] . " " . $trip['title'] . " " . $trip['activity'] . " " . $trip['destination'] . " " . $trip['climate'] . " " . $trip['level'] . " " . $trip['price'] . " " . $trip['rating'] . " " . $trip['departure_date'] . " " . $trip['return_date'] . " " . $trip['travelers'] . " " . $trip['rooms'];
                 if (!empty($q) && !SearchWordInText($concat, $q)) {
                     continue;
                 }

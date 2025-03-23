@@ -83,10 +83,10 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <h2>Etapes du Voyage</h2>
                     <div class = "stages">
-                        <form action="trip.php" method="post">
+                        <form action="controllers/control_buy.php" method="post">
                             <?php foreach ($stages as $stage) : ?>
                                 <div class="stage">
-                                    <div >
+                                    <div>
                                         <h3>Etape <?php echo $stage['order_index'];?> : <?php echo $stage['title'];?> </h3>
                                         <div>
                                             <p>📅 Durée : <?php echo $stage['duration'];?> Jours</p>
@@ -97,33 +97,125 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                     <div> 
                                         <h3> Options : </h3>
                                         <?php 
-                                        $stmt_options = $pdo->prepare("SELECT * FROM options WHERE stage_id = :id AND  ORDER BY order_index ASC");
+                                        $stmt_options = $pdo->prepare("SELECT * FROM options WHERE stage_id = :id AND options_type = 'transport' ORDER BY price ASC");
                                         $stmt_options->bindParam(':id', $stage['id'], PDO::PARAM_INT);
                                         $stmt_options->execute();
-                                        $options = $stmt_options->fetchAll(PDO::FETCH_ASSOC);
+                                        $options_transport = $stmt_options->fetchAll(PDO::FETCH_ASSOC);
+
+                                        $stmt_options = $pdo->prepare("SELECT * FROM options WHERE stage_id = :id AND options_type = 'home' ORDER BY price ASC");
+                                        $stmt_options->bindParam(':id', $stage['id'], PDO::PARAM_INT);
+                                        $stmt_options->execute();
+                                        $options_home = $stmt_options->fetchAll(PDO::FETCH_ASSOC);
+
+                                        $stmt_options = $pdo->prepare("SELECT * FROM options WHERE stage_id = :id AND options_type = 'food' ORDER BY price ASC");
+                                        $stmt_options->bindParam(':id', $stage['id'], PDO::PARAM_INT);
+                                        $stmt_options->execute();
+                                        $options_food = $stmt_options->fetchAll(PDO::FETCH_ASSOC);
+
+                                        $stmt_options = $pdo->prepare("SELECT * FROM options WHERE stage_id = :id AND options_type = 'activity' ORDER BY price ASC");
+                                        $stmt_options->bindParam(':id', $stage['id'], PDO::PARAM_INT);
+                                        $stmt_options->execute();
+                                        $options_activity = $stmt_options->fetchAll(PDO::FETCH_ASSOC);
+
+                                        $stmt_options = $pdo->prepare("SELECT * FROM options WHERE stage_id = :id AND options_type = 'other' ORDER BY price ASC");
+                                        $stmt_options->bindParam(':id', $stage['id'], PDO::PARAM_INT);
+                                        $stmt_options->execute();
+                                        $options_other = $stmt_options->fetchAll(PDO::FETCH_ASSOC);
                                         ?>
                                         <div>
                                             <div>
-                                            <select id="<?php echo $option['id'];?>" name="<?php echo $option['id'];?>">
-                                                <?php foreach ($options as $option) : ?>
-                                                    <option value="<?php echo $option['id'];?>" <?= ($climate == "arid-desert") ? "selected" : "" ?>>Déserts arides</option>
-                                                <?php endforeach; ?>
-                                            </select>
-
+                                                <?php if ($options_home) : ?>
+                                                    <h4>🏠 Logement :</h4>
+                                                    <select name="home_<?php echo $stage['id'];?>">
+                                                        <?php foreach ($options_home as $option) : ?>
+                                                            <?php if (isset($_SESSION['option_' . $option['id']])) : ?>
+                                                                <option value="<?php echo 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php else : ?>
+                                                                <option value="<?php echo 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                <?php endif; ?>
+                                                <?php if ($options_transport) : ?>
+                                                    <h4>🚗 Transport :</h4>
+                                                    <select name="transport_<?php echo $stage['id'];?>">
+                                                        <?php foreach ($options_transport as $option) : ?>
+                                                            <?php if (isset($_SESSION['option_' . $option['id']])) : ?>
+                                                                <option value="<?php echo 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php else : ?>
+                                                                <option value="<?php echo 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                <?php endif; ?>
+                                                <?php if ($options_food) : ?>
+                                                    <h4>🍽️ Nourriture :</h4>
+                                                    <select name="food_<?php echo $stage['id'];?>">
+                                                        <?php foreach ($options_food as $option) : ?>
+                                                            <?php if (isset($_SESSION['option_' . $option['id']])) : ?>
+                                                                <option value="<?php echo 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php else : ?>
+                                                                <option value="<?php echo 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                <?php endif; ?>
+                                                <?php if ($options_activity) : ?>
+                                                    <h4>🏞️ Activité :</h4>
+                                                    <select name="activity_<?php echo $stage['id'];?>">
+                                                        <?php foreach ($options_activity as $option) : ?>
+                                                            <?php if (isset($_SESSION['option_' . $option['id']])) : ?>
+                                                                <option value="<?php echo 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php else : ?>
+                                                                <option value="<?php echo 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                <?php endif; ?>
+                                                <?php if ($options_other) : ?>
+                                                    <h4>🔧 Autre :</h4>
+                                                    <select name="other<?php echo $stage['id'];?>">
+                                                        <?php foreach ($options_other as $option) : ?>
+                                                            <?php if (isset($_SESSION['option_' . $option['id']])) : ?>
+                                                                <option value="<?php echo 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php else : ?>
+                                                                <option value="<?php echo 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                <?php endif; ?>
+                                                
                                             </div>
                                         </div>
                                         
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                            <div class = "submit-btn-div" >
+                                <input type="hidden" name="trip_id" id="trip_id" value="<?php echo $trip['id'];?>">
+
+                                <label for="rooms">Chambres :</label>
+                                <?php if (isset($_SESSION['rooms'])) : ?>
+                                    <input type="number" id="rooms" name="rooms" min="1" max="5" value=<?php echo $_SESSION['rooms']; ?>>
+                                <?php else : ?>
+                                    <input type="number" id="rooms" name="rooms" min="1" max="5" value="1">
+                                <?php endif; ?>
+
+                                <label for="travelers">Voyageurs :</label>
+                                <?php if (isset($_SESSION['travelers'])) : ?>
+                                    <input type="number" id="travelers" name="travelers" min="1" max="10" value=<?php echo $_SESSION['travelers']; ?>>
+                                <?php else : ?> 
+                                    <input type="number" id="travelers" name="travelers" min="1" max="10" value="1">
+                                <?php endif; ?>
+                                
+                                <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Acheter</button>
+                            </div>
                         </form>
                     </div>
                 </div> 
                 
             </div>
         </div>
-        <div class="trip-placeholder"></div>
-        
         
         <?php include "views/footer.php" ?>
     </body>

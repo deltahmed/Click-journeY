@@ -907,15 +907,10 @@ input, select {
 .trip-content {
     display: flex;
     justify-content: center;
+    padding-bottom: 150px;
     
 }
-.trip-placeholder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-}
+
 .trip-container {
     width: 70%;
     margin-top: 50px;
@@ -951,10 +946,22 @@ input, select {
     flex-direction: column;
     gap: 20px;
 }
+.submit-btn-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.stages form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
 
 .stage {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 50px;
     padding-bottom: 30px;
 }

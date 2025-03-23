@@ -52,11 +52,7 @@ if (isset($_SESSION["user_id"])) {
                 <label class="form-label" for="password">Mot de passe :</label>
                 <input type="password" id="password" name="password" maxlength="15">
                 
-                <div>
-                    <label class="stay-conected" for="stay-conected">
-                        <input type="checkbox" id="stay-conected" name="stay-conected"> Rester connecté
-                    </label> 
-                </div>
+
                 
 
                 
