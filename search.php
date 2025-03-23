@@ -1,6 +1,8 @@
 <?php
 require_once "includes/config.php";
 
+$row_number = 0;
+
 
 $stmt = $pdo->prepare("SELECT * FROM trips LIMIT WHERE 1=1");
 
@@ -81,11 +83,12 @@ try {
 }
 
 function SearchWordInText($texte, $search_words) {
-
+    // Convertir en minuscules
     $texte = strtolower($texte);
     $search_words = array_map('strtolower', explode(" ", $search_words));
 
-    $motsTexte = preg_split('/\s+/', $texte);
+    // Découper le texte en mots
+    $motsTexte = preg_split('/[\s\-]+/', $texte);
 
     foreach ($search_words as $search_word) {
         $find_word = false;
@@ -118,7 +121,6 @@ function SearchWordInText($texte, $search_words) {
 
     return true;
 }
-
 
 ?>
 
@@ -253,10 +255,10 @@ function SearchWordInText($texte, $search_words) {
             <?php foreach ($trips as $trip) : ?>
                 <?php 
                 $concat = $trip['title'] . " " . $trip['activity'] . " " . $trip['destination'] . " " . $trip['climate'] . " " . $trip['level'] . " " . $trip['price'] . " " . $trip['rating'] . " " . $trip['departure_date'] . " " . $trip['return_date'] . " " . $trip['travelers'] . " " . $trip['rooms'];
-                if (!empty($q) && !SearchWordInText($trip['title'], $concat)) {
+                if (!empty($q) && !SearchWordInText($concat, $q)) {
                     continue;
-                } 
-                
+                }
+                $row_number++;
                 ?>
                 <div id="results" class="results-container">
                     <a class="result" href="#">
@@ -278,6 +280,13 @@ function SearchWordInText($texte, $search_words) {
                     </a>
                 </div> 
             <?php endforeach; ?>
+
+            <?php if ($row_number === 0) : ?>
+                <div class="login-content">
+                    <h1>Aucun résultat trouvé</h1>
+                    <p>Essayez une autre recherche.</p>
+                </div>
+            <?php endif; ?>
                     
         </div>
 
