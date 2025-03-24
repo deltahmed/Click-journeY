@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm_password = trim($_POST["confirm_password"]);
     $first_name = trim($_POST["first_name"]);
     $last_name = trim($_POST["last_name"]);
-    $gender = trim($_POST["gender"]) ?? 'A';;
+    $gender = trim($_POST["gender"]) ?? 'A';
     $birth_date = trim($_POST["birth_date"]);
     $phone_number = trim($_POST["phone"]);
     $address = trim($_POST["address"]);
@@ -44,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($password !== $confirm_password) {
-        echo "Passwords do not match.";
+        $_SESSION['sign_in_up_error'] = "LEs mots de passes ne sont pas identiques";
+        header("Location: ../signup.php");
         exit;
     }
     $password_errors = [];
@@ -88,6 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
         $un_id = uniqid();
+        $un_id = password_hash($password, PASSWORD_BCRYPT);
         $stmt = $pdo->prepare("INSERT INTO users (un_id, email, password, role, first_name, last_name, gender, birth_date, phone_number, address, postal_code, city, comment) 
                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$un_id,$email, $hashed_password, $role, $first_name, $last_name, $gender, $birth_date, $phone_number, $address, $postal_code, $city, $comment]);

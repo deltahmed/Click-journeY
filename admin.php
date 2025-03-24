@@ -11,7 +11,7 @@ if (isset($_SESSION["user_id"]) && $_SESSION['user_role'] !== 'admin' ) {
 require_once "includes/config.php";
 
 if(!verifyUnId($pdo, $_SESSION['user_id'], $_SESSION['un_id'])){
-    header("Location: ../controllers/control_logout.php");
+    header("Location: controllers/control_logout.php");
     exit;
 }
 

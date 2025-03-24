@@ -52,9 +52,9 @@ if (isset($_SESSION["user_id"])) {
             <form class="registration-form" action="controllers/control_signup.php" method="post"  id="registration-form" name="account-creation">
                 <div>
                     <label class="form-label" for="gender">Genre :</label>
-                    <label class="form-label" for="gender"><input type="radio" name="gender" value="M">Madame</label>
-                    <label class="form-label" for="gender"><input type="radio" name="gender" value="F">Monsieur</label>
-                    <label class="form-label" for="gender"><input type="radio" name="gender" value="A">Autres</label>
+                    <label class="form-label" for="gender"><input type="radio" name="gender" value="M" required>Madame</label>
+                    <label class="form-label" for="gender"><input type="radio" name="gender" value="F" required>Monsieur</label>
+                    <label class="form-label" for="gender"><input type="radio" name="gender" value="A" required>Autres</label>
                 </div>
                 
             
@@ -86,10 +86,10 @@ if (isset($_SESSION["user_id"])) {
                 <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" inputmode="numeric" maxlength="10">
             
                 <label class="form-label" for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" maxlength="15" required>
+                <input type="password" id="password" name="password" maxlength="100" required>
             
                 <label class="form-label" for="confirm-password">Confirmer le mot de passe :</label>
-                <input type="password" id="confirm-password" name="confirm_password" maxlength="15" required>
+                <input type="password" id="confirm-password" name="confirm_password" maxlength="100" required>
                 <div>
                     <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Créer mon compte</button>
                 </div>

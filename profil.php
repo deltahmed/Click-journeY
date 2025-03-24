@@ -13,7 +13,7 @@ $user_id = $_SESSION['user_id'];
 $un_id = $_SESSION['un_id'];
 
 if(!verifyUnId($pdo, $_SESSION['user_id'], $un_id)){
-    header("Location: ../controllers/control_logout.php");
+    header("Location: controllers/control_logout.php");
     exit;
 }
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id AND un_id = :un_id");

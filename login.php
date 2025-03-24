@@ -56,7 +56,7 @@ if (isset($_SESSION["user_id"])) {
                 <input type="email" id="email" name="email">
             
                 <label class="form-label" for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" maxlength="15">
+                <input type="password" id="password" name="password" maxlength="100">
                 
 
                 

@@ -11,7 +11,7 @@ $user_id = $_SESSION['user_id'];
 $un_id = $_SESSION['un_id'];
 
 if(!verifyUnId($pdo, $_SESSION['user_id'], $un_id)){
-    header("Location: ../controllers/control_logout.php");
+    header("Location: controllers/control_logout.php");
     exit;
 }
 

@@ -27,11 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($user && password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["id"];
-            $_SESSION["un_id"] = $user["un_id"];
+            
             $_SESSION["user_email"] = $user["email"];
             $_SESSION["user_role"] = $user["role"];
-            $updateStmt = $pdo->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
-            $updateStmt->execute([$user["id"]]);
+            $un_id = uniqid();
+            $un_id = password_hash($password, PASSWORD_BCRYPT);
+            $updateStmt = $pdo->prepare("UPDATE users SET last_login = NOW(), un_id = ? WHERE id = ?");
+            $updateStmt->execute([$un_id, $user["id"]]);
+            $_SESSION["un_id"] = $un_id;
+
             header("Location: ../public/login_success.php");  
         } else {
             $_SESSION['sign_in_up_error'] = "L'email ou le mot de passe sont incorrecte";
