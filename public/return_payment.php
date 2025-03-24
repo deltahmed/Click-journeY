@@ -31,6 +31,24 @@ if ($control_received !== $control_calculated) {
     die("❌ Erreur retour : La valeur de contrôle est erronée.");
 }
 
+if ($status === "accepted") {
+    $stmt = $pdo->prepare("
+        UPDATE user_trips
+        SET payement_status = 'paid'
+        WHERE id_tr = :transaction
+    ");
+    $stmt->bindParam(':transaction', $transaction, PDO::PARAM_STR);
+    $stmt->execute();
+}
+
+$stmt = $pdo->prepare("
+    DELETE FROM user_trips
+    WHERE payement_status = 'declined' AND user_id = :user_id
+");
+$stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+$stmt->execute();
+
+
 ?>
 <html lang="fr">
     <head>

@@ -32,10 +32,6 @@ $stmt_stages->execute();
 $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
 
 
-
-
-
-
 $transaction_id = uniqid();
 $amount = number_format($trip['price'], 2, '.', '');
 $seller = "MI-4_G"; 
@@ -63,7 +59,12 @@ $amount = number_format($cost, 2, '.', '');
 
 $control = md5($api_key . "#" . $transaction_id . "#" . $amount . "#" . $seller . "#" . $return_url . "#");
 
-
+$stmt = $pdo->prepare("
+    DELETE FROM user_trips
+    WHERE payement_status = 'declined' AND user_id = :id
+");
+$stmt->bindParam(':id', $_SESSION['user_id'], PDO::PARAM_INT);
+$stmt->execute();
 ?>
 
 
@@ -141,6 +142,7 @@ $control = md5($api_key . "#" . $transaction_id . "#" . $amount . "#" . $seller 
                                                         <?php if ($option['stage_id'] == $stage['id']) : ?>
                                                             <div>
                                                                 <p> <?php echo $option['title'];?> : <?php echo $option['price'];?>€</p>
+                                                                <input type="hidden" name="<?php echo 'option_' . $option['id'];?>" value="<?php echo 'option_' . $option['id'];?>">
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
@@ -161,7 +163,7 @@ $control = md5($api_key . "#" . $transaction_id . "#" . $amount . "#" . $seller 
                                 <input type="hidden" name="retour" value="<?php echo $return_url; ?>">
                                 <input type="hidden" name="control" value="<?php echo $control; ?>">
                                 <a class="submit-btn" href="trip.php?trip=<?php echo $trip['id'];?>">Modifier</a>
-                                <button class="submit-btn" type="submit">Payer</button>
+                                <button class="submit-btn" value="submit">Payer</button>
                                 
                             </div>
                         </form>
@@ -174,30 +176,29 @@ $control = md5($api_key . "#" . $transaction_id . "#" . $amount . "#" . $seller 
         
         <?php include "views/footer.php" ?>
     </body>
+    <?php if(isset($_SESSION['user_id'])) : ?>
+        <script>
+            document.getElementById('payment-form').addEventListener('submit', function(e) {
+                e.preventDefault(); 
 
-    <script>
-        document.getElementById('payment-form').addEventListener('submit', function(e) {
-            e.preventDefault(); 
+                const form = this; 
+                const formData = new FormData(form);
 
-            const formData = new FormData(this);
-            fetch('controllers/save_payment.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Réponse du serveur:', data);
-                if (data.success) {
-                    alert(data.message);
-                    this.submit();
-                } else {
-                    alert(data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
+                fetch('controllers/save_payment.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        form.submit(); 
+                    } else {
+                        console.error('Erreur lors de la requête :', response.status);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur réseau :', error);
+                });
             });
-        });
-    </script>
-    
+        </script>
+    <?php endif; ?>
 </html>

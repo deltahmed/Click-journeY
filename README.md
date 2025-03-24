@@ -23,8 +23,10 @@
 
 * [About The Project](#about-the-project)
   * [Built With](#built-with)
-  * [Live Démo](#live-demo-phase-1-)
-* [Installation](#installation)
+* [Installation and usage](#installation-and-usage)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation-and-usage)
+  * [Usage](#usage)
 * [Contributors](#contributors)
 * [License](#license)
 
@@ -32,29 +34,54 @@
 
 **Click-Journey: Beyond Survival** is a travel agency website specializing in pre-configured trips. The goal is to offer an immersive and ergonomic interface allowing users to explore and book trips while customizing certain options (accommodation, activities, transportation, etc.).
 
-### Live demo Phase 1 :
-+ [phase1-click-journey.deltahmed.fr](phase1-click-journey.deltahmed.fr)
-
 ### Built With
 
 ![HTML5](https://img.shields.io/badge/-HTML5-05122A?style=for-the-badge&logo=html5)
 ![CSS3](https://img.shields.io/badge/-CSS3-05122A?style=for-the-badge&logo=css3)
+![PHP](https://img.shields.io/badge/-CSS3-05122A?style=for-the-badge&logo=php)
+![MySQL](https://img.shields.io/badge/-CSS3-05122A?style=for-the-badge&logo=mysql)
 
 
-## Installation and use
+## Installation and usage
 
+### Prerequisites
++ XAMPP installed on your machine or a similar alternative
++ PHP and MySQL (MariaDB) included in XAMPP
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/deltahmed/Click-Journey.git
-   ```
-2. Navigate to the folder:
-   ```sh
-   cd Click-Journey
-   ```
-3. Open `index.php` in a browser.
+### Installation
 
-### You can also see the live demo of the first phase here  [phase1-click-journey.deltahmed.fr](phase1-click-journey.deltahmed.fr)
+1. **Download and install XAMPP**
+    + Download XAMPP from the official website and install it.
+    + Open the XAMPP control panel and start Apache and MySQL.
+
+2. **Database configuration**
+    + Open your browser and go to `http://localhost/phpmyadmin/`.
+    + Create a new database named `clickjourney`.
+    + Import the `clickjourney.sql` file (provided in the project) by going to the Import tab in phpMyAdmin.
+
+3. **Project setup**
+    + Place your project in the htdocs directory of XAMPP  (`C:\xampp\htdocs\Click-journeY`).
+    + Check and modify the database connection settings in the `includes/config.php` file if necessary (if your database is not named `clickjourney`)
+
+### Usage
+1. **Starting the server**
+    + Start Apache and MySQL via the XAMPP control panel.
+    + Open a browser and go to http://localhost/Click-journeY/.
+
+2. **Main Features**
+
+    + User registration and login
+
+    + Session management with PHP
+
+    + Displaying data from the database
+
+    + Other project-specific features
+
+3.  **Frequent errors**
+    + If a database connection error occurs, check `includes/config.php`.
+    + Ensure MySQL is running in XAMPP.
+    + Check file permissions if access issues arise.
 
 
 ## Contributors
