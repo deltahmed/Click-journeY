@@ -20,7 +20,8 @@ $control_received = $_GET['control'];
 // Récupérer la clé API du vendeur
 $api_key = getAPIKey($vendeur);
 if (!$api_key || $api_key === "zzzz") {
-    die("❌ Erreur API Key : Le vendeur n'est pas valide.");
+    $_SESSION['error'] = "Erreur API";
+    header("Location: error.php");
 }
 
 // Recalculer la signature de contrôle
@@ -28,7 +29,8 @@ $control_calculated = md5($api_key . "#" . $transaction . "#" . $montant . "#" .
 
 // Vérifier si la signature est correcte
 if ($control_received !== $control_calculated) {
-    die("❌ Erreur retour : La valeur de contrôle est erronée.");
+    $_SESSION['error'] = "Erreur Control";
+    header("Location: error.php");
 }
 
 if ($status === "accepted") {

@@ -89,7 +89,8 @@ try {
     $stmt->execute();
     $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die("Erreur lors de la recherche : " . $e->getMessage());
+    $_SESSION['error'] = "Erreur SQL";
+    header("Location: public/error.php");
 }
 
 function SearchWordInText($texte, $search_words) {

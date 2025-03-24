@@ -184,6 +184,7 @@ INSERT INTO options (options_type, title, price, stage_id)
 VALUES
 -- Expédition Jungle Extrême
 ('transport', 'Marche en forêt', 0.00, 1),
+('transport', 'Vélo', 0.00, 1),
 ('transport', 'Bateau motorisé', 100.00, 2),
 ('transport', 'Hélicoptère', 300.00, 3),
 ('home', 'Tente basique', 0.00, 1),

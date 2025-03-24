@@ -43,7 +43,8 @@ $return_url = rtrim($base_url, '/') . '/public/return_payment.php';
 
 $api_key = getAPIKey($seller);
 if (!$api_key || $api_key === "zzzz") {
-    die("❌ Erreur API Key : Le seller n'est pas valide.");
+    $_SESSION['error'] = "Erreur API";
+    header("Location: public/error.php");
 }
 
 $cost = 0;
