@@ -6,6 +6,7 @@ $row_number = 0;
 
 $stmt = $pdo->prepare("SELECT * FROM trips LIMIT WHERE 1=1");
 
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
 $title = $_GET['title'] ?? null;
 $price = $_GET['price'] ?? null;
 $travelers = $_GET['travelers'] ?? null;
@@ -131,6 +132,33 @@ function SearchWordInText($texte, $search_words) {
     return true;
 }
 
+$limit = 5;
+
+if (!empty($q)) {
+    $filteredTrips = array_filter($trips, function($trip) use ($q) {
+        $concat = $trip['title'] . " " . $trip['activity'] . " " . $trip['destination'] . " " . $trip['climate'] . " " . $trip['level'] . " " . $trip['price'] . " " . $trip['rating'] . " " . $trip['departure_date'] . " " . $trip['return_date'] . " " . $trip['travelers'] . " " . $trip['rooms'];
+        return SearchWordInText($concat, $q);
+    });
+} else {
+    $filteredTrips = $trips;
+}
+
+$totalTrips = count($filteredTrips);
+$totalPages = ceil($totalTrips / $limit);
+
+if ($page < 1) {
+    $page = 1;
+} elseif ($page > $totalPages) {
+    $page = $totalPages;
+}
+
+$offset = ($page - 1) * $limit;
+$trips = array_slice($filteredTrips, $offset, $limit);
+
+
+
+
+
 ?>
 
 
@@ -236,6 +264,9 @@ function SearchWordInText($texte, $search_words) {
                             <option value="dense-forest" <?= ($climate == "dense-forest") ? "selected" : "" ?>>Forêts denses</option>
                             <option value="polar-regions" <?= ($climate == "polar-regions") ? "selected" : "" ?>>Régions polaires</option>
                             <option value="rugged-mountains" <?= ($climate == "rugged-mountains") ? "selected" : "" ?>>Montagnes escarpées</option>
+                            <option value="volcanic-terrain" <?= ($climate == "volcanic-terrain") ? "selected" : "" ?>>Savane ouverte</option>
+                            <option value="open-savannah" <?= ($climate == "open-savannah") ? "selected" : "" ?>>Forêt boréale</option>
+                            <option value="boreal-forest" <?= ($climate == "boreal-forest") ? "selected" : "" ?>>Terrain volcanique</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -294,11 +325,40 @@ function SearchWordInText($texte, $search_words) {
             
 
             <?php if ($row_number !== 0) : ?>
+                <?php if ((int)$totalPages === (int)$page) : ?>
+                    <div class="notfound-content">
+                        <p>Fin des résultats</p>
+                    </div>
+                <?php endif; ?>
+
+                <form class="pages-nav" action="search.php" method="get">
+                    <div>
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                            <button class="green_button" type="submit" name="page" value="<?php echo $i; ?>">
+                                <?php echo $i; ?>
+                                <input type="hidden" name="title" value="<?php echo htmlspecialchars($title); ?>">
+                                <input type="hidden" name="price" value="<?php echo htmlspecialchars($price); ?>">
+                                <input type="hidden" name="travelers" value="<?php echo htmlspecialchars($travelers); ?>">
+                                <input type="hidden" name="rooms" value="<?php echo htmlspecialchars($rooms); ?>">
+                                <input type="hidden" name="level" value="<?php echo htmlspecialchars($level); ?>">
+                                <input type="hidden" name="activity" value="<?php echo htmlspecialchars($activity); ?>">
+                                <input type="hidden" name="destination" value="<?php echo htmlspecialchars($destination); ?>">
+                                <input type="hidden" name="climate" value="<?php echo htmlspecialchars($climate); ?>">
+                                <input type="hidden" name="departure_date" value="<?php echo htmlspecialchars($departure_date); ?>">
+                                <input type="hidden" name="return_date" value="<?php echo htmlspecialchars($return_date); ?>">
+                                <input type="hidden" name="rating" value="<?php echo htmlspecialchars($rating); ?>">
+                                <input type="hidden" name="sort" value="<?php echo htmlspecialchars($sort); ?>">
+                                <input type="hidden" name="q" value="<?php echo htmlspecialchars($q); ?>">
+                            </button>
+                        <?php endfor; ?>
+                    </div>
+                </form>
                 <div class="notfound-content">
-                    <p>Fin des résultats</p>
                     <a class="small-link" href="search.php">Cliquer ici pour vider le champs de recherche</a>
                 </div>
             <?php endif; ?>
+
+            
 
             <?php if ($row_number === 0) : ?>
                 <div class="notfound-content">
@@ -326,6 +386,7 @@ function SearchWordInText($texte, $search_words) {
                     </div> 
                 <?php endforeach; ?>
             <?php endif; ?>
+            
         </div>
 
         
