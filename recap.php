@@ -50,10 +50,18 @@ if (!$api_key || $api_key === "zzzz") {
     die("❌ Erreur API Key : Le seller n'est pas valide.");
 }
 
+$cost = 0;
+foreach ($_SESSION as $key => $value) {
+    if (strpos($key, 'option_') === 0) {
+        $option = $value;
+        $cost += (float)$option['price'];
+    }
+}
+$cost += 50 * ((int)$_SESSION['rooms'] - 1);
+$cost = ($cost + $amount) * (int)$_SESSION['travelers'];
+$amount = number_format($cost, 2, '.', '');
 
-
-
-
+$control = md5($api_key . "#" . $transaction_id . "#" . $amount . "#" . $seller . "#" . $return_url . "#");
 
 
 ?>
@@ -72,7 +80,6 @@ if (!$api_key || $api_key === "zzzz") {
         <link rel="icon" href="media/icons/info/info.png" type="image/icon type">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-
     <body class="trip-body">
         <header>
             <?php include "views/header.php" ?>
@@ -113,7 +120,7 @@ if (!$api_key || $api_key === "zzzz") {
                     </div>
                     <h2>Etapes du Voyage</h2>
                     <div class = "stages">
-                        <form action="https://www.plateforme-smc.fr/cybank/index.php" method="post">
+                        <form id="payment-form" action="https://www.plateforme-smc.fr/cybank/index.php" method="post">
                             <?php foreach ($stages as $stage) : ?>
                                 <div class="stage">
                                     <div>
@@ -128,41 +135,37 @@ if (!$api_key || $api_key === "zzzz") {
                                         <h3> Options : </h3>
                                         <div>
                                             <div>
-                                                <?php $cost = 0; ?>
                                                 <?php foreach ($_SESSION as $key => $value) : ?>
                                                     <?php if (strpos($key, 'option_') === 0) : ?>
                                                         <?php $option = $value; ?>
                                                         <?php if ($option['stage_id'] == $stage['id']) : ?>
                                                             <div>
                                                                 <p> <?php echo $option['title'];?> : <?php echo $option['price'];?>€</p>
-                                                                <?php $cost += (int)$option['price']; ?>
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
-                                                <?php
-                                                $amount += $cost;
-                                             
-                                                
-                                                ?>
                                             </div>
                                         </div>
                                         
                                     </div>
                                 </div>
                             <?php endforeach; ?>
-                            <?php $control = md5($api_key . "#" . $transaction_id . "#" . $amount . "#" . $seller . "#" . $return_url . "#"); ?>
                             <div class = "submit-btn-div" >
-                                <input type="hidden" name="transaction" value="<?= $transaction_id; ?>">
-                                <input type="hidden" name="montant" value="<?= $amount; ?>">
-                                <input type="hidden" name="vendeur" value="<?= $seller; ?>">
-                                <input type="hidden" name="retour" value="<?= $return_url; ?>">
-                                <input type="hidden" name="control" value="<?= $control; ?>">
+                                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                                <input type="hidden" name="trip_id" value="<?php echo $id; ?>">
+                                <input type="hidden" name="user_numbers" value="<?php echo $_SESSION['travelers']; ?>">
+                                <input type="hidden" name="transaction" value="<?php echo $transaction_id; ?>">
+                                <input type="hidden" name="montant" value="<?php echo $amount; ?>">
+                                <input type="hidden" name="vendeur" value="<?php echo $seller; ?>">
+                                <input type="hidden" name="retour" value="<?php echo $return_url; ?>">
+                                <input type="hidden" name="control" value="<?php echo $control; ?>">
                                 <a class="submit-btn" href="trip.php?trip=<?php echo $trip['id'];?>">Modifier</a>
-                                <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Payer</button>
+                                <button class="submit-btn" type="submit">Payer</button>
                                 
                             </div>
                         </form>
+                        
                     </div>
                 </div> 
                 
@@ -171,4 +174,30 @@ if (!$api_key || $api_key === "zzzz") {
         
         <?php include "views/footer.php" ?>
     </body>
+
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+
+            const formData = new FormData(this);
+            fetch('controllers/save_payment.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Réponse du serveur:', data);
+                if (data.success) {
+                    alert(data.message);
+                    this.submit();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        });
+    </script>
+    
 </html>
