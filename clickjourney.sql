@@ -391,26 +391,3 @@ VALUES
 ('activity', 'Orientation en jungle', 0.00, 43),
 ('activity', 'Pêche traditionnelle', 30.00, 44),
 ('activity', 'Survie extrême', 60.00, 45);
-
-
--- Ajout d'achats de voyages par les utilisateurs
-INSERT INTO user_trips (user_id, trip_id, user_numbers, amount)
-VALUES
-(2, 1, 2, 1299.99), -- Alice achète le voyage en jungle
-(3, 2, 2, 1499.99); -- Bob achète le voyage en montagne
-
--- Ajout d'options sélectionnées par les utilisateurs pour leur voyage
-INSERT INTO options_user_trips (user_trip_id, user_numbers, option_id)
-VALUES
-(1, 2, 1), -- Alice choisit "Marche en forêt"
-(1, 2, 2), -- Alice choisit "Bateau motorisé"
-(1, 2, 3), -- Alice choisit "Hélicoptère"
-(1, 2, 4), -- Alice choisit "Tente basique"
-(1, 2, 5), -- Alice choisit "Cabane en bois"
-(1, 2, 6), -- Alice choisit "Lodge premium"
-(1, 2, 7), -- Alice choisit "Rations de survie"
-(1, 2, 8), -- Alice choisit "Fruits et légumes locaux"
-(1, 2, 9), -- Alice choisit "Menu complet avec viande"
-(1, 2, 10), -- Alice choisit "Orientation en jungle"
-(1, 2, 11), -- Alice choisit "Construction d'abris"
-(1, 2, 12); -- Alice choisit "Survie extrême"
