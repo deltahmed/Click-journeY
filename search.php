@@ -132,6 +132,22 @@ function SearchWordInText($texte, $search_words) {
     return true;
 }
 
+foreach ($trips as $key => &$trip) {
+    if (!empty($destination) && !SearchWordInText($trip['destination'], $destination)) {
+        unset($trips[$key]);
+        continue;
+    }
+    $concat = $trip['description'] . " " . $trip['title'] . " " . $trip['activity'] . " " . $trip['destination'] . " " . $trip['climate'] . " " . $trip['level'] . " " . $trip['price'] . " " . $trip['rating'] . " " . $trip['departure_date'] . " " . $trip['return_date'] . " " . $trip['travelers'] . " " . $trip['rooms'];
+    if (!empty($q) && !SearchWordInText($concat, $q)) {
+        unset($trips[$key]);
+        continue;
+    }
+
+    $row_number++;
+}
+
+ 
+
 $limit = 5;
 
 if (!empty($q)) {
@@ -156,7 +172,7 @@ $offset = ($page - 1) * $limit;
 $trips = array_slice($filteredTrips, $offset, $limit);
 
 
-
+   
 
 
 ?>
@@ -292,16 +308,6 @@ $trips = array_slice($filteredTrips, $offset, $limit);
                 </div>
             </form>  
             <?php foreach ($trips as $trip) : ?>
-                <?php 
-                if (!empty($destination) && !SearchWordInText($trip['destination'], $destination)) {
-                    continue;
-                }
-                $concat = $trip['description'] . " " . $trip['title'] . " " . $trip['activity'] . " " . $trip['destination'] . " " . $trip['climate'] . " " . $trip['level'] . " " . $trip['price'] . " " . $trip['rating'] . " " . $trip['departure_date'] . " " . $trip['return_date'] . " " . $trip['travelers'] . " " . $trip['rooms'];
-                if (!empty($q) && !SearchWordInText($concat, $q)) {
-                    continue;
-                }
-                $row_number++;
-                ?>
                 <div id="results" class="results-container">
                     <a class="result" href="trip.php?trip=<?php echo $trip['id'];?>">
                         <h1>🌍 <?php echo $trip['title'];?></h1>

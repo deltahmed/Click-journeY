@@ -96,10 +96,7 @@ VALUES
 ('Aventure en Forêt Tropicale Amazonienne', 'Plongez dans la forêt amazonienne et apprenez à survivre dans un environnement tropical dense.', '2026-04-05', '2026-04-12', 7, 1500.00, 6, 2, 'advanced', 'wilderness-survival', 'Amazonie, Brésil', 'lush-jungle', 4.7),
 ('Aventure dans le Désert Tunisien', 'Explorez les dunes du désert tunisien et apprenez à survivre dans un environnement aride.', '2025-11-01', '2025-11-08', 7, 1200.00, 5, 2, 'beginner', 'survival-training', 'Désert Tunisien, Tunisie', 'arid-desert', 4.3),
 ('Aventure dans les Alpes Suisses', 'Explorez les montagnes suisses et apprenez à survivre dans un environnement alpin.', '2025-06-15', '2025-06-22', 7, 1800.00, 6, 2, 'intermediate', 'survival-training', 'Alpes Suisses, Suisse', 'rugged-mountains', 4.8),
-('Expédition au Désert de Gobi', 'Découvrez les vastes étendues du désert de Gobi et apprenez à survivre dans un environnement aride.', '2025-09-10', '2025-09-17', 7, 1400.00, 5, 2, 'beginner', 'wilderness-survival', 'Désert de Gobi, Mongolie', 'arid-desert', 4.5),
-('Survie en Forêt Noire', 'Plongez dans la Forêt Noire en Allemagne et apprenez à survivre dans un environnement dense et mystérieux.', '2025-10-05', '2025-10-12', 7, 1300.00, 4, 2, 'beginner', 'survival-escape-game', 'Forêt Noire, Allemagne', 'dense-forest', 4.6),
-('Exploration des Îles Galápagos', 'Explorez les îles Galápagos et apprenez à survivre dans un environnement insulaire unique.', '2025-11-20', '2025-11-27', 7, 2500.00, 6, 2, 'advanced', 'wilderness-survival', 'Îles Galápagos, Équateur', 'lush-jungle', 4.9);
-
+('Expédition au Désert de Gobi', 'Découvrez les vastes étendues du désert de Gobi et apprenez à survivre dans un environnement aride.', '2025-09-10', '2025-09-17', 7, 1400.00, 5, 2, 'beginner', 'wilderness-survival', 'Désert de Gobi, Mongolie', 'arid-desert', 4.5);
 
 -- Ajout des étapes pour chaque voyage
 INSERT INTO stages (trip_id, order_index, title, duration, gps_position, location)
@@ -203,16 +200,6 @@ INSERT INTO stages (trip_id, order_index, title, duration, gps_position, locatio
 VALUES
 (18, 1, 'Exploration des dunes', 3, '42.5000,105.0000', 'Dunes de Khongoryn Els'),
 (18, 2, 'Campement sous les étoiles', 4, '42.6000,105.1000', 'Campement isolé dans le désert');
-
-INSERT INTO stages (trip_id, order_index, title, duration, gps_position, location)
-VALUES
-(19, 1, 'Exploration de la forêt', 3, '48.0000,8.2000', 'Sentiers de la Forêt Noire'),
-(19, 2, 'Campement en pleine nature', 4, '48.1000,8.3000', 'Campement au cœur de la forêt');
-
-INSERT INTO stages (trip_id, order_index, title, duration, gps_position, location)
-VALUES
-(20, 1, 'Découverte de la faune', 3, '-0.9538,-90.9656', 'Île Santa Cruz'),
-(20, 2, 'Campement sur la plage', 4, '-0.9000,-90.9500', 'Plage isolée des Galápagos');
 
 
 

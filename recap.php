@@ -13,6 +13,12 @@ if (!isset($_SESSION['trip_id'])) {
     exit;
 }
 
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: search.php");
+    exit;
+}
+
 $id = $_SESSION['trip_id'];
 $id = (int) $id;
 

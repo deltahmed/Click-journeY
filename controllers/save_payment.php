@@ -1,6 +1,7 @@
 <?php
 require_once "../includes/config.php";
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $transaction_id = $_POST['transaction'] ?? null;
     $amount = $_POST['montant'] ?? null;
@@ -13,12 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
     if(!verifyUnId($pdo, $user_id, $un_id)){
-        http_response_code(400);
+        http_response_code(403);
         exit;
     }
 
     if (!$transaction_id || !$amount || !$seller || !$user_id || !$trip_id || !$user_numbers) {
-        http_response_code(400);
+        http_response_code(404);
         exit;
     }
 

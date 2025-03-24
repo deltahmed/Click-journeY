@@ -92,7 +92,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="profil-page-overlay">
             <div class="profil-page-content">
                 <h1> Votre profil </h1>
-                <form class="change-profil" action="change-profil.php" method="post"  id="change-profil" name="change-profil">
+                <form class="change-profil" action="public/error_phase.php" method="post"  id="change-profil" name="change-profil">
                     <table class="profil-page-table">
                         <thead>
                             <tr>

@@ -51,10 +51,10 @@ if (isset($_SESSION["user_id"])) {
             <?php endif; ?>
             <form class="registration-form" action="controllers/control_signup.php" method="post"  id="registration-form" name="account-creation">
                 <div>
-                    <label class="form-label" for="gender">Genre :</label>
-                    <label class="form-label" for="gender"><input type="radio" name="gender" value="M" required>Madame</label>
-                    <label class="form-label" for="gender"><input type="radio" name="gender" value="F" required>Monsieur</label>
-                    <label class="form-label" for="gender"><input type="radio" name="gender" value="A" required>Autres</label>
+                    <label class="form-label" >Genre :</label>
+                    <label class="form-label" ><input type="radio" name="gender" value="F" required>Madame</label>
+                    <label class="form-label" ><input type="radio" name="gender" value="M" required>Monsieur</label>
+                    <label class="form-label" ><input type="radio" name="gender" value="A" required>Autres</label>
                 </div>
                 
             

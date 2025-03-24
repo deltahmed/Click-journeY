@@ -2,12 +2,18 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-if (isset($_SESSION["user_id"]) && $_SESSION['user_role'] !== 'admin' ) {
+if (!isset($_SESSION["user_id"])) {
     header("Location: index.php");
     exit;
 }
-
-
+if (!isset($_SESSION["un_id"])) {
+    header("Location: index.php");
+    exit;
+}
+if ($_SESSION['user_role'] !== 'admin') {
+    header("Location: index.php");
+    exit;
+}
 require_once "includes/config.php";
 
 if(!verifyUnId($pdo, $_SESSION['user_id'], $_SESSION['un_id'])){

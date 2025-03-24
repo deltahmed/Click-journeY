@@ -46,6 +46,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../index.php");
+    exit;
+}
+if (!isset($_SESSION["un_id"])) {
+    header("Location: ../index.php");
+    exit;
+}
+
 
 
 ?>

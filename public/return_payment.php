@@ -2,13 +2,55 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../index.php");
+    exit;
+}
+if (!isset($_SESSION["un_id"])) {
+    header("Location: ../index.php");
+    exit;
+}
 require '../includes/config.php';
 require '../includes/getapikey.php';
 
 
 if(!verifyUnId($pdo, $_SESSION['user_id'], $_SESSION['un_id'])){
     header("Location: ../controllers/control_logout.php");
+    exit;
+}
+$montant = $_GET['montant'];
+$vendeur = $_GET['vendeur'];
+$status = $_GET['status'];
+$control_received = $_GET['control'];
+$transaction = $_GET['transaction'];
+
+
+$stmt = $pdo->prepare("
+    SELECT * FROM user_trips
+    WHERE id_tr = :transaction AND user_id = :user_id
+");
+$stmt->bindParam(':transaction', $transaction, PDO::PARAM_STR);
+$stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+$stmt->execute();
+
+$tripData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$tripData) {
+    $_SESSION['error'] = "❌ Transaction introuvable.";
+    header("Location: error.php");
+    exit;
+}
+
+
+if ((float)$tripData['amount'] !== (float)$montant) {
+    $_SESSION['error'] = "❌ Montant incorrect.";
+    header("Location: error.php");
+    exit;
+}
+
+if ($tripData['payement_status'] !== 'pending') {
+    $_SESSION['error'] = "❌ Statut de paiement invalide.";
+    header("Location: error.php");
     exit;
 }
 
@@ -19,11 +61,8 @@ if (!isset($_GET['transaction'], $_GET['montant'], $_GET['vendeur'], $_GET['stat
     exit;
 }
 
-$transaction = $_GET['transaction'];
-$montant = $_GET['montant'];
-$vendeur = $_GET['vendeur'];
-$status = $_GET['status'];
-$control_received = $_GET['control'];
+
+
 
 // Récupérer la clé API du vendeur
 $api_key = getAPIKey($vendeur);

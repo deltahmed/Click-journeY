@@ -23,7 +23,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <h1>Une erreur a été détécté</h1>
             
             <?php if (isset($_SESSION['error'])) : ?>
-                <p><?php $_SESSION['error'] ?></p>
+                <p><?php echo $_SESSION['error']; ?></p>
             <?php endif; ?>
             <p><a class="small-link" href="../index.php">Si vous n'êtes pas redirigé automatiquement cliquez ici.</a></p>
             <?php header("Refresh:3; url=../index.php"); ?>
