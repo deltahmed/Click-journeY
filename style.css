@@ -575,12 +575,15 @@ footer div{
     padding-top: 100px;
     padding-bottom: 100px;
     text-align: center;
+    gap: 50px;
 }
 
 .profil-page-content{
     background: #e2e2e2;
     padding: 20px;
     border-radius: 20px;
+
+
     
 
 }
@@ -970,4 +973,41 @@ input, select {
     flex-direction: column;
     justify-content: space-between;
     gap: 5px;
+}
+
+.p-error {
+    color: red;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
+    border-radius: 10px
+}
+
+.results-container-profile {
+    width: auto;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    transition: all 0.3s;
+    
+}
+
+.results-container-profile:hover {
+    transform: scale(1.05);
+}
+
+.result-profile {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    transition: all 0.3s;
+
+}
+
+.result-profile div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }

@@ -45,6 +45,12 @@ if (isset($_SESSION["user_id"])) {
         </header>
         <div class="login-content">
             <h1>Connexion</h1>
+            <?php if (isset($_SESSION['sign_in_up_error'])) : ?>
+                <p class="p-error"> <?php 
+                    echo $_SESSION['sign_in_up_error'];
+                    unset($_SESSION['sign_in_up_error']);
+                ?></p>
+            <?php endif; ?>
             <form class="registration-form" action="controllers/control_login.php" method="post" id="login-form" name="login">
                 <label class="form-label" for="email">Email :</label>
                 <input type="email" id="email" name="email">

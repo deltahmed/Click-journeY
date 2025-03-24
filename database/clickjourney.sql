@@ -1,8 +1,9 @@
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    un_id INT UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'user') NOT NULL DEFAULT 'user',
+    role ENUM('admin', 'user', 'vip') NOT NULL DEFAULT 'user',
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     gender ENUM('M', 'F', 'A') NOT NULL,
@@ -61,7 +62,7 @@ CREATE TABLE user_trips (
     trip_id INT NOT NULL,
     user_numbers INT NOT NULL,
     amount DECIMAL(10,2) NOT NULL,
-    payement_status ENUM('declined', 'paid') NOT NULL DEFAULT 'declined',
+    payement_status ENUM('pending','declined', 'paid') NOT NULL DEFAULT 'pending',
     transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (trip_id) REFERENCES trips(id) ON DELETE CASCADE
@@ -74,13 +75,6 @@ CREATE TABLE options_user_trips (
     FOREIGN KEY (user_trip_id) REFERENCES user_trips(id) ON DELETE CASCADE,
     FOREIGN KEY (option_id) REFERENCES options(id) ON DELETE CASCADE
 );
-
--- Ajout d'utilisateurs
-INSERT INTO users (email, password, role, first_name, last_name, gender, birth_date, phone_number, address, postal_code, city)
-VALUES
-('admin@survival.com', 'adminpass', 'admin', 'John', 'Doe', 'M', '1980-05-15', '0601020304', '123 Rue des Aventuriers', '75001', 'Paris'),
-('user1@survival.com', 'userpass1', 'user', 'Alice', 'Smith', 'F', '1992-07-20', '0605060708', '456 Jungle Road', '69002', 'Lyon'),
-('user2@survival.com', 'userpass2', 'user', 'Bob', 'Johnson', 'M', '1985-09-30', '0611223344', '789 Forêt Mystique', '33000', 'Bordeaux');
 
 -- Ajout de voyages
 INSERT INTO trips (title, description, departure_date, return_date, duration, price, travelers, rooms, level, activity, destination, climate, rating)
@@ -99,8 +93,8 @@ VALUES
 ('Survie en Forêt Tropicale Australienne', 'Plongez dans la forêt tropicale australienne et apprenez à survivre dans un environnement humide et dense.', '2026-01-10', '2026-01-17', 7, 1550.00, 4, 2, 'advanced', 'wilderness-survival', 'Forêt Daintree, Australie', 'lush-jungle', 4.8),
 ('Expédition en Antarctique', 'Survivez dans les conditions extrêmes en Antarctique et apprenez à gérer le froid polaire.', '2026-02-15', '2026-02-22', 7, 2500.00, 4, 2, 'advanced', 'wilderness-survival', 'Antarctique', 'polar-regions', 4.9),
 ('Survie en Forêt Boréale Canadienne', 'Explorez la forêt boréale canadienne et apprenez à survivre dans un environnement froid et dense.', '2026-03-01', '2026-03-08', 7, 1400.00, 5, 2, 'intermediate', 'wilderness-survival', 'Forêt boréale, Canada', 'boreal-forest', 4.6),
-('Aventure en Forêt Tropicale Amazonienne', 'Plongez dans la forêt amazonienne et apprenez à survivre dans un environnement tropical dense.', '2026-04-05', '2026-04-12', 7, 1500.00, 6, 2, 'advanced', 'wilderness-survival', 'Amazonie, Brésil', 'lush-jungle', 4.7);
-('Aventure dans le Désert Tunisien', 'Explorez les dunes du désert tunisien et apprenez à survivre dans un environnement aride.', '2025-11-01', '2025-11-08', 7, 1200.00, 5, 2, 'beginner', 'survival-training', 'Désert Tunisien, Tunisie', 'arid-desert', 4.3)
+('Aventure en Forêt Tropicale Amazonienne', 'Plongez dans la forêt amazonienne et apprenez à survivre dans un environnement tropical dense.', '2026-04-05', '2026-04-12', 7, 1500.00, 6, 2, 'advanced', 'wilderness-survival', 'Amazonie, Brésil', 'lush-jungle', 4.7),
+('Aventure dans le Désert Tunisien', 'Explorez les dunes du désert tunisien et apprenez à survivre dans un environnement aride.', '2025-11-01', '2025-11-08', 7, 1200.00, 5, 2, 'beginner', 'survival-training', 'Désert Tunisien, Tunisie', 'arid-desert', 4.3),
 ('Aventure dans les Alpes Suisses', 'Explorez les montagnes suisses et apprenez à survivre dans un environnement alpin.', '2025-06-15', '2025-06-22', 7, 1800.00, 6, 2, 'intermediate', 'survival-training', 'Alpes Suisses, Suisse', 'rugged-mountains', 4.8),
 ('Expédition au Désert de Gobi', 'Découvrez les vastes étendues du désert de Gobi et apprenez à survivre dans un environnement aride.', '2025-09-10', '2025-09-17', 7, 1400.00, 5, 2, 'beginner', 'wilderness-survival', 'Désert de Gobi, Mongolie', 'arid-desert', 4.5),
 ('Survie en Forêt Noire', 'Plongez dans la Forêt Noire en Allemagne et apprenez à survivre dans un environnement dense et mystérieux.', '2025-10-05', '2025-10-12', 7, 1300.00, 4, 2, 'beginner', 'survival-escape-game', 'Forêt Noire, Allemagne', 'dense-forest', 4.6),
@@ -255,7 +249,7 @@ VALUES
 ('home', 'Lodge en bambou', 70.00, 3),
 ('home', 'Resort de luxe', 150.00, 3),
 ('food', 'Riz et légumineuses', 0.00, 3),
-('food', 'Plat typique', 40.00, 3),
+('food', 'Plat typique', 40.00, 3);
 
 
 -- Évasion en Montagne
@@ -268,7 +262,7 @@ VALUES
 ('home', 'Chalet rustique', 60.00, 4),
 ('home', 'Lodge 5 étoiles', 200.00, 4),
 ('food', 'Rations lyophilisées', 0.00, 4),
-('food', 'Fromage et charcuterie', 40.00, 4),
+('food', 'Fromage et charcuterie', 40.00, 4);
 
 INSERT INTO options (options_type, title, price, stage_id)
 VALUES
@@ -306,7 +300,7 @@ VALUES
 ('home', 'Bivouac sous les étoiles', 0.00, 7),
 ('home', 'Tente nomade', 40.00, 7),
 ('home', 'Lodge climatisé', 120.00, 7),
-('food', 'Dattes et eau', 0.00, 7),
+('food', 'Dattes et eau', 0.00, 7);
 
 INSERT INTO options (options_type, title, price, stage_id)
 VALUES
@@ -454,7 +448,7 @@ VALUES
 ('home', 'Hôtel en pierre de lave', 120.00, 18),
 ('home', 'Suite panoramique', 300.00, 18),
 ('food', 'Pain et eau', 0.00, 18),
-('food', 'Grillade sur pierre chaude', 70.00, 18),
+('food', 'Grillade sur pierre chaude', 70.00, 18);
 
 -- Aventure au Serengeti
 
@@ -481,7 +475,7 @@ VALUES
 ('home', 'Cabane perchée', 90.00, 20),
 ('home', 'Villa avec vue', 300.00, 20),
 ('food', 'Noix et miel', 0.00, 20),
-('food', 'Barbecue masaï', 80.00, 20),
+('food', 'Barbecue masaï', 80.00, 20);
 
 INSERT INTO options (options_type, title, price, stage_id)
 VALUES
@@ -612,7 +606,7 @@ VALUES
 ('home', 'Tente improvisée', 0.00, 30),
 ('home', 'Cabane avec moustiquaire', 140.00, 30),
 ('food', 'Légumes grillés et eau', 0.00, 30),
-('food', 'Plat de gibier local', 110.00, 30),
+('food', 'Plat de gibier local', 110.00, 30);
 
 
 -- Aventure en Patagonie
@@ -640,7 +634,7 @@ VALUES
 ('home', 'Tente chauffée', 130.00, 32),
 ('home', 'Vue panoramique', 320.00, 32),
 ('food', 'Baies sauvages et eau', 0.00, 32),
-('food', 'Poisson grillé', 100.00, 32),
+('food', 'Poisson grillé', 100.00, 32);
 
 INSERT INTO options (options_type, title, price, stage_id)
 VALUES
@@ -692,7 +686,7 @@ VALUES
 ('home', 'Bungalow en bois', 140.00, 36),
 ('home', 'Hôtel tropical 5 étoiles', 380.00, 36),
 ('food', 'Légumes grillés et eau', 0.00, 36),
-('food', 'Viande de brousse', 110.00, 36),
+('food', 'Viande de brousse', 110.00, 36);
 
 
 -- Expédition en Antarctique
@@ -733,7 +727,7 @@ VALUES
 ('home', 'Cabane isolée', 160.00, 39),
 ('home', 'Hôtel igloo de luxe', 420.00, 39),
 ('food', 'Galettes de survie', 0.00, 39),
-('food', 'Ragoût de gibier', 130.00, 39),
+('food', 'Ragoût de gibier', 130.00, 39);
 
 -- Survie en Forêt Boréale Canadienne
 
@@ -850,7 +844,7 @@ VALUES
 ('home', 'Abri de fortune', 0.00, 48),
 ('home', 'Caravane', 80.00, 48),
 ('food', 'Bsissa royale', 0.00, 48),
-('food', 'Couscous poisson', 60.00, 48),
+('food', 'Couscous poisson', 60.00, 48);
 
 INSERT INTO options (options_type, title, price, stage_id)
 VALUES
@@ -859,7 +853,7 @@ VALUES
 ('transport', '4x4 tout-terrain', 150.00, 49),
 ('home', 'Bivouac sous les étoiles', 0.00, 49),
 ('food', 'Dattes et eau', 0.00, 49),
-('food', 'Ragoût de chèvre', 30.00, 49),
+('food', 'Ragoût de chèvre', 30.00, 49);
 
 INSERT INTO options (options_type, title, price, stage_id)
 VALUES
@@ -867,7 +861,7 @@ VALUES
 ('transport', 'VTT', 20.00, 50),
 ('home', 'Tente de camping', 0.00, 50),
 ('food', 'Baies et eau', 0.00, 50),
-('food', 'Soupe de champignons', 20.00, 50),
+('food', 'Soupe de champignons', 20.00, 50);
 
 INSERT INTO options (options_type, title, price, stage_id)
 VALUES
@@ -876,7 +870,7 @@ VALUES
 ('home', 'Tente sur la plage', 0.00, 51),
 ('home', 'Cabane en bois', 50.00, 51),
 ('food', 'Fruits tropicaux', 0.00, 51),
-('food', 'Poisson grillé', 40.00, 51),
+('food', 'Poisson grillé', 40.00, 51);
 
 
 INSERT INTO options (options_type, title, price, stage_id)
@@ -886,4 +880,4 @@ VALUES
 ('home', 'Tente alpine', 0.00, 52),
 ('home', 'Chalet rustique', 60.00, 52),
 ('food', 'Rations lyophilisées', 0.00, 52),
-('food', 'Fromage et charcuterie', 40.00, 52),
+('food', 'Fromage et charcuterie', 40.00, 52);

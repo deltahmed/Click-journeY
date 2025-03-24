@@ -38,8 +38,8 @@
 
 ![HTML5](https://img.shields.io/badge/-HTML5-05122A?style=for-the-badge&logo=html5)
 ![CSS3](https://img.shields.io/badge/-CSS3-05122A?style=for-the-badge&logo=css3)
-![PHP](https://img.shields.io/badge/-CSS3-05122A?style=for-the-badge&logo=php)
-![MySQL](https://img.shields.io/badge/-CSS3-05122A?style=for-the-badge&logo=mysql)
+![PHP](https://img.shields.io/badge/-PHP-05122A?style=for-the-badge&logo=php)
+![MySQL](https://img.shields.io/badge/-MySQL-05122A?style=for-the-badge&logo=mysql)
 
 
 ## Installation and usage
@@ -57,7 +57,7 @@
 2. **Database configuration**
     + Open your browser and go to `http://localhost/phpmyadmin/`.
     + Create a new database named `clickjourney`.
-    + Import the `clickjourney.sql` file (provided in the project) by going to the Import tab in phpMyAdmin.
+    + Import the `database/clickjourney.sql` file (provided in the project) by going to the Import tab in phpMyAdmin.
 
 3. **Project setup**
     + Place your project in the htdocs directory of XAMPP  (`C:\xampp\htdocs\Click-journeY`).

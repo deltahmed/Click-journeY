@@ -10,7 +10,11 @@ if (isset($_SESSION["user_id"]) && $_SESSION['user_role'] !== 'admin' ) {
 
 require_once "includes/config.php";
 
-$user_id = $_SESSION['user_id'];
+if(!verifyUnId($pdo, $_SESSION['user_id'], $_SESSION['un_id'])){
+    header("Location: ../controllers/control_logout.php");
+    exit;
+}
+
 
 $page = 1;
 if (isset($_GET['page']) && is_numeric($_GET['page'])) {

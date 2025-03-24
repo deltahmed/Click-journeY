@@ -62,7 +62,7 @@ $control = md5($api_key . "#" . $transaction_id . "#" . $amount . "#" . $seller 
 
 $stmt = $pdo->prepare("
     DELETE FROM user_trips
-    WHERE payement_status = 'declined' AND user_id = :id
+    WHERE payement_status = 'pending' AND user_id = :id
 ");
 $stmt->bindParam(':id', $_SESSION['user_id'], PDO::PARAM_INT);
 $stmt->execute();
@@ -154,8 +154,13 @@ $stmt->execute();
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+
+                            <div>
+                                <h3>Total à payer : <?php echo $amount; ?>€</h3>
+                            </div>
                             <div class = "submit-btn-div" >
                                 <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                                <input type="hidden" name="un_id" value="<?php echo $_SESSION['un_id']; ?>">
                                 <input type="hidden" name="trip_id" value="<?php echo $id; ?>">
                                 <input type="hidden" name="user_numbers" value="<?php echo $_SESSION['travelers']; ?>">
                                 <input type="hidden" name="transaction" value="<?php echo $transaction_id; ?>">
@@ -163,7 +168,9 @@ $stmt->execute();
                                 <input type="hidden" name="vendeur" value="<?php echo $seller; ?>">
                                 <input type="hidden" name="retour" value="<?php echo $return_url; ?>">
                                 <input type="hidden" name="control" value="<?php echo $control; ?>">
+                                
                                 <a class="submit-btn" href="trip.php?trip=<?php echo $trip['id'];?>">Modifier</a>
+                                <br>
                                 <button class="submit-btn" value="submit">Payer</button>
                                 
                             </div>

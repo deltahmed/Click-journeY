@@ -10,10 +10,16 @@ if (isset($_SESSION["user_id"]) !== true) {
 require_once "includes/config.php";
 
 $user_id = $_SESSION['user_id'];
+$un_id = $_SESSION['un_id'];
 
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+if(!verifyUnId($pdo, $_SESSION['user_id'], $un_id)){
+    header("Location: ../controllers/control_logout.php");
+    exit;
+}
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id AND un_id = :un_id");
 
-$stmt->bindParam(1, $user_id, PDO::PARAM_INT);
+$stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+$stmt->bindParam(':un_id', $un_id, PDO::PARAM_STR);
 $user = $stmt->fetch();
 $stmt->execute();
 
@@ -22,6 +28,30 @@ if (!$user) {
     echo "User not found.";
     exit;
 }
+
+
+$stmt = $pdo->prepare("
+    SELECT 
+        trips.id, 
+        trips.title, 
+        trips.departure_date, 
+        trips.return_date, 
+        trips.activity, 
+        trips.climate, 
+        trips.destination, 
+        trips.level, 
+        trips.price,
+        user_trips.id AS user_trip_id, 
+        user_trips.user_numbers, 
+        trips.rooms, 
+        user_trips.payement_status 
+    FROM user_trips
+    INNER JOIN trips ON user_trips.trip_id = trips.id
+    WHERE user_trips.user_id = :user_id
+");
+$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+$stmt->execute();
+$trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <html lang="fr">
     <head>
@@ -75,7 +105,7 @@ if (!$user) {
                         <tbody>
                             
                             <tr>
-                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                 
                                     <td>E-mail</td>
                                     <td>
                                         <?php echo $user['email']; ?>
@@ -89,10 +119,10 @@ if (!$user) {
                                             Modifier
                                         </button>
                                     </td>
-                                </form>
+                                 
                             </tr>
                             <tr>
-                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                 
                                     <td>Nom</td>
                                     <td>
                                         <?php echo $user['last_name']; ?>
@@ -106,10 +136,10 @@ if (!$user) {
                                             Modifier
                                         </button>
                                     </td>
-                                </form>
+                                 
                             </tr>
                             <tr>
-                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                 
                                     <td>Prénom</td>
                                     <td>
                                         <?php echo $user['first_name']; ?>
@@ -123,10 +153,10 @@ if (!$user) {
                                             Modifier
                                         </button>
                                     </td>
-                                </form>
+                                 
                             </tr>
                             <tr>
-                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                 
                                     <td>Sexe</td>
                                     <td>
                                         <?php echo $user['gender']; ?>
@@ -142,10 +172,10 @@ if (!$user) {
                                             Modifier
                                         </button>
                                     </td>
-                                </form>
+                                 
                             </tr>
                             <tr>
-                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                 
                                     <td>Date de naissance</td>
                                     <td>
                                         <?php echo $user['birth_date']; ?>
@@ -159,10 +189,10 @@ if (!$user) {
                                             Modifier
                                         </button>
                                     </td>
-                                </form>
+                                 
                             </tr>
                             <tr>
-                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                 
                                     <td>Numéro de téléphone</td>
                                     <td>
                                         <?php echo $user['phone_number']; ?>
@@ -176,10 +206,10 @@ if (!$user) {
                                             Modifier
                                         </button>
                                     </td>
-                                </form>
+                                 
                             </tr>
                             <tr>
-                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                 
                                     <td>Adresse</td>
                                     <td>
                                         <?php echo $user['address']; ?>
@@ -193,10 +223,10 @@ if (!$user) {
                                             Modifier
                                         </button>
                                     </td>
-                                </form>
+                                 
                             </tr>
                             <tr>
-                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                 
                                     <td>Code postal</td>
                                     <td>
                                         <?php echo $user['postal_code']; ?>
@@ -210,10 +240,10 @@ if (!$user) {
                                             Modifier
                                         </button>
                                     </td>
-                                </form>
+                                 
                             </tr>
                             <tr>
-                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                 
                                     <td>Ville</td>
                                     <td>
                                         <?php echo $user['city']; ?>
@@ -227,10 +257,10 @@ if (!$user) {
                                             Modifier
                                         </button>
                                     </td>
-                                </form>
+                                 
                             </tr>
                             <tr>
-                                <form class="registration-form"  method="post"  id="registration-form" name="account-creation">
+                                 
                                     <td>Commentaire</td>
                                     <td>
                                        <?php echo $user['comment']; ?>
@@ -244,7 +274,7 @@ if (!$user) {
                                             Modifier
                                         </button>
                                     </td>
-                                </form>
+                                 
                             </tr>
                             <tr>
                                 <td>Date d'Inscription</td>
@@ -268,9 +298,33 @@ if (!$user) {
                         </div>
                         
                     </div>
-                    
+                </form>
+                
+            </div>
+            <div class="profil-page-content">
+                <h1>Mes Voyages</h1>
+                    <?php foreach ($trips as $trip) : ?>
+                        <div class="results-container-profile">
+                            <a class="result-profile" href="recap_user.php?trip=<?php echo $trip['user_trip_id']; ?>">
+                                <h1>🌍 <?php echo htmlspecialchars($trip['title']); ?></h1>
+                                <div>
+                                    <p>📅 <?php echo htmlspecialchars($trip['departure_date']); ?> - <?php echo htmlspecialchars($trip['return_date']); ?></p>
+                                    <p>👥 Nombre de voyageurs : <?php echo htmlspecialchars($trip['user_numbers']); ?></p>
+                                    <p>👥 Nombre de chambres : <?php echo htmlspecialchars($trip['rooms']); ?></p>
+                                    <p>🏕️ Activité : <?php echo htmlspecialchars($trip['activity']); ?></p>
+                                    <p>🌡️ Climat : <?php echo htmlspecialchars($trip['climate']); ?></p>
+                                    <p>📫 Destination : <?php echo htmlspecialchars($trip['destination']); ?></p>
+                                    <p>📈 Niveau : <?php echo htmlspecialchars($trip['level']); ?></p>
+                                    <p>💰 Paiement de : <?php echo htmlspecialchars($trip['price']); ?>€</p>
+                                    <p>💰 Statut du paiement : <?php echo htmlspecialchars($trip['payement_status']); ?></p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
             </div>
         </div>
+
+        
         
         <?php include "views/footer.php" ?>
     </body>

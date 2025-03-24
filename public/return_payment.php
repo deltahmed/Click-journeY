@@ -6,9 +6,17 @@ if (session_status() === PHP_SESSION_NONE) {
 require '../includes/config.php';
 require '../includes/getapikey.php';
 
+
+if(!verifyUnId($pdo, $_SESSION['user_id'], $_SESSION['un_id'])){
+    header("Location: ../controllers/control_logout.php");
+    exit;
+}
+
 // Vérifier que les paramètres sont bien envoyés par CY Bank
 if (!isset($_GET['transaction'], $_GET['montant'], $_GET['vendeur'], $_GET['status'], $_GET['control'])) {
-    die("❌ Données de paiement invalides.");
+    $_SESSION['error'] = "❌ Données de paiement invalides.";
+    header("Location: error.php");
+    exit;
 }
 
 $transaction = $_GET['transaction'];
@@ -45,10 +53,12 @@ if ($status === "accepted") {
 
 $stmt = $pdo->prepare("
     DELETE FROM user_trips
-    WHERE payement_status = 'declined' AND user_id = :user_id
+    WHERE payement_status = 'pending' AND user_id = :user_id
 ");
 $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
 $stmt->execute();
+
+
 
 
 ?>
