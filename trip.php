@@ -196,16 +196,16 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
 
                                 <label for="rooms">Chambres :</label>
                                 <?php if (isset($_SESSION['rooms'])) : ?>
-                                    <input type="number" id="rooms" name="rooms" min="1" max="5" value=<?php echo $_SESSION['rooms']; ?>>
+                                    <input type="number" id="rooms" name="rooms" min="1" max="<?php echo $trip['rooms']; ?>" value=<?php echo $_SESSION['rooms']; ?>>
                                 <?php else : ?>
-                                    <input type="number" id="rooms" name="rooms" min="1" max="5" value="1">
+                                    <input type="number" id="rooms" name="rooms" min="1" max="<?php echo $trip['rooms']; ?>" value="1">
                                 <?php endif; ?>
 
                                 <label for="travelers">Voyageurs :</label>
                                 <?php if (isset($_SESSION['travelers'])) : ?>
-                                    <input type="number" id="travelers" name="travelers" min="1" max="10" value=<?php echo $_SESSION['travelers']; ?>>
+                                    <input type="number" id="travelers" name="travelers" min="1" max="<?php echo $trip['travelers']; ?>" value=<?php echo $_SESSION['travelers']; ?>>
                                 <?php else : ?> 
-                                    <input type="number" id="travelers" name="travelers" min="1" max="10" value="1">
+                                    <input type="number" id="travelers" name="travelers" min="1" max="<?php echo $trip['travelers']; ?>" value="1">
                                 <?php endif; ?>
                                 
                                 <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Acheter</button>
