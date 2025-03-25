@@ -1,3 +1,14 @@
+
+-- Beyond Survival DataBase
+
+
+-- Version details :
+--       PHP : 8.2.12
+--       Server : 10.4.32-MariaDB
+--       DataBase Name : `clickjourney`
+--       XAMPP Control Panel v3.3.0
+
+
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     un_id VARCHAR(255) NOT NULL,
@@ -75,6 +86,15 @@ CREATE TABLE options_user_trips (
     FOREIGN KEY (user_trip_id) REFERENCES user_trips(id) ON DELETE CASCADE,
     FOREIGN KEY (option_id) REFERENCES options(id) ON DELETE CASCADE
 );
+
+INSERT INTO `users` (`un_id`, `email`, `password`, `role`, `first_name`, `last_name`, `gender`, `birth_date`, `phone_number`, `address`, `postal_code`, `city`, `registration_date`, `last_login`, `comment`) VALUES
+('$2y$10$I9GnUIO7qsQWKO96wzvSN.uZArA2MyMf2xLQKJHjSEC5yljfDtp3q', 'sergy.manchouc@exemple.com', '$2y$10$VP01ci4FR/W6KNFjD0ZLVeB1v5Wz7ND43DLqx1pjwrcfkrV.Jaf5y', 'admin', 'Sergy', 'Manchouc', 'M', '2006-06-12', '0606060606', '10 rue de cyje', '9500', 'Pontoise', '2025-03-25 22:03:44', NULL, ''),
+('$2y$10$FVLosCmEFkiWAcd5nscZ2eFMf6WYxKruOoswB0YiV/p4GAc/Wc7RC', 'ayane.lmhani@exemple.com', '$2y$10$UvtfRxN09PwCFeKSSWtvOuDDJcovNk40UnlGa5mPkvfNNLLc516h.', 'user', 'Lmhani', 'Ayane', 'M', '2005-07-02', '0212212212', '10 rue du singe vert', '95000', 'Cergy', '2025-03-25 22:14:21', NULL, 'Je sue énormément des mains (pas d\'activité d\'escalade)'),
+('$2y$10$WLT0maZeU7DwOgtZahQFe.xYmrErI4md3Z5NWgd70QzK1w3Rrua0W', 'remi.soule@exemple.com', '$2y$10$/29RXQMU3kuoa1iB.oRss.zeqDa4MMWbMxS4nN42550oU8O98h1VC', 'user', 'Rémi', 'Soulé', 'M', '2005-05-20', '0606060606', '25 rue du ticket de caisse', '78700', 'Conflans-Sainte-Honorine', '2025-03-25 22:25:52', NULL, 'Hydrophobe (n\'aime pas l\'eau)'),
+('$2y$10$Oj6Yb4y5vnjpPaAQgBvm7OFgcHs9hcm80khl28Wk3uWPFq3tWVNYy', 'anas.chapati@exemple.com', '$2y$10$FrdVteuKkaEQhmbliw71YekUd7MgJbW2Dp0s18SE2oMolAOKg9/Oe', 'user', 'Anas', 'Chapati', 'M', '2005-07-05', '0606060606', '36 rue de la mloukhia', '93300', 'Aubervilliers', '2025-03-25 22:32:53', NULL, 'Besoins de beaucoup de nourriture (sportif)'),
+('$2y$10$0ynwAcFgGgMi4aG1hj5uuOu107k3vcqqoGXR3sAk0gT4Ylyd6rgk6', 'abdelwaheb.azifrr@exemple.com', '$2y$10$lgqbnFE2cVI6RphmVVaEU.oqReDL3.3j1.Vle18GTU3u5yrjYzAl2', 'user', 'Abdelwaheb', 'Azifrr', 'M', '2005-11-24', '0606060606', '9 rue du brainrot', '80000', 'Amiens', '2025-03-25 23:02:27', NULL, ''),
+('$2y$10$EjVb0Q5F9E4g1tbd.VoQ9edslEAQ4xTcNj9RrpEaizYNuwO1eFZaa', 'contact.ahmed.delta@gmail.com', '$2y$10$VNF9WYEzkHmzFkR4n5E/DO3p.DQ6Ak4q9RgCXYv6D8JHt8/KeqXci', 'admin', 'Ahmed', 'Delta', 'M', '2005-01-01', '0606060606', '36 rue du singe brainroted', '958000', 'Cergy', '2025-03-25 23:08:58', NULL, '');
+
 
 -- Ajout de voyages
 INSERT INTO trips (title, description, departure_date, return_date, duration, price, travelers, rooms, level, activity, destination, climate, rating)

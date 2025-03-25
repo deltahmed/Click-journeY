@@ -46,7 +46,12 @@
 
 ### Prerequisites
 + XAMPP installed on your machine or a similar alternative
-+ PHP and MySQL (MariaDB) included in XAMPP
++ PHP and MySQL (MariaDB) included in XAMPP (**THE LAST VERSION**)
+    + Version details :
+      + PHP : 8.2.12
+      + Server : 10.4.32-MariaDB
+      + DataBase Name : `clickjourney`
+      + XAMPP Control Panel v3.3.0
 
 ### Installation
 
@@ -82,6 +87,19 @@
     + If a database connection error occurs, check `includes/config.php`.
     + Ensure MySQL is running in XAMPP.
     + Check file permissions if access issues arise.
+
+4.  **Test accounts**
+    
+    Here are some accounts to test the site's features without signing up.
+
+    | Email                         | Password                                  | role  |
+    | ----------------------------- | ----------------------------------------- | ----- |
+    | contact.ahmed.delta@gmail.com | ClickJourney3,14159265358979323846264@#&$ | admin |
+    | remi.soule@exemple.com        | C2%OIOIOIoioioi                           | user  |
+    | abdelwaheb.azifrr@exemple.com | &&&92!$#!ElMorjen@@FAVEEEEEE              | user  |
+    | sergy.manchouc@exemple.com    | Chapka30000Sergy!@                        | admin |
+    | ayane.lmhani@exemple.com      | MotDePasseSécurisé123!!!                  | user  |
+    | anas.chapati@exemple.com      | bsissaELchapati@&!!!2025                  | user  |
 
 
 ## Contributors
