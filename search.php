@@ -132,7 +132,7 @@ function SearchWordInText($texte, $search_words) {
     return true;
 }
 
-foreach ($trips as $key => &$trip) {
+foreach ($trips as $key => $trip) {
     if (!empty($destination) && !SearchWordInText($trip['destination'], $destination)) {
         unset($trips[$key]);
         continue;
@@ -145,8 +145,6 @@ foreach ($trips as $key => &$trip) {
 
     $row_number++;
 }
-
- 
 
 $limit = 5;
 
@@ -169,7 +167,10 @@ if ($page < 1) {
 }
 
 $offset = ($page - 1) * $limit;
+
+
 $trips = array_slice($filteredTrips, $offset, $limit);
+ 
 
 
    
@@ -237,7 +238,6 @@ $trips = array_slice($filteredTrips, $offset, $limit);
                     });
                 </script>
             </section>
-            <!-- For the final web site search.php will be search.php -->
             <form action="search.php" method="get" class="travel-form">
                 <h2>Recherche Avancée :</h2>
                 <div class="form-grid">
