@@ -1029,3 +1029,11 @@ input, select {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
+
+#error-display {
+    color: red !important;
+}
+
+.toggle-password {
+    cursor: pointer;
+}

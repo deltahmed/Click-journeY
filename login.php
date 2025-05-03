@@ -22,6 +22,7 @@ if (isset($_SESSION["user_id"])) {
         <link rel="icon" href="media/icons/account/account.png" type="image/icon type">
         <link rel="stylesheet" id="theme-style" type="text/css" href="styles/style.css">
         <script src="scripts/theme.js" defer></script>
+        <script src="scripts/login.js" defer></script>
     </head>
 
     <body>
@@ -55,9 +56,16 @@ if (isset($_SESSION["user_id"])) {
             <form class="registration-form" action="controllers/control_login.php" method="post" id="login-form" name="login">
                 <label class="form-label" for="email">Email :</label>
                 <input type="email" id="email" name="email">
+                <label class="form-label" id="error-display"></label>
             
                 <label class="form-label" for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" maxlength="100">
+                <div class="password-container">
+                    <input type="password" id="passwordid" name="password" maxlength="100" required>
+                    <label class="form-label" id="error-display"></label>
+                    <span class="toggle-password" onclick="togglePasswordVisibility('passwordid')">👁️</span>
+                </div>
+                <label class="form-label" id="error-display"></label>
+                <small id="password-counter"></small>
                 
 
                 
@@ -66,7 +74,7 @@ if (isset($_SESSION["user_id"])) {
 
 
                 <div class="submit-btn-div">
-                    <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Connexion</button>
+                    <button class="submit-btn" type="submit" name="submit-btn" value="submit">Connexion</button>
                     
                 </div>
                 <div>
