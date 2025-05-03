@@ -86,7 +86,8 @@ $stmt->execute();
 
 
         <link rel="icon" href="media/icons/info/info.png" type="image/icon type">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" id="theme-style" type="text/css" href="styles/style.css">
+        <script src="scripts/theme.js" defer></script>
     </head>
     <body class="trip-body">
         <header>

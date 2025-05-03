@@ -4,6 +4,13 @@
     --click-color: #2d8a5b;
     --click-hover: #136d40;
     --text-hover: #f5fd9b;
+    --blac08: rgba(0, 0, 0, 0.8);
+    --blac07: rgba(0, 0, 0, 0.7);
+    --blac05: rgba(0, 0, 0, 0.5);
+    --blac02: rgba(0, 0, 0, 0.2);
+    --white: #ffffff;
+    --black: #000000;
+    --white-casse: #e2e2e2;
 }
 
 *{
@@ -19,7 +26,7 @@ body{
 
 .ban a {
     text-decoration: none;
-    color: white;
+    color: var(--white);
 }
 
 .ban{
@@ -32,7 +39,7 @@ body{
 header{
     background: linear-gradient(to bottom, var(--light-color), var(--dark-color));
     text-align: center;
-    color: white;
+    color: var(--white);
     height: 120px;
 }
 .title{
@@ -73,13 +80,19 @@ header{
     padding-left: 5px;
     padding-right: 5px;
 }
+.profil-links .theme .icon{
+    width: 26px;
+    height: 26px;
 
+    content: url('../media/icons/paint/paint.png'); 
+    
+}
 .profil-links .login .icon{
     width: 17px;
     height: 17px;
     padding-left: 4px;
     padding-right: 4px;
-    content: url('media/icons/account/account.png'); 
+    content: url('../media/icons/account/account.png'); 
     
 }
 .profil-links .profil .icon{
@@ -87,26 +100,26 @@ header{
     height: 17px;
     padding-left: 4px;
     padding-right: 4px;
-    content: url('media/icons/account/account.png'); 
+    content: url('../media/icons/account/account.png'); 
     
 }
 .profil-links .admin .icon{
     width: 26px;
     height: 26px;
-    content: url('media/icons/gear/gear.png'); 
+    content: url('../media/icons/gear/gear.png'); 
     
 }
 .profil-links .logout .icon{
     width: 25px;
     height: 25px;
     padding-left: 1px;
-    content: url('media/icons/logout/logout.png'); 
+    content: url('../media/icons/logout/logout.png'); 
     
 }
 
 .profil-links a {
     text-decoration: none;
-    color: white;
+    color: var(--white);
     transition: all .15s linear 0s;
 }
 
@@ -114,20 +127,25 @@ header{
     color: var(--text-hover);
 }
 
+.profil-links .theme:hover .icon{
+    content: url('../media/icons/paint/paint.gif'); 
+    
+}
+
 .profil-links .login:hover .icon{
-    content: url('media/icons/account/account.gif'); 
+    content: url('../media/icons/account/account.gif'); 
     
 }
 .profil-links .profil:hover .icon{
-    content: url('media/icons/account/account.gif'); 
+    content: url('../media/icons/account/account.gif'); 
     
 }
 .profil-links .admin:hover .icon{
-    content: url('media/icons/gear/gear.gif'); 
+    content: url('../media/icons/gear/gear.gif'); 
     
 }
 .profil-links .logout:hover .icon{
-    content: url('media/icons/logout/logout.gif'); 
+    content: url('../media/icons/logout/logout.gif'); 
     
 }
 
@@ -150,7 +168,7 @@ header{
     background-color: var(--click-color);
     border-radius: 50px;
     text-decoration: none;
-    color: white;
+    color: var(--white);
     box-shadow: -5px 6px 0 #0f251a;
     transition: all .15s linear 0s;
 }
@@ -181,29 +199,29 @@ header{
     height: 45px;
     padding-top: 2.5px;
     padding-bottom: 2.5px;
-    content: url('media/icons/compass/compass.png'); 
+    content: url('../media/icons/compass/compass.png'); 
 }
 .search-button:hover .icon{
-    content: url('media/icons/compass/compass.gif');
+    content: url('../media/icons/compass/compass.gif');
 }
 
 .pres-button .icon{
     width: 50px;
     height: 50px;
-    content: url('media/icons/info/info.png'); 
+    content: url('../media/icons/info/info.png'); 
 }
 .pres-button:hover .icon{
-    content: url('media/icons/info/info.gif');
+    content: url('../media/icons/info/info.gif');
 }
 
 .home-button .icon{
     width: 30px;
     height: 30px;
     padding: 10px;
-    content: url('media/icons/home/home.png'); 
+    content: url('../media/icons/home/home.png'); 
 }
 .home-button:hover .icon{
-    content: url('media/icons/home/home.gif');
+    content: url('../media/icons/home/home.gif');
 }
 
 /* footer */
@@ -220,10 +238,10 @@ footer div{
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
+    color: var(--white);
     font-size: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
+    background: var(--blac05);
+    text-shadow: 2px 2px 5px var(--blac07); 
     border-radius: 10px;
     width: 40%;
 }
@@ -242,7 +260,7 @@ footer div{
     text-decoration: none;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--white);
     transition: flex 1s ease;
     text-align: center;
     padding-right: 0;
@@ -272,25 +290,25 @@ footer div{
 
 .selector-text h1 {
     position: relative;
-    color: white;
+    color: var(--white);
     padding-left: 10px;
     padding-right: 10px;
     font-size: 35px;
     font-weight: bold;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
-    background: rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 5px var(--blac07); 
+    background: var(--blac05);
     border-radius: 10px
     
 }
 
 .selector-text p {
     position: relative;
-    color: white;
+    color: var(--white);
     padding-left: 10px;
     padding-right: 10px;
     font-size: 24px;
-    background: rgba(0, 0, 0, 0.5);
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
+    background: var(--blac05);
+    text-shadow: 2px 2px 5px var(--blac07); 
     border-radius: 10px
 }
 
@@ -323,7 +341,7 @@ footer div{
 /* presentation.php */
 
 .pres-body {
-    background-image: url('media/backgrounds/forest2.jpg');
+    background-image: url('../media/backgrounds/forest2.jpg');
     background-size: cover;
 }
 
@@ -335,8 +353,8 @@ footer div{
 }
 
 .search-overlay {
-    background: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: var(--blac07);
+    box-shadow: 0 10px 20px var(--blac02);
     transform: perspective(1000px);
     transition: transform 0.1s ease-out;
     padding: 20px;
@@ -345,13 +363,13 @@ footer div{
 }
 
 .search-section h2 {
-    color: white;
+    color: var(--white);
     font-size: 2em;
     margin-bottom: 10px;
 }
 
 .search-section p {
-    color: white;
+    color: var(--white);
     font-size: 1.2em;
     margin-bottom: 20px;
 }
@@ -375,7 +393,7 @@ footer div{
     font-size: 1em;
     border: none;
     background-color: var(--click-color);
-    color: white;
+    color: var(--white);
     border-radius: 0 5px 5px 0;
     cursor: pointer;
 }
@@ -398,15 +416,15 @@ footer div{
 .pres-card {
     width: 50%;
     padding: 50px;
-    background: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: var(--blac07);
+    box-shadow: 0 10px 20px var(--blac02);
     border-radius: 25px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     font-size: 24px;
-    color: white;
+    color: var(--white);
     text-align: center;
 }
 
@@ -418,7 +436,7 @@ footer div{
 /* admin.php */
 
 .admin-body{
-    background-image: url(media/backgrounds/gears.jpg);
+    background-image: url(../media/backgrounds/gears.jpg);
     background-repeat: repeat;
     background-size: 450px 450px;
 }
@@ -437,7 +455,7 @@ footer div{
 }
 
 .admin-content{
-    background: #e2e2e2;
+    background: var(--white-casse);
     padding: 20px;
     border-radius: 20px;
     
@@ -447,13 +465,13 @@ footer div{
 .admin-table {
     border-collapse: collapse;
     margin: 25px 0;
-    background: #ffffff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background: var(--white);
+    box-shadow: 0 0 20px var(--blac05);
     
 }
 .admin-table thead tr {
     background-color: var(--click-color);
-    color: #ffffff;
+    color: var(--white);
     text-align: left;
 }
 .admin-table th, .admin-table td {
@@ -483,7 +501,7 @@ footer div{
 .admin-table button {
     background-color: var(--click-color);
     border: none;
-    color: white;
+    color: var(--white);
     padding: 10; 
     text-align: center; 
     text-decoration: none;
@@ -504,7 +522,7 @@ footer div{
     display: flex;
     justify-content: flex-start;
     align-items: center; 
-    color: white;
+    color: var(--white);
     
 }
 
@@ -513,50 +531,50 @@ footer div{
     height: 25px;
     padding-bottom: 2px;
     padding-right: 1px;
-    content: url('media/icons/edit/edit.png'); 
+    content: url('../media/icons/edit/edit.png'); 
 }
 .add-b .icon{
     width: 25px;
     height: 25px;
     padding-bottom: 2px;
     padding-right: 3px;
-    content: url('media/icons/money/money.png'); 
+    content: url('../media/icons/money/money.png'); 
 }
 .reset-b .icon{
     width: 25px;
     height: 25px;
     padding-bottom: 2px;
     padding-right: 2px;
-    content: url('media/icons/reset/reset.png'); 
+    content: url('../media/icons/reset/reset.png'); 
 }
 .ban-b .icon{
     width: 25px;
     height: 25px;
     padding-bottom: 2px;
-    content: url('media/icons/ban/ban.png'); 
+    content: url('../media/icons/ban/ban.png'); 
 }
 .del-b .icon{
     width: 25px;
     height: 25px;
     padding-bottom: 2px;
-    content: url('media/icons/bin/bin.png'); 
+    content: url('../media/icons/bin/bin.png'); 
 }
 
 
 .mod-b:hover .icon{
-    content: url('media/icons/edit/edit.gif'); 
+    content: url('../media/icons/edit/edit.gif'); 
 }
 .add-b:hover .icon{
-    content: url('media/icons/money/money.gif'); 
+    content: url('../media/icons/money/money.gif'); 
 }
 .reset-b:hover .icon{
-    content: url('media/icons/reset/reset.gif'); 
+    content: url('../media/icons/reset/reset.gif'); 
 }
 .ban-b:hover .icon{
-    content: url('media/icons/ban/ban.gif'); 
+    content: url('../media/icons/ban/ban.gif'); 
 }
 .del-b:hover .icon{
-    content: url('media/icons/bin/bin.gif'); 
+    content: url('../media/icons/bin/bin.gif'); 
 }
 
 
@@ -565,7 +583,7 @@ footer div{
 
 
 .profil-page-overlay {
-    background-image: url(media/backgrounds/forest3.jpg);
+    background-image: url(../media/backgrounds/forest3.jpg);
     background-size: cover;
     min-height: 100vh;
     height: auto;
@@ -579,7 +597,7 @@ footer div{
 }
 
 .profil-page-content{
-    background: #e2e2e2;
+    background: var(--white-casse);
     padding: 20px;
     border-radius: 20px;
 
@@ -591,13 +609,13 @@ footer div{
 .profil-page-table {
     border-collapse: collapse;
     margin: 25px 0;
-    background: #ffffff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background: var(--white);
+    box-shadow: 0 0 20px var(--blac05);
     
 }
 .profil-page-table thead tr {
     background-color: var(--click-color);
-    color: #ffffff;
+    color: var(--white);
     text-align: left;
 }
 .profil-page-table th, .profil-page-table td {
@@ -618,7 +636,7 @@ footer div{
 .profil-page-table button {
     background-color: var(--click-color);
     border: none;
-    color: white;
+    color: var(--white);
     padding: 10; 
     text-align: center; 
     text-decoration: none;
@@ -638,7 +656,7 @@ footer div{
     display: flex;
     justify-content: flex-start;
     align-items: center; 
-    color: white;
+    color: var(--white);
     
 }
 
@@ -646,7 +664,7 @@ footer div{
 
 .search-content{
     padding-bottom: 50px;
-    background-image: url(media/backgrounds/forest4.jpg);
+    background-image: url(../media/backgrounds/forest4.jpg);
     background-size: cover;
     min-height: 100vh;
     display: flex;
@@ -658,10 +676,10 @@ footer div{
 .travel-form {
     width: 90%;
     padding: 25px;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: var(--blac08);
+    box-shadow: 0 10px 20px var(--blac02);
     border-radius: 25px;
-    color: white;
+    color: var(--white);
 }
 .form-grid {
     display: grid;
@@ -685,7 +703,7 @@ input, select {
 .submit-btn {
     background-color: var(--click-color);
     border: none;
-    color: white;
+    color: var(--white);
     padding: 10; 
     text-align: center; 
     text-decoration: none;
@@ -704,8 +722,8 @@ input, select {
     width: 70%;
     margin-top: 20px;
     padding: 15px;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: var(--blac08);
+    box-shadow: 0 10px 20px var(--blac02);
     border-radius: 10px;
     transition: all 0.3s;
     
@@ -732,7 +750,7 @@ input, select {
 .registration-content{
     padding-top: 50px;
     padding-bottom: 50px;
-    background-image: url(media/backgrounds/island.jpg);
+    background-image: url(../media/backgrounds/island.jpg);
     background-size: cover;
     min-height: 100vh;
     display: flex;
@@ -743,19 +761,19 @@ input, select {
 }
 
 .registration-content h1, .login-content h1, .notfound-content h1{
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: var(--blac08);
+    box-shadow: 0 10px 20px var(--blac02);
     border-radius: 20px;
     padding: 20px;
-    color: white;
+    color: var(--white);
 }
 
 .registration-content p, .login-content p, .notfound-content p{
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: var(--blac08);
+    box-shadow: 0 10px 20px var(--blac02);
     border-radius: 20px;
     padding: 20px;
-    color: white;
+    color: var(--white);
 }
 
 
@@ -774,10 +792,10 @@ input, select {
     width: 30%;
     border-radius: 30px;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: var(--blac08);
+    box-shadow: 0 10px 20px var(--blac02);
 
-    color: white;
+    color: var(--white);
 }
 
 .registration-form input, .registration-form textarea {
@@ -798,7 +816,7 @@ input, select {
 .login-content{
     padding-top: 50px;
     padding-bottom: 50px;
-    background-image: url(media/backgrounds/island2.jpg);
+    background-image: url(../media/backgrounds/island2.jpg);
     background-size: cover;
     min-height: 100vh;
     display: flex;
@@ -815,7 +833,7 @@ input, select {
 
 .small-link {
     text-decoration:underline;
-    color: white;
+    color: var(--white);
     transition: all .15s linear 0s;
     padding: 20px;
 }
@@ -834,7 +852,7 @@ input, select {
 .profil-reset-b button {
     background-color: var(--click-color);
     border: none;
-    color: white;
+    color: var(--white);
     padding: 10; 
     text-align: center; 
     text-decoration: none;
@@ -865,7 +883,7 @@ input, select {
 .pages-nav button {
     background-color: var(--click-color);
     border: none;
-    color: white;
+    color: var(--white);
     padding: 10; 
     text-align: center; 
     text-decoration: none;
@@ -894,15 +912,15 @@ input, select {
 }
 
 .notfound-content .small-link {
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: var(--blac08);
+    box-shadow: 0 10px 20px var(--blac02);
     border-radius: 20px;
 }
 
 /* trips pages */
 
 .trip-body {
-    background-image: url('media/backgrounds/forest2.jpg');
+    background-image: url('../media/backgrounds/forest2.jpg');
     background-size: cover;
     height: 100vh;
 }
@@ -917,8 +935,8 @@ input, select {
     width: 70%;
     margin-top: 50px;
     padding: 15px;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: var(--blac08);
+    box-shadow: 0 10px 20px var(--blac02);
     border-radius: 20px;
     transition: all 0.3s;
     display: flex;
@@ -980,8 +998,8 @@ input, select {
     padding-left: 10px;
     padding-right: 10px;
     font-size: 24px;
-    background: rgba(0, 0, 0, 0.5);
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
+    background: var(--blac05);
+    text-shadow: 2px 2px 5px var(--blac07); 
     border-radius: 10px
 }
 
@@ -990,7 +1008,7 @@ input, select {
     margin-top: 20px;
     padding: 15px;
     background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px var(--blac02);
     border-radius: 10px;
     transition: all 0.3s;
     

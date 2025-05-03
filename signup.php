@@ -18,7 +18,8 @@ if (isset($_SESSION["user_id"])) {
 
 
         <link rel="icon" href="media/icons/account/account.png" type="image/icon type">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" id="theme-style" type="text/css" href="styles/style.css">
+        <script src="scripts/theme.js" defer></script>
     </head>
 
     <body>

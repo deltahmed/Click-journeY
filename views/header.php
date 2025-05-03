@@ -21,6 +21,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
         </div> 
     </a>
     <div class="profil-links">
+            <div class="theme">
+                <img class="icon">
+                <a href="#" id="theme-selector">Mode accessible</a>
+            </div>
         <?php if (!$isLoggedIn): ?>
             <div class="login">
                 <img class="icon">
