@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("input", (event) => {
         const target = event.target;
-        
+        validateField(target);
         if (target.id === "passwordid" || target.id === "confirm-password") {
             updateCharacterCounter(target);
         }
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (target.id === "confirm-password") {
             validateConfirmPassword(target);
         }
-        validateField(target);
+        
     });
 
     form.addEventListener("submit", (event) => {
@@ -42,7 +42,10 @@ function validateField(field) {
         errorMessage.innerHTML = "Ce champ est requis. <br>";
     } else if (field.validity.tooShort || field.validity.tooLong) {
         errorMessage.innerHTML = `La longueur doit être comprise entre ${field.minLength} et ${field.maxLength} caractères.<br>`;
+    } else {
+        errorMessage.innerHTML = "";
     }
+
 }
 
 // Vérifier si l'utilisateur a au moins 18 ans

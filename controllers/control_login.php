@@ -15,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST["password"]);
 
     if (empty($email) || empty($password)) {
-        echo "All fields are required.";
+        $_SESSION['sign_in_up_error'] = "L'email ou le mot de passe sont incorrecte";
+        header("Location: ../login.php");
         exit;
     }
 

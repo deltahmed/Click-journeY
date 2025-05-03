@@ -55,14 +55,14 @@ if (isset($_SESSION["user_id"])) {
             <?php endif; ?>
             <form class="registration-form" action="controllers/control_login.php" method="post" id="login-form" name="login">
                 <label class="form-label" for="email">Email :</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" required>
                 <label class="form-label" id="error-display"></label>
             
                 <label class="form-label" for="password">Mot de passe :</label>
                 <div class="password-container">
-                    <input type="password" id="passwordid" name="password" maxlength="100" required>
+                    <input type="password" id="password" name="password" maxlength="100" required>
                     <label class="form-label" id="error-display"></label>
-                    <span class="toggle-password" onclick="togglePasswordVisibility('passwordid')">👁️</span>
+                    <span class="toggle-password" onclick="togglePasswordVisibility('password')">👁️</span>
                 </div>
                 <label class="form-label" id="error-display"></label>
                 <small id="password-counter"></small>
