@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Valider champ générique
+
 function validateField(field) {
     const errorMessage = field.nextElementSibling;
 
@@ -48,7 +48,7 @@ function validateField(field) {
 
 }
 
-// Vérifier si l'utilisateur a au moins 18 ans
+// moins 18 ans
 function validateAge(field) {
     const errorMessage = field.nextElementSibling;
     const birthDate = new Date(field.value);
@@ -68,7 +68,7 @@ function validateAge(field) {
     }
 }
 
-// Valider l'email
+// email
 function validateEmail(field) {
     const errorMessage = field.nextElementSibling;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -80,7 +80,7 @@ function validateEmail(field) {
     }
 }
 
-// Valider le mot de passe
+// mot de passe
 function validatePassword(field) {
     const errorMessage = field.nextElementSibling;
     const password = field.value;
@@ -109,7 +109,7 @@ function validatePassword(field) {
     }
 }
 
-// Valider la confirmation du mot de passe
+// confirmation du mot de passe
 function validateConfirmPassword(field) {
     const errorMessage = field.nextElementSibling;
     const password = document.getElementById("passwordid").value;
@@ -157,7 +157,7 @@ function isFormValid(form) {
     return isValid;
 }
 
-// Mettre à jour le compteur de caractères
+// compteur de caractères
 function updateCharacterCounter(field) {
     const counter = document.getElementById(`${field.id}-counter`);
     if (counter) {
@@ -165,7 +165,7 @@ function updateCharacterCounter(field) {
     }
 }
 
-// Basculer la visibilité du mot de passe
+// visibilité du mot de passe
 function togglePasswordVisibility(fieldId) {
     const field = document.getElementById(fieldId);
     field.type = field.type === "password" ? "text" : "password";

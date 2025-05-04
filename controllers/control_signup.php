@@ -99,5 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['sign_in_up_error'] = "Error: " . $e->getMessage();
         header("Location: ../signup.php");
     }
+} else {
+    $_SESSION['sign_in_up_error'] = "Erreur lors de l'inscription.";
+    header("Location: ../signup.php");
 }
 ?>

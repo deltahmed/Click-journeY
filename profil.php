@@ -10,16 +10,17 @@ if (isset($_SESSION["user_id"]) !== true) {
 require_once "includes/config.php";
 
 $user_id = $_SESSION['user_id'];
-$un_id = $_SESSION['un_id'];
 
-if(!verifyUnId($pdo, $_SESSION['user_id'], $un_id)){
-    header("Location: controllers/control_logout.php");
-    exit;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SESSION['user_role'] === 'admin') {
+        $user_id = $_POST["user_id"];
+    }
+
 }
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id AND un_id = :un_id");
+
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
 
 $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
-$stmt->bindParam(':un_id', $un_id, PDO::PARAM_STR);
 $user = $stmt->fetch();
 $stmt->execute();
 
@@ -66,6 +67,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <link rel="icon" href="media/icons/account/account.png" type="image/icon type">
         <link rel="stylesheet" id="theme-style" type="text/css" href="styles/style.css">
         <script src="scripts/theme.js" defer></script>
+        <script src="scripts/profil.js" defer></script>
     </head>
 
     <body>
@@ -92,205 +94,175 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         <div class="profil-page-overlay">
             <div class="profil-page-content">
-                <h1> Votre profil </h1>
-                <form class="change-profil" action="public/error_phase.php" method="post"  id="change-profil" name="change-profil">
+                <?php if ($_SESSION['user_role'] === 'admin') : ?>
+                    <h1> Profil de <?php echo htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']); ?></h1>
+                <?php else : ?>
+                    <h1> Votre profil </h1>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['update_error'])) : ?>
+                    <p class="p-error"> <?php 
+                        echo $_SESSION['update_error'];
+                        unset($_SESSION['update_error']);
+                    ?></p>
+                <?php endif; ?>
+                <form class="change-profil" action="controllers/update_profil.php" method="post"  id="change-profil" name="change-profil">
+                    <input type="hidden" id="user_id" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
                     <table class="profil-page-table">
                         <thead>
                             <tr>
                                 <th>Titre</th>
                                 <th>Information</th>
-                                <th>Remplacement</th>
                                 <th>Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            <!-- Email -->
                             <tr>
-                                 
-                                    <td>E-mail</td>
-                                    <td>
-                                        <?php echo $user['email']; ?>
-                                    </td>
-                                    <td>    
-                                        <input type="email" id="email" name="email">
-                                    </td>
-                                    <td>
-                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                 
-                            </tr>
-                            <tr>
-                                 
-                                    <td>Nom</td>
-                                    <td>
-                                        <?php echo $user['last_name']; ?>
-                                    </td>
-                                    <td>    
-                                        <input type="text" id="last-name" name="last_name">
-                                    </td>
-                                    <td>
-                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                 
-                            </tr>
-                            <tr>
-                                 
-                                    <td>Prénom</td>
-                                    <td>
-                                        <?php echo $user['first_name']; ?>
-                                    </td>
-                                    <td>    
-                                        <input type="text" id="first-name" name="first_name">
-                                    </td>
-                                    <td>
-                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                 
-                            </tr>
-                            <tr>
-                                 
-                                    <td>Sexe</td>
-                                    <td>
-                                        <?php echo $user['gender']; ?>
-                                    </td>
-                                    <td>
-                                        <label class="form-label" for="gender"><input type="radio" name="gender" value="Madame">Madame</label>
-                                        <label class="form-label" for="gender"><input type="radio" name="gender" value="Monsieur">Monsieur</label>
-                                        <label class="form-label" for="gender"><input type="radio" name="gender" value="Autres">Autres</label>
-                                    </td>
-                                    <td>
-                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                 
-                            </tr>
-                            <tr>
-                                 
-                                    <td>Date de naissance</td>
-                                    <td>
-                                        <?php echo $user['birth_date']; ?>
-                                    </td>
-                                    <td>    
-                                        <input type="date" id="birth-date" name="birth_date">
-                                    </td>
-                                    <td>
-                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                 
-                            </tr>
-                            <tr>
-                                 
-                                    <td>Numéro de téléphone</td>
-                                    <td>
-                                        <?php echo $user['phone_number']; ?>
-                                    </td>
-                                    <td>    
-                                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" inputmode="numeric" maxlength="10">
-                                    </td>
-                                    <td>
-                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                 
-                            </tr>
-                            <tr>
-                                 
-                                    <td>Adresse</td>
-                                    <td>
-                                        <?php echo $user['address']; ?>
-                                    </td>
-                                    <td>    
-                                        <input type="text" id="address" name="address">
-                                    </td>
-                                    <td>
-                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                 
-                            </tr>
-                            <tr>
-                                 
-                                    <td>Code postal</td>
-                                    <td>
-                                        <?php echo $user['postal_code']; ?>
-                                    </td>
-                                    <td>    
-                                        <input type="number" id="postal-code" name="postal_code" maxlength="5">
-                                    </td>
-                                    <td>
-                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                 
-                            </tr>
-                            <tr>
-                                 
-                                    <td>Ville</td>
-                                    <td>
-                                        <?php echo $user['city']; ?>
-                                    </td>
-                                    <td>    
-                                        <input type="text" id="city" name="city">
-                                    </td>
-                                    <td>
-                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                 
-                            </tr>
-                            <tr>
-                                 
-                                    <td>Commentaire</td>
-                                    <td>
-                                       <?php echo $user['comment']; ?>
-                                    </td>
-                                    <td>
-                                        <textarea id="issues" name="issues" cols="30" rows="2"></textarea>
-                                    </td>
-                                    <td>
-                                        <button type="submit" id="submit" name="submit" value="submit" class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
-                                    </td>
-                                 
-                            </tr>
-                            <tr>
-                                <td>Date d'Inscription</td>
+                                <td>E-mail</td>
                                 <td>
-                                    <?php echo $user['registration_date']; ?>
-                                </td>
-                                <td>    
+                                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>">
                                 </td>
                                 <td>
+                                    <button type="button" class="mod-b" data-target="email"><img class="icon"> Modifier</button>
+                                    <button type="submit" class="save-btn" data-target="email" style="display: none;">Valider</button>
+                                    <button type="button" class="cancel-btn" data-target="email" style="display: none;">Annuler</button>
                                 </td>
+                            </tr>
+
+                            <!-- Nom -->
+                            <tr>
+                                <td>Nom</td>
+                                <td>
+                                    <input type="text" id="last-name" name="last_name" value="<?php echo htmlspecialchars($user['last_name']); ?>">
+                                </td>
+                                <td>
+                                    <button type="button" class="mod-b" data-target="last-name"><img class="icon"> Modifier</button>
+                                    <button type="submit" class="save-btn" data-target="last-name" style="display: none;">Valider</button>
+                                    <button type="button" class="cancel-btn" data-target="last-name" style="display: none;">Annuler</button>
+                                </td>
+                            </tr>
+
+                            <!-- Prénom -->
+                            <tr>
+                                <td>Prénom</td>
+                                <td>
+                                    <input type="text" id="first-name" name="first_name" value="<?php echo htmlspecialchars($user['first_name']); ?>">
+                                </td>
+                                <td>
+                                    <button type="button" class="mod-b" data-target="first-name"><img class="icon"> Modifier</button>
+                                    <button type="submit" class="save-btn" data-target="first-name" style="display: none;">Valider</button>
+                                    <button type="button" class="cancel-btn" data-target="first-name" style="display: none;">Annuler</button>
+                                </td>
+                            </tr>
+
+                            <!-- Sexe -->
+                            <tr>
+                                <td>Sexe</td>
+                                <td>
+                                    <select id="gender" name="gender" >
+                                        <option value="F" <?php if($user['gender'] == 'F') echo 'selected'; ?>>Madame</option>
+                                        <option value="M" <?php if($user['gender'] == 'M') echo 'selected'; ?>>Monsieur</option>
+                                        <option value="A" <?php if($user['gender'] == 'A') echo 'selected'; ?>>Autres</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button type="button" class="mod-b" data-target="gender"><img class="icon"> Modifier</button>
+                                    <button type="submit" class="save-btn" data-target="gender" style="display: none;">Valider</button>
+                                    <button type="button" class="cancel-btn" data-target="gender" style="display: none;">Annuler</button>
+                                </td>
+                            </tr>
+
+                            <!-- Date de naissance -->
+                            <tr>
+                                <td>Date de naissance</td>
+                                <td>
+                                    <input type="date" id="birth-date" name="birth_date" value="<?php echo htmlspecialchars($user['birth_date']); ?>">
+                                </td>
+                                <td>
+                                    <button type="button" class="mod-b" data-target="birth-date"><img class="icon"> Modifier</button>
+                                    <button type="submit" class="save-btn" data-target="birth-date" style="display: none;">Valider</button>
+                                    <button type="button" class="cancel-btn" data-target="birth-date" style="display: none;">Annuler</button>
+                                </td>
+                            </tr>
+
+                            <!-- Téléphone -->
+                            <tr>
+                                <td>Numéro de téléphone</td>
+                                <td>
+                                    <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($user['phone_number']); ?>" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" >
+                                </td>
+                                <td>
+                                    <button type="button" class="mod-b" data-target="phone"><img class="icon"> Modifier</button>
+                                    <button type="submit" class="save-btn" data-target="phone" style="display: none;">Valider</button>
+                                    <button type="button" class="cancel-btn" data-target="phone" style="display: none;">Annuler</button>
+                                </td>
+                            </tr>
+
+                            <!-- Adresse -->
+                            <tr>
+                                <td>Adresse</td>
+                                <td>
+                                    <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($user['address']); ?>" >
+                                </td>
+                                <td>
+                                    <button type="button" class="mod-b" data-target="address"><img class="icon"> Modifier</button>
+                                    <button type="submit" class="save-btn" data-target="address" style="display: none;">Valider</button>
+                                    <button type="button" class="cancel-btn" data-target="address" style="display: none;">Annuler</button>
+                                </td>
+                            </tr>
+
+                            <!-- Code postal -->
+                            <tr>
+                                <td>Code postal</td>
+                                <td>
+                                    <input type="number" id="postal-code" name="postal_code" value="<?php echo htmlspecialchars($user['postal_code']); ?>" maxlength="5" >
+                                </td>
+                                <td>
+                                    <button type="button" class="mod-b" data-target="postal-code"><img class="icon"> Modifier</button>
+                                    <button type="submit" class="save-btn" data-target="postal-code" style="display: none;">Valider</button>
+                                    <button type="button" class="cancel-btn" data-target="postal-code" style="display: none;">Annuler</button>
+                                </td>
+                            </tr>
+
+                            <!-- Ville -->
+                            <tr>
+                                <td>Ville</td>
+                                <td>
+                                    <input type="text" id="city" name="city" value="<?php echo htmlspecialchars($user['city']); ?>" >
+                                </td>
+                                <td>
+                                    <button type="button" class="mod-b" data-target="city"><img class="icon"> Modifier</button>
+                                    <button type="submit" class="save-btn" data-target="city" style="display: none;">Valider</button>
+                                    <button type="button" class="cancel-btn" data-target="city" style="display: none;">Annuler</button>
+                                </td>
+                            </tr>
+
+                            <!-- Commentaire -->
+                            <tr>
+                                <td>Commentaire</td>
+                                <td>
+                                    <textarea id="issues" name="issues" cols="30" rows="2" ><?php echo htmlspecialchars($user['comment']); ?></textarea>
+                                </td>
+                                <td>
+                                    <button type="button" class="mod-b" data-target="issues"><img class="icon"> Modifier</button>
+                                    <button type="submit" class="save-btn" data-target="issues" style="display: none;">Valider</button>
+                                    <button type="button" class="cancel-btn" data-target="issues" style="display: none;">Annuler</button>
+                                </td>
+                            </tr>
+
+                            <!-- Date d'inscription -->
+                            <tr>
+                                <td>Date d'inscription</td>
+                                <td>
+                                    <?php echo htmlspecialchars($user['registration_date']); ?>
+                                </td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>
             
-                    <div class="profil-reset-b">
+                    <!-- <div class="profil-reset-b">
                         <div>
                             <button class="reset-b">
                             <img class="icon">
@@ -298,7 +270,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </button> 
                         </div>
                         
-                    </div>
+                    </div> -->
                 </form>
                 
             </div>

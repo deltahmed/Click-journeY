@@ -25,6 +25,32 @@ if ($user_trips_id === null) {
     exit;
 }
 
+if ($_SESSION['user_role'] === 'admin') {
+
+    $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM user_trips WHERE id = :user_trip_id");
+    $stmt_check->bindParam(':user_trip_id', $user_trips_id, PDO::PARAM_INT);
+    $stmt_check->execute();
+    if ($stmt_check->fetchColumn() == 0) {
+        header("Location: admin.php");
+        exit;
+    }
+} else {
+    $stmt_check = $pdo->prepare("
+        SELECT COUNT(*) 
+        FROM user_trips 
+        WHERE id = :user_trip_id AND user_id = :user_id
+    ");
+    $stmt_check->bindParam(':user_trip_id', $user_trips_id, PDO::PARAM_INT);
+    $stmt_check->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt_check->execute();
+
+    if ($stmt_check->fetchColumn() == 0) {
+        header("Location: profil.php");
+        exit;
+    }
+}
+
+
 
 $stmt_trips = $pdo->prepare("
     SELECT 

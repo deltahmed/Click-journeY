@@ -1037,3 +1037,20 @@ input, select {
 .toggle-password {
     cursor: pointer;
 }
+
+/* Style général pour les champs de formulaire */
+.profil-page-overlay input[disabled], textarea[disabled] {
+    background-color: #f5f5f5;
+    color: #888;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+}
+
+.profil-page-overlay input, textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+}

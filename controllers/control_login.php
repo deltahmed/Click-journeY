@@ -46,6 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['sign_in_up_error'] = "Error: " . $e->getMessage();
         header("Location: ../login.php");
     }
+} else {
+    header("Location: ../login.php");
+    exit;
 }
 ?>
 

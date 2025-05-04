@@ -69,6 +69,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <link rel="stylesheet" id="theme-style" type="text/css" href="styles/style.css">
         <script src="scripts/theme.js" defer></script>
+        <script src="scripts/admin.js" defer></script>
     </head>
 
     <body class="admin-body">
@@ -96,6 +97,12 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                         
                 </form>
+                <?php if (isset($_SESSION['update_error'])) : ?>
+                    <p class="p-error"> <?php 
+                        echo $_SESSION['update_error'];
+                        unset($_SESSION['update_error']);
+                    ?></p>
+                <?php endif; ?>
                 <table class="admin-table">
                     <thead>
                         <tr>
@@ -190,11 +197,13 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </td>
                                 <td class="td-button">
                                     <div>
-                                        
-                                        <button class="mod-b">
-                                            <img class="icon">
-                                            Modifier
-                                        </button>
+                                        <form action="profil.php" method="post">
+                                            <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                                            <button class="mod-b" type="submit">
+                                                <img class="icon">
+                                                Modifier
+                                            </button>
+                                        </form>
                                         <button class="add-b">
                                             <img class="icon">
                                             Réductions
