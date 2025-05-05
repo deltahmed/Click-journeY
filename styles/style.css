@@ -87,6 +87,13 @@ header{
     content: url('../media/icons/paint/paint.png'); 
     
 }
+.profil-links .cart .icon{
+    width: 26px;
+    height: 26px;
+
+    content: url('../media/icons/cart/cart.png'); 
+    
+}
 .profil-links .login .icon{
     width: 17px;
     height: 17px;
@@ -129,6 +136,11 @@ header{
 
 .profil-links .theme:hover .icon{
     content: url('../media/icons/paint/paint.gif'); 
+    
+}
+
+.profil-links .cart:hover .icon{
+    content: url('../media/icons/cart/cart.gif'); 
     
 }
 
@@ -719,7 +731,6 @@ input, select {
     transform: scale(1.1);
 }
 .results-container {
-    width: 70%;
     margin-top: 20px;
     padding: 15px;
     background: var(--blac08);
@@ -1054,3 +1065,36 @@ input, select {
     box-sizing: border-box;
     font-size: 14px;
 }
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+.button_page {
+    background-color: var(--click-color);
+    border: none;
+    color: var(--white);
+    padding: 10; 
+    text-align: center; 
+    text-decoration: none;
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer;
+    border-radius: 12px; 
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button_page:hover {
+    background-color: var(--click-hover);
+    color: var(--text-hover);
+    transform: scale(1.1);
+}  

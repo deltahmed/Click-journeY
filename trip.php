@@ -129,10 +129,10 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                                     <h4>🏠 Logement :</h4>
                                                     <select name="home_<?php echo $stage['id'];?>">
                                                         <?php foreach ($options_home as $option) : ?>
-                                                            <?php if (isset($_SESSION['option_' . $option['id']])) : ?>
-                                                                <option value="<?php echo 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php if (isset($_SESSION[$id . 'option_' . $option['id']])) : ?>
+                                                                <option value="<?php echo $id . 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
                                                             <?php else : ?>
-                                                                <option value="<?php echo 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                                <option value="<?php echo $id . 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
                                                     </select>
@@ -141,10 +141,10 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                                     <h4>🚗 Transport :</h4>
                                                     <select name="transport_<?php echo $stage['id'];?>">
                                                         <?php foreach ($options_transport as $option) : ?>
-                                                            <?php if (isset($_SESSION['option_' . $option['id']])) : ?>
-                                                                <option value="<?php echo 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php if (isset($_SESSION[$id . 'option_' . $option['id']])) : ?>
+                                                                <option value="<?php echo $id . 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
                                                             <?php else : ?>
-                                                                <option value="<?php echo 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                                <option value="<?php echo $id . 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
                                                     </select>
@@ -153,10 +153,10 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                                     <h4>🍽️ Nourriture :</h4>
                                                     <select name="food_<?php echo $stage['id'];?>">
                                                         <?php foreach ($options_food as $option) : ?>
-                                                            <?php if (isset($_SESSION['option_' . $option['id']])) : ?>
-                                                                <option value="<?php echo 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php if (isset($_SESSION[$id . 'option_' . $option['id']])) : ?>
+                                                                <option value="<?php echo $id . 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
                                                             <?php else : ?>
-                                                                <option value="<?php echo 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                                <option value="<?php echo $id . 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
                                                     </select>
@@ -165,10 +165,10 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                                     <h4>🏞️ Activité :</h4>
                                                     <select name="activity_<?php echo $stage['id'];?>">
                                                         <?php foreach ($options_activity as $option) : ?>
-                                                            <?php if (isset($_SESSION['option_' . $option['id']])) : ?>
-                                                                <option value="<?php echo 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php if (isset($_SESSION[$id . 'option_' . $option['id']])) : ?>
+                                                                <option value="<?php echo $id . 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
                                                             <?php else : ?>
-                                                                <option value="<?php echo 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                                <option value="<?php echo $id . 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
                                                     </select>
@@ -177,10 +177,10 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                                     <h4>🔧 Autre :</h4>
                                                     <select name="other<?php echo $stage['id'];?>">
                                                         <?php foreach ($options_other as $option) : ?>
-                                                            <?php if (isset($_SESSION['option_' . $option['id']])) : ?>
-                                                                <option value="<?php echo 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                            <?php if (isset($_SESSION[$id . 'option_' . $option['id']])) : ?>
+                                                                <option value="<?php echo $id . 'option_' . $option['id'];?>" selected><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
                                                             <?php else : ?>
-                                                                <option value="<?php echo 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
+                                                                <option value="<?php echo $id . 'option_' . $option['id'];?>"><?php echo $option['title'];?> : <?php echo $option['price'];?>€</option>
                                                             <?php endif; ?>
                                                         <?php endforeach; ?>
                                                     </select>
@@ -196,19 +196,29 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                 <input type="hidden" name="trip_id" id="trip_id" value="<?php echo $trip['id'];?>">
 
                                 <label for="rooms">Chambres :</label>
-                                <?php if (isset($_SESSION['rooms'])) : ?>
-                                    <input type="number" id="rooms" name="rooms" min="1" max="<?php echo $trip['rooms']; ?>" value=<?php echo $_SESSION['rooms']; ?>>
+                                <?php if (isset($_SESSION['rooms' . $id])) : ?>
+                                    <input type="number" id="rooms" name="rooms" min="1" max="<?php echo $trip['rooms']; ?>" value=<?php echo $_SESSION['rooms' . $id]; ?>>
                                 <?php else : ?>
                                     <input type="number" id="rooms" name="rooms" min="1" max="<?php echo $trip['rooms']; ?>" value="1">
                                 <?php endif; ?>
 
                                 <label for="travelers">Voyageurs :</label>
-                                <?php if (isset($_SESSION['travelers'])) : ?>
-                                    <input type="number" id="travelers" name="travelers" min="1" max="<?php echo $trip['travelers']; ?>" value=<?php echo $_SESSION['travelers']; ?>>
+                                <?php if (isset($_SESSION['travelers' . $id])) : ?>
+                                    <input type="number" id="travelers" name="travelers" min="1" max="<?php echo $trip['travelers']; ?>" value=<?php echo $_SESSION['travelers' . $id]; ?>>
                                 <?php else : ?> 
                                     <input type="number" id="travelers" name="travelers" min="1" max="<?php echo $trip['travelers']; ?>" value="1">
                                 <?php endif; ?>
-                                
+
+                                <!-- Ajouter un conteneur pour afficher le prix total -->
+                                <div id="total-price-container">
+                                    <h3>Total à payer : <span id="total-price">0</span>€</h3>
+                                </div>
+
+                                <script>
+                                    window.basePricePerPerson = <?php echo json_encode($trip['price']); ?>;
+                                </script>
+                                <script src="scripts/price.js"></script>
+                                <input type="hidden" id="total_price" name="total_price" value="0">
                                 <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Acheter</button>
                             </div>
                         </form>

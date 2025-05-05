@@ -21,6 +21,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SES
         </div> 
     </a>
     <div class="profil-links">
+            <div class="cart">
+                <img class="icon">
+                <a href="cart.php" >Panier</a>
+            </div>
             <div class="theme">
                 <img class="icon">
                 <a href="#" id="theme-selector">Mode accessible</a>

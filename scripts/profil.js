@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let originalValues = {};
 
-    // Disable all input fields by default
     const inputFields = document.querySelectorAll('input, select, textarea');
     inputFields.forEach(field => {
         field.disabled = true;
@@ -69,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Enable all disabled fields before submitting the form
     document.querySelector('.change-profil').addEventListener('submit', (event) => {
         const disabledFields = document.querySelectorAll('input:disabled, select:disabled, textarea:disabled');
         disabledFields.forEach(field => field.disabled = false);

@@ -19,6 +19,8 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+
+
 $id = $_SESSION['trip_id'];
 $id = (int) $id;
 
@@ -55,14 +57,24 @@ if (!$api_key || $api_key === "zzzz") {
 
 $cost = 0;
 foreach ($_SESSION as $key => $value) {
-    if (strpos($key, 'option_') === 0) {
+    if (strpos($key, $id . 'option_') === 0) {
         $option = $value;
         $cost += (float)$option['price'];
     }
 }
-$cost += 50 * ((int)$_SESSION['rooms'] - 1);
-$cost = ($cost + $amount) * (int)$_SESSION['travelers'];
+
+
+
+$cost += 50 * ((int)$_SESSION['rooms' . $id] - 1);
+$cost = ($cost + $amount) * (int)$_SESSION['travelers' . $id];
 $amount = number_format($cost, 2, '.', '');
+
+
+if ($amount <= 0 || $amount != $_SESSION['total_price']) {
+    $_SESSION['error'] = "Erreur de prix";
+    header("Location: public/error.php");
+}
+
 
 $control = md5($api_key . "#" . $transaction_id . "#" . $amount . "#" . $seller . "#" . $return_url . "#");
 
@@ -117,8 +129,8 @@ $stmt->execute();
                     <h2>📝 <?php echo $trip['description'];?></h2>
                     <div class="trip-div">
                         <p>📅 <?php echo $trip['departure_date'];?> -  <?php echo $trip['return_date'];?></p>
-                        <p>👥 Nombre de voyageurs : <?php echo $_SESSION['travelers'];?></p>
-                        <p>👥 Nombre de chambres : <?php echo $_SESSION['rooms'];?></p>
+                        <p>👥 Nombre de voyageurs : <?php echo $_SESSION['travelers' . $id];?></p>
+                        <p>👥 Nombre de chambres : <?php echo $_SESSION['rooms' . $id];?></p>
                         <p>🏕️ Activité : <?php echo $trip['activity'];?></p>
                         <p>🌡️ Climat : <?php echo $trip['climate'];?></p>
                         <p>📫 Destination : <?php echo $trip['destination'];?></p>
@@ -145,12 +157,12 @@ $stmt->execute();
                                         <div>
                                             <div>
                                                 <?php foreach ($_SESSION as $key => $value) : ?>
-                                                    <?php if (strpos($key, 'option_') === 0) : ?>
+                                                    <?php if (strpos($key, $id . 'option_') === 0) : ?>
                                                         <?php $option = $value; ?>
                                                         <?php if ($option['stage_id'] == $stage['id']) : ?>
                                                             <div>
                                                                 <p> <?php echo $option['title'];?> : <?php echo $option['price'];?>€</p>
-                                                                <input type="hidden" name="<?php echo 'option_' . $option['id'];?>" value="<?php echo 'option_' . $option['id'];?>">
+                                                                <input type="hidden" name="<?php echo $id . 'option_' . $option['id'];?>" value="<?php echo $id . 'option_' . $option['id'];?>">
                                                             </div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>
@@ -169,7 +181,7 @@ $stmt->execute();
                                 <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
                                 <input type="hidden" name="un_id" value="<?php echo $_SESSION['un_id']; ?>">
                                 <input type="hidden" name="trip_id" value="<?php echo $id; ?>">
-                                <input type="hidden" name="user_numbers" value="<?php echo $_SESSION['travelers']; ?>">
+                                <input type="hidden" name="user_numbers" value="<?php echo $_SESSION['travelers' . $id]; ?>">
                                 <input type="hidden" name="transaction" value="<?php echo $transaction_id; ?>">
                                 <input type="hidden" name="montant" value="<?php echo $amount; ?>">
                                 <input type="hidden" name="vendeur" value="<?php echo $seller; ?>">
@@ -192,28 +204,6 @@ $stmt->execute();
         <?php include "views/footer.php" ?>
     </body>
     <?php if(isset($_SESSION['user_id'])) : ?>
-        <script>
-            document.getElementById('payment-form').addEventListener('submit', function(e) {
-                e.preventDefault(); 
-
-                const form = this; 
-                const formData = new FormData(form);
-
-                fetch('controllers/save_payment.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (response.ok) {
-                        form.submit(); 
-                    } else {
-                        console.error('Erreur lors de la requête :', response.status);
-                    }
-                })
-                .catch(error => {
-                    console.error('Erreur réseau :', error);
-                });
-            });
-        </script>
+        <script src="scripts/payment.js"></script>
     <?php endif; ?>
 </html>

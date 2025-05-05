@@ -7,7 +7,7 @@ function simulateAction(button, actionName) {
     setTimeout(() => {
         button.disabled = false; 
         button.innerHTML = originalText; 
-    }, 2000); // 3000ms = 3 secondes
+    }, 2000); // 2000ms = 2 secondes
 }
 
 document.addEventListener("DOMContentLoaded", () => {
