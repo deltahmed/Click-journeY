@@ -182,5 +182,4 @@ try {
         </script>
         <script src="scripts/search.js" defer></script>
     </body>
-    
 </html>
