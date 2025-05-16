@@ -2,8 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+header('Content-Type: application/json');
 if (!isset($_SESSION["user_id"])) {
-    header("Location: ../index.php");
+    echo json_encode(['success' => false, 'message' => 'Non autorisé.']);
     exit;
 }
 require_once "../includes/config.php";
@@ -14,22 +15,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $user_id = $_SESSION["user_id"];
     }
-    
-    
+
     $fields_to_update = [];
     $params = [':user_id' => $user_id];
-    // Vérifier et valider les champs remplis
+
     if (isset($_POST["email"]) && !empty(trim($_POST["email"]))) {
         if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             $fields_to_update[] = "email = :email";
             $params[':email'] = trim($_POST["email"]);
         } else {
-            $_SESSION['update_error'] = "Adresse email invalide.";
-            if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+            echo json_encode(['success' => false, 'message' => "Adresse email invalide."]);
             exit;
         }
     }
@@ -38,12 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $fields_to_update[] = "first_name = :first_name";
             $params[':first_name'] = trim($_POST["first_name"]);
         } else {
-            $_SESSION['update_error'] = "Prénom invalide.";
-            if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+            echo json_encode(['success' => false, 'message' => "Prénom invalide."]);
             exit;
         }
     }
@@ -52,12 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $fields_to_update[] = "last_name = :last_name";
             $params[':last_name'] = trim($_POST["last_name"]);
         } else {
-            $_SESSION['update_error'] = "Nom invalide.";
-            if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+            echo json_encode(['success' => false, 'message' => "Nom invalide."]);
             exit;
         }
     }
@@ -67,42 +52,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $fields_to_update[] = "gender = :gender";
             $params[':gender'] = trim($_POST["gender"]);
         } else {
-            $_SESSION['update_error'] = "Genre invalide.";
-            if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+            echo json_encode(['success' => false, 'message' => "Genre invalide."]);
             exit;
         }
     }
     if (isset($_POST["birth_date"]) && !empty(trim($_POST["birth_date"]))) {
         $birth_date = trim($_POST["birth_date"]);
         $date = DateTime::createFromFormat('Y-m-d', $birth_date);
-    
+
         if ($date && $date->format('Y-m-d') === $birth_date) {
             $today = new DateTime();
             $age = $today->diff($date)->y;
-    
+
             if ($age >= 18) {
                 $fields_to_update[] = "birth_date = :birth_date";
                 $params[':birth_date'] = $birth_date;
             } else {
-                $_SESSION['update_error'] = "Vous devez avoir au moins 18 ans.";
-                if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+                echo json_encode(['success' => false, 'message' => "Vous devez avoir au moins 18 ans."]);
                 exit;
             }
         } else {
-            $_SESSION['update_error'] = "Date de naissance invalide.";
-            if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+            echo json_encode(['success' => false, 'message' => "Date de naissance invalide."]);
             exit;
         }
     }
@@ -111,12 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $fields_to_update[] = "phone_number = :phone_number";
             $params[':phone_number'] = trim($_POST["phone"]);
         } else {
-            $_SESSION['update_error'] = "Numéro de téléphone invalide.";
-            if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+            echo json_encode(['success' => false, 'message' => "Numéro de téléphone invalide."]);
             exit;
         }
     }
@@ -138,43 +103,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($fields_to_update)) {
-        $_SESSION['update_error'] = "Aucun champ n'a été rempli pour la mise à jour.";
-        if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+        echo json_encode(['success' => false, 'message' => "Aucun champ n'a été rempli pour la mise à jour."]);
         exit;
     }
-    echo $_POST["user_id"] . "<br>" . $_POST["email"] . "<br>" . $_POST["first_name"] . "<br>" . $_POST["last_name"];
+
     try {
-        // Construire la requête SQL dynamiquement
         $sql = "UPDATE users SET " . implode(", ", $fields_to_update) . " WHERE id = :user_id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
 
-        $_SESSION['update_error'] = "Vos informations ont été mises à jour avec succès.";
-        if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+        echo json_encode(['success' => true, 'message' => "Vos informations ont été mises à jour avec succès."]);
         exit;
     } catch (PDOException $e) {
-        $_SESSION['update_error'] = "Erreur : " . $e->getMessage();
-        if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+        echo json_encode(['success' => false, 'message' => "Erreur : " . $e->getMessage()]);
         exit;
     }
 } else {
-    if ($_SESSION['user_role'] === 'admin') {
-                    header("Location: ../admin.php");
-                } else {
-                    header("Location: ../profil.php");
-                }
+    echo json_encode(['success' => false, 'message' => "Méthode non autorisée."]);
     exit;
 }
 ?>

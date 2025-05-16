@@ -99,6 +99,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php else : ?>
                     <h1> Votre profil </h1>
                 <?php endif; ?>
+                <div id="profil-msg"></div>
                 <?php if (isset($_SESSION['update_error'])) : ?>
                     <p class="p-error"> <?php 
                         echo $_SESSION['update_error'];
@@ -275,7 +276,11 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
             </div>
             <div class="profil-page-content">
-                <h1>Mes Voyages</h1>
+                <?php if ($_SESSION['user_role'] === 'admin') : ?>
+                    <h1> Voyages de <?php echo htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']); ?> :</h1>
+                <?php else : ?>
+                    <h1> Mes Voyages :</h1>
+                <?php endif; ?>
                     <?php foreach ($trips as $trip) : ?>
                         <div class="results-container-profile">
                             <a class="result-profile" href="recap_user.php?trip=<?php echo $trip['user_trip_id']; ?>">

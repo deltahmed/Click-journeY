@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         foreach ($_POST as $key => $value) {
-            if (strpos($key, 'option_') === 0) {
-                $option_id = str_replace('option_', '', $value);
+            if (strpos($key, $trip_id . 'option_') === 0) {
+                $option_id = str_replace( $trip_id . 'option_', '', $value);
 
     
                 $stmt_option = $pdo->prepare("SELECT * FROM options WHERE id = :id");

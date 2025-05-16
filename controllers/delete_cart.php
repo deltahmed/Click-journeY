@@ -20,7 +20,7 @@ foreach ($_SESSION as $key => $value) {
     }
 }
 
-header("Location: ../cart.php");
+header("Location: ../profil.php");
 exit;
 
 
