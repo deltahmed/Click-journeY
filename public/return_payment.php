@@ -97,7 +97,28 @@ $stmt = $pdo->prepare("
 $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
 $stmt->execute();
 
+$trip_id = $_SESSION['trip_id'];
 
+if ($status === "accepted"){
+    foreach ($_SESSION as $key => $value) {
+        if (strpos($key, $trip_id . 'option_') === 0) {
+            unset($_SESSION[$key]);
+        }
+            
+        }
+        if (isset($_SESSION['cart_' . $trip_id])) {
+            unset($_SESSION['cart_' . $trip_id]);
+        }
+        if (isset($_SESSION['rooms' . $trip_id])) {
+            unset($_SESSION['rooms' . $trip_id]);
+        }
+        if (isset($_SESSION['travelers' . $trip_id])) {
+            unset($_SESSION['travelers' . $trip_id]);
+        }
+        if (isset($_SESSION['price' . $trip_id])) {
+            unset($_SESSION['price' . $trip_id]);
+        }
+}
 
 
 ?>
@@ -107,6 +128,7 @@ $stmt->execute();
         <meta name = "description" content = "A travel agency for Survival"/>
         <meta name = "keywords" content = "Travel, Survival"/>
         <meta name = "tags" content = "Travel, Survival"/>
+        <meta http-equiv="refresh" content="5;url=../profil.php">
         
         <title>Beyond Survival | Connexion</title>
         <meta charset="UTF-8">
@@ -120,6 +142,7 @@ $stmt->execute();
     <body>
         <div class="login-content">       
             <?php if ($status === "accepted") :?>
+
                 <h1>✅ Paiement réussi !</h1>
                 <p>Merci pour votre achat.</p>
                 <p><a class="small-link" href="../search.php">Cliquez ici pour retourner a la boutique cliquez ici.</a></p>
@@ -128,6 +151,7 @@ $stmt->execute();
                 <p>Le paiement a été refusé. Veuillez réessayer.</p>
                 <p><a class="small-link" href="../trip.php?trip=<?php echo $_SESSION['trip_id'] ?>">Cliquez ici pour retourner a la boutique cliquez ici.</a></p>
             <?php endif; ?>
+            <p>Vous serez redirigé dans 5 secondes.</p>
             
         </div>
         

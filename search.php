@@ -113,6 +113,10 @@ try {
                         <input type="text" name="q" placeholder="Rechercher une aventure..." value="<?php echo $q; ?>">
                         <button type="submit">Rechercher</button>
                     </form>
+                     <?php if ($act) : ?>
+                    <a href="search.php" class="small-link">Rechercher une autre activité</a>
+                    <?php else : ?>
+                    <?php endif ?>
                 </div>
                 <script src="scripts/card.js" defer></script>
             </section>
@@ -185,7 +189,9 @@ try {
                         </select>
                     </div>
                 </div>
+               
             </form>
+            
             <div id="pagination" class="pagination-container"></div>
             <div id="search-results"></div>
         </div>

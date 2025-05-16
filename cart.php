@@ -73,7 +73,9 @@ $user_id = $_SESSION['user_id'];
                                         <p>💰 Prix : <?php echo $_SESSION['price' . $trip_id]; ?>€</p>
                                     </div>
                                 </a>
+                                <a href="controllers/delete_cart.php?trip_id=<?php echo $trip_id; ?>" class="button_page">Supprimer ce voyage de mon panier</a>
                             </div>
+                            
                         <?php endif; ?>
                     <?php endforeach; ?>
                     <br>

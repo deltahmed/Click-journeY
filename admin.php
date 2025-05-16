@@ -113,7 +113,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </thead>
                     <tbody>
                         <?php foreach ($users as $user): ?>
-                            <tr>
+                            <tr data-id="<?php echo $user['id']; ?>">
                                 <td>
                                     <table>
                                         <tr>
@@ -128,7 +128,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </tr>
                                         <tr>
                                             <td>Type</td>
-                                            <td>
+                                            <td id="role-<?php echo $user['id']; ?>">
                                                 <?php echo $user['role']; ?>
                                             </td>
                                         </tr>
@@ -145,45 +145,9 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Sexe</td>
-                                            <td>
-                                                <?php echo $user['gender']; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Date de naissance</td>
-                                            <td>
-                                                <?php echo $user['birth_date']; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
                                             <td>Numéro de téléphone</td>
                                             <td>
                                                 <?php echo $user['phone_number']; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Adresse</td>
-                                            <td>
-                                                <?php echo $user['address']; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Code postal</td>
-                                            <td>
-                                                <?php echo $user['postal_code']; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ville</td>
-                                            <td>
-                                                <?php echo $user['city']; ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Commentaire</td>
-                                            <td>
-                                                <?php echo $user['comment']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -204,22 +168,28 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 Modifier
                                             </button>
                                         </form>
-                                        <button class="add-b">
-                                            <img class="icon">
-                                            Réductions
-                                        </button>
+                                        <?php if ($user['role'] === 'user'): ?>
+                                            <button class="add-b" data-id="<?php echo $user['id']; ?>">
+                                                <img class="icon">
+                                                Promouvoir
+                                            </button>
+                                        <?php elseif ($user['role'] === 'vip'): ?>
+                                            <button class="ban-b" data-id="<?php echo $user['id']; ?>">
+                                                <img class="icon">
+                                                Rétrograder
+                                            </button>
+                                        <?php endif; ?>
+                                        <!-- sdd 
                                         <button class="reset-b">
                                             <img class="icon">
-                                            Reset Mdp
-                                        </button>
-                                        <button class="ban-b">
-                                            <img class="icon">
-                                            Bannir
-                                        </button>
-                                        <button class="del-b">
-                                            <img class="icon">
-                                            Supprimer
-                                        </button>
+                                            Reset Mdp 
+                                        </button> -->
+                                        <?php if ($user['role'] !== 'admin'): ?>
+                                            <button class="del-b" data-id="<?php echo $user['id']; ?>">
+                                                <img class="icon">
+                                                Supprimer
+                                            </button>
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                             </tr>
