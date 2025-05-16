@@ -36,7 +36,7 @@
         <!-- Section for navigating between the 3 services proposed by the web site -->
         <nav class="selector">
             <!-- For the final web site search.php will be search.php -->
-            <a href="search.php?activity=wilderness-survival&sort=recommended">
+            <a href="search.php?q=wilderness-survival">
                 <img src="media/backgrounds/forest.jpg" alt="Survie en pleine nature">
                 <div class="selector-text">
                     <h1>Survie en pleine nature</h1>
@@ -44,7 +44,7 @@
                 </div>
             </a>
             <!-- For the final web site search.php will be search.php -->
-            <a href="search.php?activity=survival-training&sort=recommended">
+            <a href="search.php?q=survival-training">
                 <img src="media/backgrounds/stage.jpg" alt="Survie en pleine nature">
                 <div class="selector-text">
                     <h1>Stages de survie</h1>
@@ -52,7 +52,7 @@
                 </div>
             </a>
             <!-- For the final web site search.php will be search.php -->
-            <a href="search.php?activity=survival-escape-game&sort=recommended">
+            <a href="search.php?q=survival-escape-game">
                 <img src="media/backgrounds/island.jpg" alt="Survie en pleine nature">
                 <div class="selector-text">
                     <h1>Escape games de survie</h1>

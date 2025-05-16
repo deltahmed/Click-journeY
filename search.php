@@ -40,7 +40,7 @@ function SearchWordInText($texte, $search_words) {
 
     return true;
 }
-
+$act = false;
 try {
 
     $stmt = $pdo->prepare("SELECT * FROM trips");
@@ -49,10 +49,18 @@ try {
 
 
     foreach ($trips as $key => $trip) {
-        $concat = $trip['description'] . " " . $trip['title'] . " " . $trip['activity'] . " " . $trip['destination'] . " " . $trip['climate'] . " " . $trip['level'] . " " . $trip['price'] . " " . $trip['rating'] . " " . $trip['departure_date'] . " " . $trip['return_date'] . " " . $trip['travelers'] . " " . $trip['rooms'];
-        if (!empty($q) && !SearchWordInText($concat, $q)) {
-            unset($trips[$key]);
-            continue;
+        if ((strcmp($q , 'survival-escape-game') == 0) || (strcmp($q , 'survival-training') == 0) || (strcmp($q , 'wilderness-survival') == 0)) {
+            $act = true;
+            if (strcmp($trip['activity'], $q) != 0) {
+                unset($trips[$key]);
+                continue;
+            }
+        } else {
+            $concat = $trip['description'] . " " . $trip['title'] . " " . $trip['activity'] . " " . $trip['destination'] . " " . $trip['climate'] . " " . $trip['level'] . " " . $trip['price'] . " " . $trip['rating'] . " " . $trip['departure_date'] . " " . $trip['return_date'] . " " . $trip['travelers'] . " " . $trip['rooms'];
+            if (!empty($q) && !SearchWordInText($concat, $q)) {
+                unset($trips[$key]);
+                continue;
+            }
         }
     }
 
@@ -110,7 +118,11 @@ try {
             </section>
             <form class="travel-form">
                 <h2>Recherche Avancée :</h2>
+                <?php if ($act) : ?>
+                <div class="form-grid2">
+                <?php else : ?>
                 <div class="form-grid">
+                <?php endif ?>
                     <div class="form-group">
                         <label for="travelers">Voyageurs :</label>
                         <input type="number" id="travelers" name="travelers" min="1" max="10">
@@ -128,6 +140,7 @@ try {
                             <option value="advanced">Confirmé</option>
                         </select>
                     </div>
+                    <?php if (!$act) : ?>
                     <div class="form-group">
                         <label for="activity">Activité :</label>
                         <select id="activity" name="activity">
@@ -137,6 +150,7 @@ try {
                             <option value="survival-escape-game">Escape-game de survie</option>
                         </select>
                     </div>
+                    <?php endif ?>
                     <div class="form-group">
                         <label for="destination">Destination :</label>
                         <input type="text" id="destination" name="destination">

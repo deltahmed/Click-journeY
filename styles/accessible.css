@@ -699,6 +699,12 @@ footer div{
     gap: 20px;
     align-items: center;
 }
+.form-grid2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: center;
+}
 .form-group {
     display: flex;
     flex-direction: column;
