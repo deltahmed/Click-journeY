@@ -138,17 +138,22 @@ $stages = $stmt_stages->fetchAll(PDO::FETCH_ASSOC);
                                 <?php else : ?> 
                                     <input type="number" id="travelers" name="travelers" min="1" max="<?php echo $trip['travelers']; ?>" value="1">
                                 <?php endif; ?>
+                                <div>
+                                    <!-- Ajouter un conteneur pour afficher le prix total -->
+                                    <div id="total-price-container">
+                                        <h3>Total à payer : <span id="total-price">0</span>€</h3>
+                                    </div>
 
-                                <!-- Ajouter un conteneur pour afficher le prix total -->
-                                <div id="total-price-container">
-                                    <h3>Total à payer : <span id="total-price">0</span>€</h3>
+                                    <script>
+                                        window.basePricePerPerson = <?php echo json_encode($trip['price']); ?>;
+                                    </script>
+                                    <input type="hidden" id="total_price" name="total_price" value="0">
+                                    <?php if (isset($_SESSION['cart_' . $id])) : ?>
+                                        <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Modifier mon panier / Acheter</button>
+                                    <?php else : ?>
+                                        <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Ajouter au panier / Acheter</button>
+                                    <?php endif; ?>
                                 </div>
-
-                                <script>
-                                    window.basePricePerPerson = <?php echo json_encode($trip['price']); ?>;
-                                </script>
-                                <input type="hidden" id="total_price" name="total_price" value="0">
-                                <button class="submit-btn" type="submit" id="submit" name="submit" value="submit">Acheter</button>
                             </div>
                         </form>
                     </div>
