@@ -71,11 +71,41 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.change-profil').addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        // Réactive tous les champs pour la soumission
         const disabledFields = document.querySelectorAll('input:disabled, select:disabled, textarea:disabled');
         disabledFields.forEach(field => field.disabled = false);
 
         const form = event.target;
+
+        // Vérification de validité AVANT l'envoi AJAX
+        if (!form.checkValidity()) {
+            // Affiche le message d'erreur sur la page
+            let msg = document.getElementById('profil-msg');
+            if (!msg) {
+                msg = document.createElement('div');
+                msg.id = 'profil-msg';
+                msg.style.margin = '10px 0';
+                form.prepend(msg);
+            }
+            msg.style.color = 'red';
+            msg.textContent = "Veuillez corriger les champs invalides avant de soumettre.";
+
+            // Réinitialise les champs et boutons comme à l'origine
+            const inputFields = document.querySelectorAll('input, select, textarea');
+            inputFields.forEach(field => {
+                if (typeof originalValues[field.id] !== "undefined") {
+                    field.value = originalValues[field.id];
+                }
+                field.disabled = true;
+            });
+            saveButtons.forEach(btn => btn.style.display = 'none');
+            cancelButtons.forEach(btn => btn.style.display = 'none');
+            editButtons.forEach(btn => btn.style.display = 'flex');
+            submitButton.style.display = 'none';
+
+            return;
+        }
+
+
         const formData = new FormData(form);
 
         // Affiche un message de chargement

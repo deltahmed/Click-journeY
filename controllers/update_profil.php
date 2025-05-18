@@ -19,15 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fields_to_update = [];
     $params = [':user_id' => $user_id];
 
-    if (isset($_POST["email"]) && !empty(trim($_POST["email"]))) {
-        if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-            $fields_to_update[] = "email = :email";
-            $params[':email'] = trim($_POST["email"]);
-        } else {
-            echo json_encode(['success' => false, 'message' => "Adresse email invalide."]);
-            exit;
-        }
-    }
     if (isset($_POST["first_name"]) && !empty(trim($_POST["first_name"]))) {
         if (preg_match("/^[a-zA-ZÀ-ÿ '-]+$/", $_POST["first_name"])) {
             $fields_to_update[] = "first_name = :first_name";

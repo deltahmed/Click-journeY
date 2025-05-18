@@ -67,7 +67,8 @@ $stmt_trips = $pdo->prepare("
         user_trips.id AS user_trip_id, 
         user_trips.user_numbers, 
         trips.rooms, 
-        user_trips.payement_status 
+        user_trips.payement_status,
+        user_trips.amount
     FROM user_trips
     INNER JOIN trips ON user_trips.trip_id = trips.id
     WHERE user_trips.id = :user_trip_id
@@ -180,7 +181,7 @@ foreach ($options_by_stage as $row) {
                                     <p>🌡️ Climat : <?php echo htmlspecialchars($trip['climate']); ?></p>
                                     <p>📫 Destination : <?php echo htmlspecialchars($trip['destination']); ?></p>
                                     <p>📈 Niveau : <?php echo htmlspecialchars($trip['level']); ?></p>
-                                    <p>💰 Paiement de : <?php echo htmlspecialchars($trip['price']); ?>€</p>
+                                    <p>💰 Paiement de : <?php echo htmlspecialchars($trip['amount']); ?>€</p>
                                     <p>💰 Statut du paiement : <?php echo htmlspecialchars($trip['payement_status']); ?></p>
                         
                     </div>

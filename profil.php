@@ -45,7 +45,8 @@ $stmt = $pdo->prepare("
         user_trips.id AS user_trip_id, 
         user_trips.user_numbers, 
         trips.rooms, 
-        user_trips.payement_status 
+        user_trips.payement_status,
+        user_trips.amount 
     FROM user_trips
     INNER JOIN trips ON user_trips.trip_id = trips.id
     WHERE user_trips.user_id = :user_id
@@ -122,12 +123,9 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tr>
                                 <td>E-mail</td>
                                 <td>
-                                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>">
+                                    <?php echo htmlspecialchars($user['email']); ?>
                                 </td>
                                 <td>
-                                    <button type="button" class="mod-b" data-target="email"><img class="icon"> Modifier</button>
-                                    <button type="submit" class="save-btn" data-target="email" style="display: none;">Valider</button>
-                                    <button type="button" class="cancel-btn" data-target="email" style="display: none;">Annuler</button>
                                 </td>
                             </tr>
 
@@ -135,7 +133,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tr>
                                 <td>Nom</td>
                                 <td>
-                                    <input type="text" id="last-name" name="last_name" value="<?php echo htmlspecialchars($user['last_name']); ?>">
+                                    <input type="text" id="last-name" name="last_name" value="<?php echo htmlspecialchars($user['last_name']); ?>" required>
                                 </td>
                                 <td>
                                     <button type="button" class="mod-b" data-target="last-name"><img class="icon"> Modifier</button>
@@ -148,7 +146,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tr>
                                 <td>Prénom</td>
                                 <td>
-                                    <input type="text" id="first-name" name="first_name" value="<?php echo htmlspecialchars($user['first_name']); ?>">
+                                    <input type="text" id="first-name" name="first_name" value="<?php echo htmlspecialchars($user['first_name']); ?>" required>
                                 </td>
                                 <td>
                                     <button type="button" class="mod-b" data-target="first-name"><img class="icon"> Modifier</button>
@@ -178,7 +176,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tr>
                                 <td>Date de naissance</td>
                                 <td>
-                                    <input type="date" id="birth-date" name="birth_date" value="<?php echo htmlspecialchars($user['birth_date']); ?>">
+                                    <input type="date" id="birth-date" name="birth_date" value="<?php echo htmlspecialchars($user['birth_date']); ?>" required>
                                 </td>
                                 <td>
                                     <button type="button" class="mod-b" data-target="birth-date"><img class="icon"> Modifier</button>
@@ -191,7 +189,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tr>
                                 <td>Numéro de téléphone</td>
                                 <td>
-                                    <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($user['phone_number']); ?>" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" >
+                                    <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($user['phone_number']); ?>" pattern="[0-9]{10}" minlength="1" maxlength="10" inputmode="numeric" required>
                                 </td>
                                 <td>
                                     <button type="button" class="mod-b" data-target="phone"><img class="icon"> Modifier</button>
@@ -204,7 +202,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tr>
                                 <td>Adresse</td>
                                 <td>
-                                    <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($user['address']); ?>" >
+                                    <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($user['address']); ?>" minlength="1" required>
                                 </td>
                                 <td>
                                     <button type="button" class="mod-b" data-target="address"><img class="icon"> Modifier</button>
@@ -217,7 +215,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tr>
                                 <td>Code postal</td>
                                 <td>
-                                    <input type="number" id="postal-code" name="postal_code" value="<?php echo htmlspecialchars($user['postal_code']); ?>" maxlength="5" >
+                                    <input type="number" id="postal-code" name="postal_code" value="<?php echo htmlspecialchars($user['postal_code']); ?>" min="1000" max="99999" required>
                                 </td>
                                 <td>
                                     <button type="button" class="mod-b" data-target="postal-code"><img class="icon"> Modifier</button>
@@ -230,7 +228,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tr>
                                 <td>Ville</td>
                                 <td>
-                                    <input type="text" id="city" name="city" value="<?php echo htmlspecialchars($user['city']); ?>" >
+                                    <input type="text" id="city" name="city" value="<?php echo htmlspecialchars($user['city']); ?>" minlength="1" required>
                                 </td>
                                 <td>
                                     <button type="button" class="mod-b" data-target="city"><img class="icon"> Modifier</button>
@@ -293,7 +291,7 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <p>🌡️ Climat : <?php echo htmlspecialchars($trip['climate']); ?></p>
                                     <p>📫 Destination : <?php echo htmlspecialchars($trip['destination']); ?></p>
                                     <p>📈 Niveau : <?php echo htmlspecialchars($trip['level']); ?></p>
-                                    <p>💰 Paiement de : <?php echo htmlspecialchars($trip['price']); ?>€</p>
+                                    <p>💰 Paiement de : <?php echo htmlspecialchars($trip['amount']); ?>€</p>
                                     <p>💰 Statut du paiement : <?php echo htmlspecialchars($trip['payement_status']); ?></p>
                                 </div>
                             </a>
