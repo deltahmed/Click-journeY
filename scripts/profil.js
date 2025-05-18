@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
             button.style.display = 'none';
             saveButton.style.display = 'flex';
             cancelButton.style.display = 'flex';
+
+            // Désactive tous les autres boutons "modifier"
+            editButtons.forEach(otherBtn => {
+                if (otherBtn !== button) {
+                    otherBtn.style.pointerEvents = 'none';
+                    otherBtn.style.opacity = '0.5';
+                }
+            });
         });
     });
 
@@ -43,6 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
             button.style.display = 'none';
             cancelButton.style.display = 'none';
             editButton.style.display = 'flex';
+
+            // Réactive tous les boutons "modifier"
+            editButtons.forEach(otherBtn => {
+                otherBtn.style.pointerEvents = '';
+                otherBtn.style.opacity = '';
+            });
 
             submitButton.style.display = 'flex';
         });
@@ -61,6 +75,37 @@ document.addEventListener('DOMContentLoaded', () => {
             button.style.display = 'none';
             saveButton.style.display = 'none';
             editButton.style.display = 'flex';
+
+            // Réactive tous les boutons "modifier"
+            editButtons.forEach(otherBtn => {
+                otherBtn.style.pointerEvents = '';
+                otherBtn.style.opacity = '';
+            });
+
+            if (!Object.values(originalValues).some((value, id) => document.getElementById(id).value !== value)) {
+                submitButton.style.display = 'none';
+            }
+        });
+    });
+
+    cancelButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target');
+            const inputField = document.getElementById(targetId);
+            const editButton = document.querySelector(`.mod-b[data-target="${targetId}"]`);
+            const saveButton = document.querySelector(`.save-btn[data-target="${targetId}"]`);
+
+            inputField.value = originalValues[targetId];
+
+            inputField.disabled = true;
+            button.style.display = 'none';
+            saveButton.style.display = 'none';
+            editButton.style.display = 'flex';
+
+            // Réafficher tous les boutons "modifier"
+            editButtons.forEach(otherBtn => {
+                otherBtn.style.display = 'flex';
+            });
 
             if (!Object.values(originalValues).some((value, id) => document.getElementById(id).value !== value)) {
                 submitButton.style.display = 'none';
